@@ -1,0 +1,750 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — Unsnag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ──────────────────────────────── */
+    :root {
+      --cream:            #FAF7F2;
+      --cream-dark:       #F0EBE3;
+      --warm-dark:        #2D2A26;
+      --warm-dark-light:  #4A4640;
+      --mauve:            #E2C6FD;
+      --mauve-dark:       #C9A4E8;
+      --mauve-light:      #F0DEFF;
+      --blush:            #FFBCF2;
+      --orange:           #FFA846;
+      --tomato:           #FF6B4C;
+      --warm-gray:        #B8B2A8;
+      --warm-gray-light:  #E8E3DB;
+
+      --shadow:         3px 3px 0px 0px #2D2A26;
+      --shadow-sm:      2px 2px 0px 0px #2D2A26;
+      --shadow-lg:      4px 4px 0px 0px #2D2A26;
+      --shadow-mauve:   3px 3px 0px 0px #C9A4E8;
+      --shadow-pressed: 1px 1px 0px 0px #2D2A26;
+    }
+
+    /* ─── Reset & Base ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    a { color: inherit; }
+
+    /* ─── Layout ─────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 14px;
+    }
+
+    /* ─── Buttons ────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 26px;
+      border-radius: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 2px solid var(--warm-dark);
+      cursor: pointer;
+      transition: box-shadow 0.12s ease, transform 0.12s ease;
+      white-space: nowrap;
+    }
+    .btn-mauve {
+      background: var(--mauve);
+      color: var(--warm-dark);
+      box-shadow: var(--shadow);
+    }
+    .btn-mauve:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+    .btn-lg {
+      padding: 16px 34px;
+      font-size: 17px;
+      border-radius: 16px;
+    }
+    .btn-mauve-on-dark {
+      background: var(--mauve);
+      color: var(--warm-dark);
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-mauve);
+    }
+    .btn-mauve-on-dark:hover {
+      box-shadow: 1px 1px 0px 0px #C9A4E8;
+      transform: translate(2px, 2px);
+    }
+
+    /* ─── Nav ────────────────────────────────────────── */
+    #main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 0;
+      background: transparent;
+      transition: background 0.3s ease, border-bottom 0.3s ease;
+    }
+    #main-nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    #main-nav.scrolled {
+      background: rgba(250, 247, 242, 0.94);
+      border-bottom: 1.5px solid var(--warm-gray-light);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--warm-dark);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--warm-dark); }
+    .nav-links a.active {
+      color: var(--warm-dark);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1.5px;
+    }
+
+    /* ─── Hero ───────────────────────────────────────── */
+    #hero {
+      padding: 88px 0 72px;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 400px;
+      gap: 64px;
+      align-items: center;
+    }
+    #hero h1 {
+      font-size: clamp(38px, 5.5vw, 66px);
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -1.5px;
+      line-height: 1.06;
+      margin-bottom: 28px;
+    }
+    .hero-sub {
+      font-size: 20px;
+      color: var(--warm-dark-light);
+      line-height: 1.75;
+    }
+    .hero-img {
+      width: 100%;
+      border-radius: 24px;
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-lg);
+      display: block;
+    }
+
+    /* ─── Recognition ────────────────────────────────── */
+    #recognition {
+      padding: 72px 0 80px;
+      background: var(--cream-dark);
+    }
+    .recognition-inner {
+      max-width: 760px;
+      margin: 0 auto;
+    }
+    #recognition h2 {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -0.6px;
+      margin-bottom: 48px;
+    }
+
+    .truth-list {
+      display: flex;
+      flex-direction: column;
+    }
+    .truth-item {
+      display: grid;
+      grid-template-columns: 40px 1fr;
+      gap: 20px;
+      align-items: baseline;
+      padding: 28px 0;
+      border-bottom: 1.5px solid var(--warm-gray-light);
+    }
+    .truth-item:first-child {
+      border-top: 1.5px solid var(--warm-gray-light);
+    }
+    .truth-num {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--mauve-dark);
+      letter-spacing: 0.04em;
+      padding-top: 4px;
+    }
+    .truth-text {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .truth-text strong {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: clamp(18px, 2vw, 22px);
+      font-weight: 700;
+      color: var(--warm-dark);
+      line-height: 1.25;
+    }
+    .truth-text p {
+      font-size: 15px;
+      color: var(--warm-dark-light);
+      line-height: 1.65;
+      max-width: 580px;
+    }
+
+    /* ─── Founder Bridge ─────────────────────────────── */
+    #founder {
+      padding: 88px 0;
+    }
+    .founder-grid {
+      display: grid;
+      grid-template-columns: 400px 1fr;
+      gap: 72px;
+      align-items: start;
+    }
+    .founder-photo {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      background: var(--cream-dark);
+      border: 2px solid var(--warm-dark);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 28px;
+      transition: box-shadow 0.2s, transform 0.2s;
+    }
+    .founder-photo:hover {
+      box-shadow: 6px 6px 0px 0px #2D2A26;
+      transform: translate(-2px, -2px);
+    }
+    .founder-photo p {
+      font-size: 12px;
+      color: var(--warm-gray);
+      text-align: center;
+      line-height: 1.6;
+    }
+    .founder-text {
+      padding-top: 8px;
+    }
+    .founder-text h2 {
+      font-size: clamp(28px, 3.5vw, 42px);
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -0.8px;
+      margin-bottom: 24px;
+    }
+    .founder-text p {
+      font-size: 17px;
+      color: var(--warm-dark-light);
+      line-height: 1.8;
+      margin-bottom: 20px;
+    }
+    .founder-text p:last-of-type {
+      margin-bottom: 32px;
+    }
+    .creds {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+    .cred-pill {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 14px;
+      border-radius: 100px;
+      background: var(--cream-dark);
+      border: 1.5px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      font-size: 12px;
+      font-weight: 600;
+      color: var(--warm-dark);
+      letter-spacing: 0.02em;
+    }
+    .founder-name {
+      font-size: 14px !important;
+      font-weight: 600 !important;
+      color: var(--warm-gray) !important;
+      margin-top: 4px !important;
+      margin-bottom: 28px !important;
+    }
+
+    /* ─── What Changes ───────────────────────────────── */
+    #difference {
+      padding: 80px 0;
+      background: var(--cream-dark);
+    }
+    #difference h2 {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -0.6px;
+      margin-bottom: 40px;
+    }
+    .diff-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .diff-card {
+      background: var(--cream);
+      border: 2px solid var(--warm-dark);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 32px 28px;
+      transition: box-shadow 0.12s ease, transform 0.12s ease;
+    }
+    .diff-card:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+    .diff-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      border: 1.5px solid var(--warm-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+      margin-bottom: 18px;
+    }
+    .diff-card h3 {
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      margin-bottom: 10px;
+    }
+    .diff-card p {
+      font-size: 15px;
+      color: var(--warm-dark-light);
+      line-height: 1.65;
+    }
+
+    /* ─── Beliefs ────────────────────────────────────── */
+    #beliefs {
+      padding: 80px 0;
+    }
+    #beliefs h2 {
+      font-size: clamp(26px, 3vw, 38px);
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -0.6px;
+      margin-bottom: 40px;
+    }
+    .beliefs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .belief-card {
+      background: var(--cream-dark);
+      border: 2px solid var(--warm-dark);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      transition: box-shadow 0.12s ease, transform 0.12s ease;
+    }
+    .belief-card:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+    .belief-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      margin-bottom: 10px;
+    }
+    .belief-card p {
+      font-size: 15px;
+      color: var(--warm-dark-light);
+      line-height: 1.65;
+    }
+
+    /* ─── Closing CTA ────────────────────────────────── */
+    #closing-cta {
+      background: var(--warm-dark);
+      padding: 96px 48px;
+      text-align: center;
+    }
+    #closing-cta h2 {
+      font-size: clamp(30px, 4vw, 50px);
+      font-weight: 800;
+      color: var(--cream);
+      margin: 0 auto 18px;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+    #closing-cta p {
+      font-size: 17px;
+      color: var(--warm-gray);
+      margin-bottom: 40px;
+    }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      background: var(--cream-dark);
+      padding: 36px 0;
+      border-top: 1.5px solid var(--warm-gray-light);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--warm-dark);
+      text-decoration: none;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--warm-dark); }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+
+    /* ─── Scroll Animations ──────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .stagger.visible > *:nth-child(1) { opacity: 1; transform: none; transition-delay: 0.05s; }
+    .stagger.visible > *:nth-child(2) { opacity: 1; transform: none; transition-delay: 0.15s; }
+    .stagger.visible > *:nth-child(3) { opacity: 1; transform: none; transition-delay: 0.25s; }
+    .stagger.visible > *:nth-child(4) { opacity: 1; transform: none; transition-delay: 0.35s; }
+    .stagger.visible > *:nth-child(5) { opacity: 1; transform: none; transition-delay: 0.42s; }
+
+    img[src*="images/"] { background: var(--cream-dark); }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 1000px) {
+      .founder-grid {
+        grid-template-columns: 1fr;
+        gap: 48px;
+      }
+      .founder-photo {
+        max-width: 400px;
+        aspect-ratio: 4 / 3;
+      }
+    }
+    @media (max-width: 860px) {
+      .container { padding: 0 24px; }
+      #recognition { padding: 64px 24px; }
+      #difference { padding: 64px 24px; }
+      .diff-grid { grid-template-columns: 1fr; }
+      .beliefs-grid { grid-template-columns: 1fr; }
+      #closing-cta { padding: 72px 24px; }
+    }
+    @media (max-width: 860px) {
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .hero-img { max-width: 360px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      #hero { padding: 64px 0 48px; }
+      #hero h1 { font-size: 36px; letter-spacing: -0.8px; }
+      .hero-sub { font-size: 17px; }
+      .hero-img { max-width: 100%; }
+      .truth-item { grid-template-columns: 32px 1fr; gap: 14px; }
+      footer { padding: 28px 0; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────── NAV ─────────────────── -->
+<nav id="main-nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">unsnag</a>
+    <ul class="nav-links">
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="about.html" class="active">About</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+    </ul>
+    <a href="index.html#signup" class="btn btn-mauve">Try it free</a>
+  </div>
+</nav>
+
+<!-- ─────────────────── HERO ─────────────────── -->
+<section id="hero">
+  <div class="container">
+    <div class="hero-grid fade-up">
+      <div class="hero-text">
+        <span class="section-label">Who Unsnag Is For</span>
+        <h1>You're warm, funny, generous —<br>and somehow still convinced<br>you're the problem.</h1>
+        <p class="hero-sub">You're not. You've just never had a way to actually process what you're feeling in the moment — instead of carrying it for hours. Unsnag is a guided emotional processing app, built for you. By someone who needed it too.</p>
+      </div>
+      <img
+        src="images/woman-cozy-phone.png"
+        alt="A woman relaxing on a couch, using her phone"
+        class="hero-img"
+      />
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── RECOGNITION ─────────────────── -->
+<section id="recognition">
+  <div class="container">
+    <div class="recognition-inner">
+      <div class="fade-up">
+        <span class="section-label">Does This Sound Like You?</span>
+        <h2>Hi. I see you.</h2>
+      </div>
+      <div class="truth-list stagger fade-up">
+        <div class="truth-item">
+          <span class="truth-num">01</span>
+          <div class="truth-text">
+            <strong>You'd rather disappear than disappoint someone.</strong>
+            <p>Not because you're weak — because somewhere along the way you figured out that keeping the peace was safer than being honest about what you needed. That made sense then. It's exhausting now.</p>
+          </div>
+        </div>
+        <div class="truth-item">
+          <span class="truth-num">02</span>
+          <div class="truth-text">
+            <strong>When someone seems off with you, you assume it's your fault.</strong>
+            <p>Doesn't matter if you did anything. Doesn't matter if you literally can't think of a single reason they'd be upset. The spiral starts anyway. You're already apologizing in your head.</p>
+          </div>
+        </div>
+        <div class="truth-item">
+          <span class="truth-num">03</span>
+          <div class="truth-text">
+            <strong>You can see yourself doing the thing while you're doing it.</strong>
+            <p>You have the insight. You have the language. You're watching yourself react in a way you hate — and you still can't stop it. That's not a character flaw. That's a missing tool.</p>
+          </div>
+        </div>
+        <div class="truth-item">
+          <span class="truth-num">04</span>
+          <div class="truth-text">
+            <strong>You're tired of needing to know everything is okay.</strong>
+            <p>You don't want to be the person who texts back immediately to make sure they're not mad. You want to trust that things are fine without having to check. You want to stop bracing for the thing that probably isn't coming.</p>
+          </div>
+        </div>
+        <div class="truth-item">
+          <span class="truth-num">05</span>
+          <div class="truth-text">
+            <strong>You feel guilty for having needs.</strong>
+            <p>You're not high-maintenance. You're not selfish. You're not annoying. You were just taught — by experience, not by anyone sitting you down — that your needs were a lot. They're not.</p>
+          </div>
+        </div>
+      </div>
+      <div class="recognition-img fade-up">
+        <img src="images/woman-park-bench.png" alt="" style="width:100%; max-width:520px; border-radius:20px; border:1.5px solid var(--warm-dark); box-shadow:var(--shadow); display:block; margin: 48px auto 0;">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── FOUNDER BRIDGE ─────────────────── -->
+<section id="founder">
+  <div class="container">
+    <div class="founder-grid fade-up">
+      <img
+  src="images/afi-photo.jpg"
+  alt="Afi Catena, founder of Unsnag"
+  style="width:100%; border-radius:20px; border:1.5px solid var(--warm-dark); box-shadow:var(--shadow-lg); object-fit:cover; aspect-ratio:3/4;"
+/>
+      <div class="founder-text">
+        <span class="section-label">Why I Built This</span>
+        <h2>I was all of the above.<br>Still am sometimes.<br>This is what finally worked.</h2>
+        <p class="founder-name">— Afi Catena, founder of Unsnag</p>
+        <p>I held everything together for everyone. I was terrified of disappointing anyone. I could explain my patterns perfectly — had been in therapy, had done the reading, genuinely understood where it all came from. And I still fell apart over an unanswered text. Still felt guilty for things that had nothing to do with me. Still couldn't speak up without spending three days recovering from it.</p>
+        <p>What changed wasn't more understanding. It was learning how to actually feel what was happening in my body — not think about it, not manage it — and let it move through. That sounds like a lot. It isn't. Once I had a simple process for it, things shifted in ways that years of insight never touched.</p>
+        <p>I'm a mom. A regular person. I built Unsnag because the tool I needed didn't exist — and because the gap between knowing your patterns and actually being able to change them is real, it's solvable, and it doesn't require another commitment. Just a few minutes when you need it. Then you close it and go live your life.</p>
+        <p>Here's what I actually believe: you have something real and irreplaceable to offer. And you can't fully give it when you're spending your energy managing everyone else's reactions. When you stop needing their approval to feel okay — not by deciding to, but because something in your body actually shifted — you get yourself back. That's the whole point. Not to fix you. To free you.</p>
+        <div class="creds">
+          <span class="cred-pill">B.S. Psychology</span>
+          <span class="cred-pill">Certified Life Coach</span>
+          <span class="cred-pill">Somatic practice</span>
+          <span class="cred-pill">Human design</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── WHAT ACTUALLY CHANGES THINGS ─────────────────── -->
+<section id="difference">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">What Makes This Different</span>
+      <h2>No courses. No journaling. No homework.<br>Just a process you follow when something activates — and then close when you're done.</h2>
+    </div>
+    <div class="diff-grid stagger fade-up">
+      <div class="diff-card">
+        <div class="diff-icon" style="background: rgba(255,168,70,0.2);">⚡</div>
+        <h3>You don't have to learn anything new.</h3>
+        <p>Open it. Follow it. Close it. No framework to memorize, no concept to understand. Just a process that works.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon" style="background: var(--mauve-light);">↗</div>
+        <h3>It meets you when you actually need it.</h3>
+        <p>Mid-spiral, mid-frustration, mid-whatever. You don't need to be calm or prepared to use it. That's the whole point.</p>
+      </div>
+      <div class="diff-card">
+        <div class="diff-icon" style="background: rgba(255,188,242,0.35);">◎</div>
+        <h3>Small shifts. They compound into a different person.</h3>
+        <p>You won't notice a breakthrough. You'll just notice one day that you didn't spiral over the text. That you said the thing. That someone was disappointed and you were okay. That's the shift.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── WHAT I KNOW ABOUT YOU ─────────────────── -->
+<section id="beliefs">
+  <div class="container">
+    <div class="fade-up">
+      <span class="section-label">What I Know To Be True</span>
+      <h2>What I know to be true about you.</h2>
+    </div>
+    <div class="beliefs-grid stagger fade-up">
+      <div class="belief-card">
+        <h3>You're not too sensitive. You just never had a way to actually process what you feel — so it stays stuck.</h3>
+      </div>
+      <div class="belief-card">
+        <h3>The guilt you carry for other people's reactions — that's not accountability. That's a pattern you learned. And patterns can be unlearned in the body, not just understood in the head.</h3>
+      </div>
+      <div class="belief-card">
+        <h3>You have something real to give. You just can't give it when you're spending all your energy managing other people's reactions.</h3>
+      </div>
+      <div class="belief-card">
+        <h3>The shift doesn't announce itself. It feels like the tightness in your chest released — and then you notice you said the thing, and nothing fell apart.</h3>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── CLOSING CTA ─────────────────── -->
+<div id="closing-cta" class="fade-up">
+  <h2>You've carried enough.<br>You don't have to keep being this version of yourself.</h2>
+  <p>Six guided steps that process what you're feeling in your body — not just in your head. Use it enough and something actually changes. 14 days free. $5/month after that.</p>
+  <a href="index.html#signup" class="btn btn-mauve-on-dark btn-lg">Start free trial</a>
+</div>
+
+<!-- ─────────────────── FOOTER ─────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">unsnag</a>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+      <span class="footer-copy">© 2025 Unsnag</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Sticky nav
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // Scroll-reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+
+  document.querySelectorAll('.fade-up, .stagger').forEach(el => observer.observe(el));
+
+  document.querySelector('#hero .hero-inner').classList.add('visible');
+</script>
+
+</body>
+</html>

@@ -1,0 +1,402 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — Unsnag</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ──────────────────────────────── */
+    :root {
+      --cream:            #FAF7F2;
+      --cream-dark:       #F0EBE3;
+      --warm-dark:        #2D2A26;
+      --warm-dark-light:  #4A4640;
+      --mauve:            #E2C6FD;
+      --mauve-dark:       #C9A4E8;
+      --mauve-light:      #F0DEFF;
+      --blush:            #FFBCF2;
+      --orange:           #FFA846;
+      --tomato:           #FF6B4C;
+      --warm-gray:        #B8B2A8;
+      --warm-gray-light:  #E8E3DB;
+
+      --shadow:         3px 3px 0px 0px #2D2A26;
+      --shadow-sm:      2px 2px 0px 0px #2D2A26;
+      --shadow-lg:      4px 4px 0px 0px #2D2A26;
+      --shadow-mauve:   3px 3px 0px 0px #C9A4E8;
+      --shadow-pressed: 1px 1px 0px 0px #2D2A26;
+    }
+
+    /* ─── Reset & Base ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+    a { color: inherit; }
+
+    /* ─── Layout ─────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 14px;
+    }
+
+    /* ─── Buttons ────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 13px 26px;
+      border-radius: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 2px solid var(--warm-dark);
+      cursor: pointer;
+      transition: box-shadow 0.12s ease, transform 0.12s ease;
+      white-space: nowrap;
+    }
+    .btn-mauve {
+      background: var(--mauve);
+      color: var(--warm-dark);
+      box-shadow: var(--shadow);
+    }
+    .btn-mauve:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+
+    /* ─── Nav ────────────────────────────────────────── */
+    #main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 0;
+      background: transparent;
+      transition: background 0.3s ease, border-bottom 0.3s ease;
+    }
+    #main-nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    #main-nav.scrolled {
+      background: rgba(250, 247, 242, 0.94);
+      border-bottom: 1.5px solid var(--warm-gray-light);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--warm-dark);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--warm-dark); }
+
+    /* ─── Page Header ────────────────────────────────── */
+    #page-header {
+      padding: 72px 0 56px;
+      border-bottom: 1.5px solid var(--warm-gray-light);
+    }
+    #page-header h1 {
+      font-size: clamp(32px, 4.5vw, 52px);
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -1.2px;
+      margin-bottom: 16px;
+    }
+    .page-meta {
+      font-size: 14px;
+      color: var(--warm-gray);
+    }
+
+    /* ─── Legal Content ──────────────────────────────── */
+    #legal-content {
+      padding: 64px 0 96px;
+    }
+    .legal-inner {
+      max-width: 720px;
+    }
+    .legal-section {
+      margin-bottom: 52px;
+    }
+    .legal-section h2 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      letter-spacing: -0.3px;
+      margin-bottom: 16px;
+      padding-bottom: 10px;
+      border-bottom: 1.5px solid var(--warm-gray-light);
+    }
+    .legal-section p {
+      font-size: 16px;
+      color: var(--warm-dark-light);
+      line-height: 1.8;
+      margin-bottom: 14px;
+    }
+    .legal-section p:last-child { margin-bottom: 0; }
+    .legal-section ul {
+      margin: 10px 0 14px 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .legal-section ul li {
+      font-size: 16px;
+      color: var(--warm-dark-light);
+      line-height: 1.75;
+    }
+    .legal-section a {
+      color: var(--warm-dark);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+    }
+    .legal-section a:hover { color: var(--mauve-dark); }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      background: var(--cream-dark);
+      padding: 36px 0;
+      border-top: 1.5px solid var(--warm-gray-light);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--warm-dark);
+      text-decoration: none;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--warm-dark); }
+    .footer-links a.active {
+      color: var(--warm-dark);
+      font-weight: 700;
+      text-decoration: underline;
+      text-underline-offset: 4px;
+      text-decoration-thickness: 1.5px;
+    }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 860px) {
+      .container { padding: 0 24px; }
+      #page-header { padding: 56px 0 40px; }
+      #legal-content { padding: 48px 0 72px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      footer { padding: 28px 0; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────── NAV ─────────────────── -->
+<nav id="main-nav">
+  <div class="container">
+    <a href="index.html" class="nav-logo">unsnag</a>
+    <ul class="nav-links">
+      <li><a href="index.html#how-it-works">How It Works</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="index.html#pricing">Pricing</a></li>
+    </ul>
+    <a href="index.html#signup" class="btn btn-mauve">Try it free</a>
+  </div>
+</nav>
+
+<!-- ─────────────────── PAGE HEADER ─────────────────── -->
+<section id="page-header">
+  <div class="container">
+    <span class="section-label">Legal</span>
+    <h1>Privacy Policy</h1>
+    <p class="page-meta">Last updated: March 31, 2025</p>
+  </div>
+</section>
+
+<!-- ─────────────────── CONTENT ─────────────────── -->
+<section id="legal-content">
+  <div class="container">
+    <div class="legal-inner">
+
+      <div class="legal-section">
+        <h2>Who We Are</h2>
+        <p>Unsnag is an emotional processing app created and operated by Afi Catena. We're a small, independent product — not a giant company. When you share something with us, we take that seriously. This policy explains what we collect, why, and what we do (and don't do) with it.</p>
+        <p>If you have questions, you can reach us directly at <a href="mailto:hello@unsnag.co">hello@unsnag.co</a>.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>What We Collect</h2>
+        <p>We collect only what we need to run the service and make it better:</p>
+        <ul>
+          <li><strong>Account information</strong> — your email address when you sign up or join the waitlist.</li>
+          <li><strong>Usage data</strong> — which features you use, how often you open the app, and how you move through sessions. This is anonymous aggregate data, not tied to your specific responses.</li>
+          <li><strong>Session content</strong> — the text or voice input you enter during a guided session, stored securely and used only to complete that session. We do not analyze your personal responses to train AI models or for advertising.</li>
+          <li><strong>Device and technical data</strong> — browser type, device type, and general location (country/region) to help us debug issues and improve performance.</li>
+          <li><strong>Payment information</strong> — processed through Stripe. We never see or store your full card number. Stripe's privacy policy applies to payment processing.</li>
+        </ul>
+      </div>
+
+      <div class="legal-section">
+        <h2>How We Use It</h2>
+        <p>We use the information we collect to:</p>
+        <ul>
+          <li>Provide and improve the Unsnag app experience</li>
+          <li>Send you product updates, early access notifications, and occasional emails you signed up for (you can unsubscribe anytime)</li>
+          <li>Diagnose technical problems and understand how features are being used</li>
+          <li>Process your subscription payments through Stripe</li>
+          <li>Comply with legal obligations if required</li>
+        </ul>
+        <p>We do not sell your personal information. We do not use your session content for advertising or to train AI models used by third parties.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Third Parties We Work With</h2>
+        <p>We use a small set of trusted services to operate Unsnag:</p>
+        <ul>
+          <li><strong>Stripe</strong> — payment processing. Subject to Stripe's own privacy policy.</li>
+          <li><strong>Email provider</strong> (e.g., Resend or similar) — for transactional emails and product updates. We share only your email address.</li>
+          <li><strong>Hosting and infrastructure</strong> — cloud providers used to host the app. Data is stored in encrypted form.</li>
+          <li><strong>Analytics</strong> — privacy-respecting, aggregate-only analytics to understand usage patterns. We do not use Google Analytics or any platform that builds advertising profiles from your data.</li>
+        </ul>
+        <p>We do not share your personal information with data brokers, advertisers, or any third party for marketing purposes.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Your Session Data</h2>
+        <p>What you write or say during a session is yours. We store it only long enough to complete the session and, if you choose, to provide continuity between sessions (so you don't lose your place). We do not read your session content for any purpose other than delivering the service to you.</p>
+        <p>You can delete your session history at any time from your account settings. When you delete it, it's gone — we don't retain it in backups beyond a standard 30-day window.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Data Retention</h2>
+        <p>We keep your account information for as long as your account is active. If you cancel and delete your account, we remove your personal data within 30 days, except where we're required to retain it for legal or financial compliance (e.g., payment records).</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Your Rights</h2>
+        <p>Depending on where you live, you may have the right to:</p>
+        <ul>
+          <li>Access the personal data we hold about you</li>
+          <li>Correct inaccurate data</li>
+          <li>Request deletion of your data</li>
+          <li>Object to certain types of processing</li>
+          <li>Export your data in a portable format</li>
+        </ul>
+        <p>To exercise any of these rights, email us at <a href="mailto:hello@unsnag.co">hello@unsnag.co</a>. We'll respond within 30 days.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Cookies</h2>
+        <p>We use a small number of essential cookies to keep you logged in and maintain session state. We don't use tracking cookies or advertising cookies. If you block all cookies, some features may not work correctly.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Children's Privacy</h2>
+        <p>Unsnag is not directed at children under 13. We do not knowingly collect personal information from anyone under 13. If you believe a child has provided us with personal information, please contact us and we'll delete it promptly.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Changes to This Policy</h2>
+        <p>If we make material changes to this policy, we'll let you know by email or with a notice in the app before the changes take effect. The date at the top of this page always reflects when it was last updated.</p>
+      </div>
+
+      <div class="legal-section">
+        <h2>Contact</h2>
+        <p>Questions, concerns, or just want to know more? Email us at <a href="mailto:hello@unsnag.co">hello@unsnag.co</a>. We're a small team and we read everything.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── FOOTER ─────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="index.html" class="footer-logo">unsnag</a>
+      <ul class="footer-links">
+        <li><a href="index.html#how-it-works">How It Works</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="privacy.html" class="active">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+      <span class="footer-copy">© 2025 Unsnag</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+</script>
+
+</body>
+</html>
