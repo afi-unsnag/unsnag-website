@@ -162,6 +162,69 @@
       text-decoration: none;
       letter-spacing: -0.5px;
     }
+    .nav-cta-desktop { }
+    .mobile-menu-btn {
+      display: none;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 2px solid var(--warm-gray-light);
+      background: var(--cream-dark);
+      cursor: pointer;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+      padding: 8px;
+    }
+    .mobile-menu-btn span {
+      display: block;
+      width: 100%;
+      height: 2px;
+      background: var(--warm-dark);
+      border-radius: 1px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
+    .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
+
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 200;
+      background: var(--cream);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+    }
+    .mobile-nav .mobile-nav-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+      border: 2px solid var(--warm-gray-light);
+      background: var(--cream-dark);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      color: var(--warm-dark);
+    }
+
     .nav-links {
       display: flex;
       align-items: center;
@@ -1340,13 +1403,62 @@
 
     @media (max-width: 640px) {
       .nav-links { display: none; }
-      #hero h1 { font-size: 34px; letter-spacing: -0.8px; }
-      .hero-sub { font-size: 16px; }
-      .pricing-card { padding: 36px 28px; }
+      .nav-cta-desktop { display: none; }
+      .mobile-menu-btn { display: flex; }
+
+      #hero h1 { font-size: 30px; letter-spacing: -0.8px; }
+      #hero .container { gap: 32px; }
+      .hero-sub { font-size: 15px; }
+      .hero-mockup-wrap { width: 260px; }
+      .hero-mockup { width: 260px; min-height: 440px; padding: 28px 20px; border-radius: 20px; }
+      .hero-mockup .mock-logo { font-size: 32px; }
+      .hero-mockup .mock-greeting { font-size: 14px; }
+      .hero-mockup .mock-cta { font-size: 14px; padding: 14px; }
+      .hero-mockup .mock-footnote { font-size: 10px; }
+      .hero-mockup .mock-nav { width: calc(100% + 40px); margin: 8px -20px -28px; border-radius: 0 0 17px 17px; }
+      .hero-mockup .mock-nav-item { font-size: 9px; }
+      .hero-mockup .mock-nav-item svg { width: 15px; height: 15px; }
+
+      .btn-lg { padding: 14px 24px; font-size: 15px; }
+
+      .recognition-hero-img { max-width: 160px; }
+
+      .section-heading { font-size: 24px; letter-spacing: -0.5px; }
+
+      .missing-piece-image { max-width: 280px; }
+
+      .step-badge { width: 36px; height: 36px; font-size: 16px; }
+      .step-card h3 { font-size: 18px; }
+      .step-card p { font-size: 13px; }
+
+      .insight-card { width: 100%; max-width: 300px; padding: 28px 20px; }
+      .insight-card h3 { font-size: 18px; }
+      .yours-card { padding: 16px; }
+      .yours-card h4 { font-size: 14px; }
+      .yours-card li { font-size: 13px; }
+
+      .change-card { padding: 24px 20px; }
+
+      .testimonial-card { padding: 24px 20px; }
+
+      .founder-photo-wrap { max-width: 220px; }
+      .founder-text h2 { font-size: 22px; }
+
+      .belief-card { padding: 20px; }
+      .belief-card h3 { font-size: 17px; }
+      .belief-card p { font-size: 13px; }
+
+      .pricing-card { padding: 36px 24px; }
       .pricing-price { font-size: 56px; }
+      .pricing-features li { font-size: 14px; }
+
       .faq-q-text { font-size: 16px; }
+
+      #closing-cta h2 { font-size: 26px; }
+      #closing-cta p { font-size: 15px; }
+
       footer { padding: 28px 0; }
-      .demo-placeholder { aspect-ratio: 4 / 3; }
+      .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
     }
   </style>
   <script type="application/ld+json">
@@ -1446,9 +1558,20 @@
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="/blog/">Blog</a></li>
     </ul>
-    <a href="https://app.unsnag.co/signup" class="btn btn-mauve">Start free trial</a>
+    <a href="https://app.unsnag.co/signup" class="btn btn-mauve nav-cta-desktop">Start free trial</a>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">✕</button>
+  <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
+  <a href="#pricing" class="mobile-nav-link">Pricing</a>
+  <a href="/blog/" class="mobile-nav-link">Blog</a>
+  <a href="https://app.unsnag.co/signup" class="btn btn-mauve" style="margin-top: 12px;">Start free trial</a>
+</div>
 
 <!-- ─────────────────── HERO ─────────────────── -->
 <section id="hero">
@@ -2001,6 +2124,28 @@
     prevBtn.addEventListener('click', () => goTo(current - 1));
     nextBtn.addEventListener('click', () => goTo(current + 1));
   })();
+
+  // ── Mobile menu
+  const mobileBtn = document.getElementById('mobileMenuBtn');
+  const mobileNav = document.getElementById('mobileNav');
+  const mobileClose = document.getElementById('mobileNavClose');
+
+  mobileBtn.addEventListener('click', () => {
+    mobileNav.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+
+  mobileClose.addEventListener('click', () => {
+    mobileNav.classList.remove('open');
+    document.body.style.overflow = '';
+  });
+
+  document.querySelectorAll('.mobile-nav-link').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
 
   // ── Scroll-reveal
   const observer = new IntersectionObserver((entries) => {
