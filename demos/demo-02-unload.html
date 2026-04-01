@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unsnag Demo 02 — Unload</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+  :root {
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE3;
+    --warm-dark: #2D2A26;
+    --warm-dark-light: #4A4640;
+    --mauve: #E2C6FD;
+    --mauve-dark: #C9A4E8;
+    --mauve-light: #F0DEFF;
+    --tomato: #FF6B4C;
+    --orange: #FFA846;
+    --warm-gray: #B8B2A8;
+    --warm-gray-light: #E8E3DB;
+    --shadow: 4px 4px 0px 0px #2D2A26;
+    --shadow-small: 2px 2px 0px 0px #2D2A26;
+    --shadow-pressed: 1px 1px 0px 0px #2D2A26;
+  }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+  }
+
+  .demo-container {
+    position: relative;
+  }
+
+  /* Phone Frame */
+  .phone-frame {
+    width: 320px;
+    background: #1a1a1a;
+    border-radius: 44px;
+    padding: 12px;
+    position: relative;
+  }
+
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto 8px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 36px;
+    overflow: hidden;
+    min-height: 580px;
+    position: relative;
+    padding: 24px 20px;
+  }
+
+  /* Progress Dots */
+  .progress-dots {
+    display: flex;
+    gap: 8px;
+    justify-content: center;
+    margin-bottom: 24px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--warm-gray-light);
+    border: 1.5px solid var(--warm-gray-light);
+  }
+
+  .dot.active {
+    background: var(--mauve);
+    border-color: var(--warm-dark);
+  }
+
+  /* Step Label */
+  .step-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.14em;
+    color: var(--warm-gray);
+    margin-bottom: 8px;
+  }
+
+  /* Heading */
+  .screen-heading {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--warm-dark);
+    margin-bottom: 6px;
+    line-height: 1.3;
+  }
+
+  /* Subtext */
+  .screen-subtext {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--warm-dark-light);
+    margin-bottom: 18px;
+  }
+
+  /* Textarea */
+  .textarea-wrapper {
+    position: relative;
+    margin-bottom: 20px;
+  }
+
+  .fake-textarea {
+    width: 100%;
+    min-height: 280px;
+    background: var(--cream);
+    border: 2px solid var(--warm-gray-light);
+    border-radius: 12px;
+    padding: 14px 14px 44px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    line-height: 1.55;
+    color: var(--warm-dark);
+    resize: none;
+    position: relative;
+  }
+
+  .fake-textarea.focused {
+    border-color: var(--mauve-dark);
+  }
+
+  .typed-text {
+    display: inline;
+  }
+
+  .text-cursor {
+    display: inline-block;
+    width: 1.5px;
+    height: 15px;
+    background: var(--warm-dark);
+    margin-left: 1px;
+    vertical-align: text-bottom;
+    animation: blink-caret 0.6s step-end infinite;
+  }
+
+  @keyframes blink-caret {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
+  }
+
+  .mic-button {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 32px;
+    height: 32px;
+    background: var(--mauve);
+    border: 1.5px solid var(--warm-dark);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    box-shadow: var(--shadow-small);
+  }
+
+  /* CTA Button */
+  .cta-button {
+    width: 100%;
+    padding: 14px;
+    background: var(--mauve);
+    border: 2px solid var(--warm-dark);
+    border-radius: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--warm-dark);
+    text-align: center;
+    box-shadow: var(--shadow);
+    cursor: pointer;
+    transition: box-shadow 0.1s, transform 0.1s;
+  }
+
+  .cta-button.pressed {
+    box-shadow: var(--shadow-pressed);
+    transform: translate(3px, 3px);
+  }
+
+  /* Cursor */
+  .demo-cursor {
+    width: 10px;
+    height: 10px;
+    background: var(--warm-dark);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.3s;
+    will-change: transform, left, top;
+  }
+
+  /* Fade */
+  .phone-screen {
+    transition: opacity 0.4s ease;
+  }
+
+  .phone-screen.fade-out {
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+
+<div class="demo-container">
+  <div class="phone-frame">
+    <div class="phone-notch"></div>
+    <div class="phone-screen" id="screen">
+      <!-- Progress Dots -->
+      <div class="progress-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <!-- Step Label -->
+      <div class="step-label">Unload</div>
+
+      <!-- Heading -->
+      <div class="screen-heading">What's going on right now?</div>
+
+      <!-- Subtext -->
+      <div class="screen-subtext">No filter. Just dump it.</div>
+
+      <!-- Textarea -->
+      <div class="textarea-wrapper">
+        <div class="fake-textarea" id="textarea">
+          <span class="typed-text" id="typedText"></span><span class="text-cursor" id="textCursor" style="display:none;"></span>
+        </div>
+        <div class="mic-button">&#x1F399;</div>
+      </div>
+
+      <!-- CTA -->
+      <div class="cta-button" id="ctaButton">I got it all out</div>
+    </div>
+  </div>
+
+  <!-- Animated Cursor -->
+  <div class="demo-cursor" id="cursor"></div>
+</div>
+
+<script>
+(function() {
+  const cursor = document.getElementById('cursor');
+  const textarea = document.getElementById('textarea');
+  const typedText = document.getElementById('typedText');
+  const textCursor = document.getElementById('textCursor');
+  const ctaButton = document.getElementById('ctaButton');
+  const screen = document.getElementById('screen');
+
+  const fullText = "he hasn't texted back in 3 hours and I already know he's mad at me. I don't even know what I did but I keep going over everything I said yesterday and I just want to ask him what's wrong but I know I'll sound needy and desperate and then he'll definitely be annoyed";
+
+  const CHAR_DELAY = 40;
+  const EASE = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
+  function getCenter(el) {
+    const r = el.getBoundingClientRect();
+    const cr = document.querySelector('.demo-container').getBoundingClientRect();
+    return { x: r.left - cr.left + r.width / 2, y: r.top - cr.top + r.height / 2 };
+  }
+
+  function moveCursor(x, y, duration) {
+    return new Promise(resolve => {
+      cursor.style.transition = `left ${duration}ms ${EASE}, top ${duration}ms ${EASE}`;
+      cursor.style.left = (x - 5) + 'px';
+      cursor.style.top = (y - 5) + 'px';
+      setTimeout(resolve, duration);
+    });
+  }
+
+  function tapEffect() {
+    return new Promise(resolve => {
+      cursor.style.transition = 'transform 0.08s ease';
+      cursor.style.transform = 'scale(0.7)';
+      setTimeout(() => {
+        cursor.style.transform = 'scale(1)';
+        setTimeout(resolve, 80);
+      }, 100);
+    });
+  }
+
+  function typeText(text) {
+    return new Promise(resolve => {
+      let i = 0;
+      textCursor.style.display = 'inline-block';
+      function typeChar() {
+        if (i < text.length) {
+          typedText.textContent += text[i];
+          i++;
+          // Auto-scroll textarea if needed
+          textarea.scrollTop = textarea.scrollHeight;
+          setTimeout(typeChar, CHAR_DELAY);
+        } else {
+          resolve();
+        }
+      }
+      typeChar();
+    });
+  }
+
+  function wait(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  async function runDemo() {
+    // Reset
+    typedText.textContent = '';
+    textCursor.style.display = 'none';
+    textarea.classList.remove('focused');
+    ctaButton.classList.remove('pressed');
+    screen.classList.remove('fade-out');
+    screen.style.opacity = '1';
+    cursor.style.opacity = '0';
+    cursor.style.transition = 'none';
+    cursor.style.transform = 'scale(1)';
+
+    // Position cursor off-screen initially
+    cursor.style.left = '280px';
+    cursor.style.top = '620px';
+
+    await wait(400);
+
+    // Show cursor
+    cursor.style.opacity = '1';
+
+    // 1. Move to textarea
+    const taPos = getCenter(textarea);
+    await moveCursor(taPos.x, taPos.y - 60, 500);
+    await wait(200);
+
+    // Tap textarea
+    await tapEffect();
+    textarea.classList.add('focused');
+
+    await wait(300);
+
+    // 2. Type text
+    await typeText(fullText);
+
+    // 3. Pause
+    await wait(600);
+
+    // Hide text cursor
+    textCursor.style.display = 'none';
+
+    // 4. Move to CTA button
+    const btnPos = getCenter(ctaButton);
+    await moveCursor(btnPos.x, btnPos.y, 450);
+    await wait(200);
+
+    // 5. Tap CTA
+    await tapEffect();
+    ctaButton.classList.add('pressed');
+
+    await wait(400);
+
+    // 6. Fade out
+    screen.classList.add('fade-out');
+    cursor.style.opacity = '0';
+
+    await wait(800);
+
+    // Loop
+    runDemo();
+  }
+
+  // Start
+  runDemo();
+})();
+</script>
+
+</body>
+</html>

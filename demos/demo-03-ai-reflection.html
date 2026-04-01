@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unsnag Demo 03 — AI Reflection</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE3;
+    --warm-dark: #2D2A26;
+    --warm-dark-light: #4A4640;
+    --mauve: #E2C6FD;
+    --mauve-dark: #C9A4E8;
+    --mauve-light: #F0DEFF;
+    --tomato: #FF6B4C;
+    --orange: #FFA846;
+    --warm-gray: #B8B2A8;
+    --warm-gray-light: #E8E3DB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+  }
+
+  .phone-frame {
+    width: 320px;
+    background: #1a1a1a;
+    border-radius: 44px;
+    padding: 12px;
+    position: relative;
+  }
+
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto 8px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 36px;
+    overflow: hidden;
+    min-height: 580px;
+    position: relative;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Progress dots */
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 32px;
+  }
+  .progress-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--warm-gray-light);
+  }
+  .progress-dots .dot.active {
+    background: var(--warm-dark);
+  }
+
+  /* AI badge */
+  .ai-badge {
+    background: var(--mauve-light);
+    border: 1px solid var(--mauve-dark);
+    border-radius: 100px;
+    padding: 4px 10px;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--warm-dark);
+    margin-bottom: 16px;
+  }
+
+  /* Heading */
+  .reflection-heading {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 18px;
+    font-weight: 800;
+    color: var(--warm-dark);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Body text */
+  .reflection-body {
+    text-align: center;
+    font-size: 13px;
+    color: var(--warm-dark-light);
+    line-height: 1.6;
+    max-width: 260px;
+  }
+  .reflection-body .line {
+    opacity: 0;
+    display: block;
+    transition: opacity 400ms ease;
+  }
+  .reflection-body .line.visible {
+    opacity: 1;
+  }
+
+  /* CTA button */
+  .cta-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 14px 0;
+    background: var(--mauve);
+    color: var(--warm-dark);
+    border: 2px solid var(--warm-dark);
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px 0px var(--warm-dark);
+    text-transform: lowercase;
+    position: relative;
+    transition: box-shadow 80ms ease, transform 80ms ease;
+  }
+  .cta-btn.pressed {
+    box-shadow: 1px 1px 0px 0px var(--warm-dark);
+    transform: translate(3px, 3px);
+  }
+
+  /* Cursor */
+  .cursor {
+    width: 10px;
+    height: 10px;
+    background: var(--warm-dark);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms ease;
+  }
+  .cursor.visible {
+    opacity: 1;
+  }
+
+  /* Fade wrapper for loop reset */
+  .screen-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+    flex: 1;
+    opacity: 1;
+    transition: opacity 400ms ease;
+  }
+  .screen-content.fade-out {
+    opacity: 0;
+  }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+  <div class="phone-notch"></div>
+  <div class="phone-screen" id="screen">
+    <div class="screen-content" id="content">
+      <div class="progress-dots">
+        <div class="dot active"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+
+      <div class="ai-badge">&#10022; AI</div>
+
+      <div class="reflection-heading">Of course this is hard.</div>
+
+      <div class="reflection-body" id="body-text">
+        <span class="line">You're not being dramatic.</span>
+        <span class="line">Silence from someone you love</span>
+        <span class="line">is one of the hardest things to sit with —</span>
+        <span class="line">especially when your mind has already</span>
+        <span class="line">decided it means something about you.</span>
+        <span class="line">You can just be anxious right now.</span>
+      </div>
+
+      <div class="cta-btn" id="cta">continue</div>
+    </div>
+
+    <div class="cursor" id="cursor"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const lines = document.querySelectorAll('.line');
+  const cursor = document.getElementById('cursor');
+  const cta = document.getElementById('cta');
+  const content = document.getElementById('content');
+  const screen = document.getElementById('screen');
+
+  function resetAll() {
+    content.classList.remove('fade-out');
+    content.style.opacity = '1';
+    cursor.classList.remove('visible');
+    cursor.style.transform = '';
+    cta.classList.remove('pressed');
+    lines.forEach(l => l.classList.remove('visible'));
+  }
+
+  function sleep(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  function moveCursorTo(el) {
+    const screenRect = screen.getBoundingClientRect();
+    const elRect = el.getBoundingClientRect();
+    const x = elRect.left - screenRect.left + elRect.width / 2 - 5;
+    const y = elRect.top - screenRect.top + elRect.height / 2 - 5;
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+  }
+
+  async function runLoop() {
+    resetAll();
+
+    // 1. Lines fade in with stagger
+    for (let i = 0; i < lines.length; i++) {
+      await sleep(200);
+      lines[i].classList.add('visible');
+    }
+
+    // 2. Pause to let it land
+    await sleep(1500);
+
+    // 3. Cursor appears near center-right, then moves to CTA
+    const screenRect = screen.getBoundingClientRect();
+    cursor.style.left = (screenRect.width / 2 + 30) + 'px';
+    cursor.style.top = (screenRect.height / 2) + 'px';
+    cursor.style.transition = 'opacity 250ms ease';
+    cursor.classList.add('visible');
+
+    await sleep(300);
+
+    // Move cursor to CTA
+    cursor.style.transition = 'opacity 250ms ease, left 500ms cubic-bezier(0.4,0,0.2,1), top 500ms cubic-bezier(0.4,0,0.2,1)';
+    moveCursorTo(cta);
+
+    await sleep(600);
+
+    // 4. Tap — pressed state
+    cta.classList.add('pressed');
+    await sleep(150);
+
+    // 5. Fade out
+    await sleep(200);
+    content.classList.add('fade-out');
+    cursor.classList.remove('visible');
+
+    await sleep(400);
+
+    // 6. Wait then loop
+    await sleep(800);
+
+    runLoop();
+  }
+
+  // Start after a brief initial delay
+  setTimeout(runLoop, 400);
+})();
+</script>
+</body>
+</html>

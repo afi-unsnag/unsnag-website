@@ -1,0 +1,1615 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unsnag — You've done the work. You're still stuck.</title>
+  <meta name="description" content="Unsnag is a guided app that moves the feeling through your body in minutes — so it stops driving the overthinking, people-pleasing, and taking-it-all-on. 14 days free." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+
+  <style>
+    /* ─── Design Tokens ──────────────────────────────── */
+    :root {
+      --cream:            #FAF7F2;
+      --cream-dark:       #F0EBE3;
+      --warm-dark:        #2D2A26;
+      --warm-dark-light:  #4A4640;
+      --mauve:            #E2C6FD;
+      --mauve-dark:       #C9A4E8;
+      --mauve-light:      #F0DEFF;
+      --blush:            #FFBCF2;
+      --orange:           #FFA846;
+      --tomato:           #FF6B4C;
+      --warm-gray:        #B8B2A8;
+      --warm-gray-light:  #E8E3DB;
+
+      --shadow:         3px 3px 0px 0px #2D2A26;
+      --shadow-sm:      2px 2px 0px 0px #2D2A26;
+      --shadow-lg:      4px 4px 0px 0px #2D2A26;
+      --shadow-mauve:   3px 3px 0px 0px #C9A4E8;
+      --shadow-pressed: 1px 1px 0px 0px #2D2A26;
+    }
+
+    /* ─── Reset & Base ───────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      font-size: 16px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+    h1, h2, h3, h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700;
+      line-height: 1.12;
+    }
+    a { color: inherit; }
+
+    /* ─── Layout ─────────────────────────────────────── */
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 48px;
+    }
+    .section-label {
+      display: block;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 14px;
+    }
+    .section-heading {
+      font-size: clamp(28px, 3.6vw, 46px);
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -0.8px;
+      line-height: 1.1;
+    }
+
+    /* ─── Buttons ────────────────────────────────────── */
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 13px 26px;
+      border-radius: 14px;
+      font-family: 'DM Sans', sans-serif;
+      font-weight: 600;
+      font-size: 15px;
+      text-decoration: none;
+      border: 2px solid var(--warm-dark);
+      cursor: pointer;
+      transition: box-shadow 0.12s ease, transform 0.12s ease;
+      white-space: nowrap;
+    }
+    .btn-mauve {
+      background: var(--mauve);
+      color: var(--warm-dark);
+      box-shadow: var(--shadow);
+    }
+    .btn-mauve:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+    .btn-lg {
+      padding: 16px 34px;
+      font-size: 17px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+    }
+    .btn-lg:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(3px, 3px);
+    }
+    .btn-mauve-dark {
+      background: var(--mauve);
+      color: var(--warm-dark);
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-mauve);
+    }
+    .btn-mauve-dark:hover {
+      box-shadow: 1px 1px 0px 0px #C9A4E8;
+      transform: translate(2px, 2px);
+    }
+
+    /* ─── Nav ────────────────────────────────────────── */
+    #main-nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      padding: 16px 0;
+      background: transparent;
+      transition: background 0.3s ease, border-bottom 0.3s ease;
+    }
+    #main-nav .container {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+    #main-nav.scrolled {
+      background: rgba(250, 247, 242, 0.94);
+      border-bottom: 1.5px solid var(--warm-gray-light);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .nav-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 22px;
+      color: var(--warm-dark);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--warm-dark); }
+
+    /* ─── Hero ───────────────────────────────────────── */
+    #hero {
+      padding: 72px 0 80px;
+    }
+    #hero .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 18px;
+      border-radius: 100px;
+      background: rgba(255,107,76,0.15);
+      border: 1.5px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--warm-dark);
+      letter-spacing: 0.01em;
+      margin-bottom: 24px;
+    }
+    #hero h1 {
+      font-size: clamp(40px, 5.5vw, 64px);
+      font-weight: 800;
+      color: var(--warm-dark);
+      max-width: 780px;
+      letter-spacing: -2px;
+      margin-bottom: 20px;
+    }
+    .hero-sub {
+      font-size: 17px;
+      color: var(--warm-dark-light);
+      max-width: 620px;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .hero-ctas {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+    }
+    .hero-secondary {
+      font-size: 15px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      transition: color 0.2s;
+    }
+    .hero-secondary:hover { color: var(--warm-dark); }
+
+    /* ─── Demo Placeholder ───────────────────────────── */
+    .demo-placeholder {
+      width: 100%;
+      max-width: 800px;
+      margin: 56px auto 0;
+      aspect-ratio: 16 / 9;
+      background: var(--cream-dark);
+      border: 2px dashed var(--warm-gray-light);
+      border-radius: 24px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+    }
+    .demo-placeholder-icon {
+      width: 56px;
+      height: 56px;
+      border-radius: 14px;
+      background: var(--mauve-light);
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 24px;
+    }
+    .demo-placeholder-text {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--warm-gray);
+    }
+    .demo-placeholder-sub {
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+
+    /* ─── Recognition / "Sound Familiar" ─────────────── */
+    #recognition {
+      padding: 80px 0;
+      background: var(--cream-dark);
+    }
+    .recognition-intro {
+      margin-top: 16px;
+      font-size: 17px;
+      color: var(--warm-dark-light);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+    .recognition-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin-top: 48px;
+    }
+    .recognition-card {
+      background: var(--cream);
+      border: 1.5px solid var(--warm-dark);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: box-shadow 0.12s, transform 0.12s;
+    }
+    .recognition-card:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+    .recognition-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      line-height: 1.35;
+    }
+    .recognition-card p {
+      font-size: 14px;
+      color: var(--warm-dark-light);
+      line-height: 1.7;
+    }
+    .recognition-card .card-tag {
+      display: inline-flex;
+      align-self: flex-start;
+      padding: 4px 12px;
+      border-radius: 100px;
+      font-size: 11px;
+      font-weight: 600;
+      border: 1.5px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+    }
+    .tag-tomato { background: rgba(255,107,76,0.15); color: var(--warm-dark); }
+    .tag-orange { background: rgba(255,168,70,0.18); color: var(--warm-dark); }
+    .tag-blush { background: rgba(255,188,242,0.28); color: var(--warm-dark); }
+    .tag-mauve { background: var(--mauve-light); color: var(--warm-dark); }
+
+    /* ─── The Missing Piece ──────────────────────────── */
+    #missing-piece {
+      padding: 88px 0;
+    }
+    .missing-piece-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 64px;
+      align-items: center;
+    }
+    .missing-piece-text {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .missing-piece-text p {
+      font-size: 17px;
+      color: var(--warm-dark-light);
+      line-height: 1.75;
+    }
+    .missing-piece-text p strong {
+      color: var(--warm-dark);
+      font-weight: 600;
+    }
+    .missing-piece-image {
+      width: 100%;
+      border-radius: 24px;
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-lg);
+      object-fit: cover;
+    }
+
+    /* ─── How It Works ───────────────────────────────── */
+    #how-it-works {
+      padding: 80px 0;
+      background: var(--cream-dark);
+      border-top: 1.5px solid var(--warm-gray-light);
+    }
+    .how-intro {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 56px;
+    }
+    .how-intro p {
+      margin-top: 16px;
+      font-size: 17px;
+      color: var(--warm-dark-light);
+      line-height: 1.7;
+    }
+    .steps-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+    .step-card {
+      background: var(--cream);
+      border: 1.5px solid var(--warm-dark);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: box-shadow 0.12s, transform 0.12s;
+    }
+    .step-card:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+    .step-badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      background: var(--mauve);
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 20px;
+      font-weight: 800;
+      color: var(--warm-dark);
+    }
+    .step-badge.ai-badge {
+      background: var(--mauve-light);
+      border-color: var(--mauve-dark);
+      font-size: 14px;
+    }
+    .step-card h3 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      line-height: 1.3;
+    }
+    .step-card p {
+      font-size: 14px;
+      color: var(--warm-dark-light);
+      line-height: 1.7;
+    }
+    .step-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+    }
+
+    /* ─── Demo Section ───────────────────────────────── */
+    #demo {
+      padding: 80px 0;
+    }
+    #demo .how-intro { margin-bottom: 40px; }
+
+    /* ─── What Changes — Horizontal Scroll ──────────── */
+    #what-changes {
+      padding: 80px 0;
+      background: var(--cream-dark);
+      overflow: hidden;
+    }
+    .changes-scroll-wrap {
+      position: relative;
+      margin-top: 48px;
+    }
+    .changes-track {
+      display: flex;
+      gap: 20px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      -webkit-overflow-scrolling: touch;
+      padding: 4px 4px 20px;
+      scrollbar-width: none;
+    }
+    .changes-track::-webkit-scrollbar { display: none; }
+
+    .change-card {
+      flex: 0 0 380px;
+      scroll-snap-align: start;
+      background: var(--cream);
+      border: 2px solid var(--warm-dark);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      transition: box-shadow 0.12s, transform 0.12s;
+    }
+    .change-card:first-child { margin-left: calc((100vw - 1200px) / 2 + 48px); }
+    .change-card:last-child { margin-right: 48px; }
+    .change-card:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+
+    .change-scenario {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      padding: 5px 14px;
+      border-radius: 100px;
+      border: 1.5px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      display: inline-flex;
+      align-self: flex-start;
+    }
+    .scenario-tomato { background: rgba(255,107,76,0.15); }
+    .scenario-orange { background: rgba(255,168,70,0.18); }
+    .scenario-blush { background: rgba(255,188,242,0.28); }
+    .scenario-mauve { background: var(--mauve-light); }
+
+    .change-before-block {
+      position: relative;
+      padding-left: 16px;
+      border-left: 3px solid var(--warm-gray-light);
+    }
+    .change-before-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-bottom: 6px;
+    }
+    .change-before-text {
+      font-size: 15px;
+      color: var(--warm-gray);
+      line-height: 1.65;
+    }
+
+    .change-divider {
+      width: 32px;
+      height: 2px;
+      background: var(--mauve);
+      border-radius: 2px;
+    }
+
+    .change-after-block {
+      position: relative;
+      padding-left: 16px;
+      border-left: 3px solid var(--mauve);
+    }
+    .change-after-label {
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--mauve-dark);
+      margin-bottom: 6px;
+    }
+    .change-after-text {
+      font-size: 15px;
+      color: var(--warm-dark);
+      line-height: 1.65;
+      font-weight: 500;
+    }
+
+    /* Scroll dots */
+    .changes-dots {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 24px;
+    }
+    .changes-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--warm-gray-light);
+      border: 1.5px solid var(--warm-gray);
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .changes-dot.active {
+      background: var(--mauve);
+      border-color: var(--warm-dark);
+    }
+
+    /* Scroll arrows */
+    .changes-arrows {
+      display: flex;
+      justify-content: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .changes-arrow {
+      width: 40px;
+      height: 40px;
+      border-radius: 10px;
+      background: var(--cream);
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 18px;
+      color: var(--warm-dark);
+      transition: box-shadow 0.12s, transform 0.12s;
+      user-select: none;
+    }
+    .changes-arrow:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(1px, 1px);
+    }
+
+    @media (max-width: 860px) {
+      .change-card { flex: 0 0 320px; }
+      .change-card:first-child { margin-left: 24px; }
+      .change-card:last-child { margin-right: 24px; }
+    }
+    @media (max-width: 640px) {
+      .change-card { flex: 0 0 calc(100vw - 64px); }
+      .change-card:first-child { margin-left: 24px; }
+    }
+
+    /* ─── Testimonials ───────────────────────────────── */
+    #testimonials {
+      padding: 80px 0;
+    }
+    .testimonials-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+      margin-top: 44px;
+    }
+    .testimonial-card {
+      background: var(--cream-dark);
+      border: 1.5px solid var(--warm-dark);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 32px 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+    .testimonial-pull {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 17px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      line-height: 1.4;
+    }
+    .testimonial-body {
+      font-size: 14px;
+      color: var(--warm-dark-light);
+      line-height: 1.7;
+      flex: 1;
+    }
+    .testimonial-name {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--warm-gray);
+    }
+    .testimonial-placeholder {
+      background: var(--cream-dark);
+      border: 2px dashed var(--warm-gray-light);
+      border-radius: 20px;
+      padding: 32px 28px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 200px;
+    }
+    .testimonial-placeholder p {
+      font-size: 14px;
+      color: var(--warm-gray);
+      text-align: center;
+      font-weight: 500;
+    }
+
+    /* ─── Founder ────────────────────────────────────── */
+    #founder {
+      padding: 88px 0;
+      background: var(--cream-dark);
+    }
+    .founder-story {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 56px;
+      align-items: center;
+      max-width: 880px;
+      margin: 0 auto;
+    }
+    .founder-photo {
+      width: 100%;
+      aspect-ratio: 3 / 4;
+      border-radius: 20px;
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-lg);
+      object-fit: cover;
+    }
+    .founder-text {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+    .founder-text h2 {
+      font-size: clamp(24px, 3vw, 34px);
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .founder-text p {
+      font-size: 16px;
+      color: var(--warm-dark-light);
+      line-height: 1.75;
+    }
+    .founder-sig {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-top: 4px;
+    }
+    .founder-sig-photo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--warm-dark);
+      object-fit: cover;
+    }
+    .founder-sig-name {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--warm-dark);
+    }
+    .founder-sig-title {
+      font-size: 13px;
+      color: var(--warm-gray);
+      line-height: 1.4;
+    }
+
+    /* ─── Philosophy / Beliefs ────────────────────────── */
+    .philosophy {
+      margin-top: 80px;
+      padding-top: 72px;
+      border-top: 1.5px solid var(--warm-gray-light);
+    }
+    .philosophy-header {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 48px;
+    }
+    .philosophy-header p {
+      margin-top: 14px;
+      font-size: 17px;
+      color: var(--warm-dark-light);
+      line-height: 1.7;
+    }
+    .beliefs-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+    .belief-card {
+      background: var(--cream);
+      border: 2px solid var(--warm-dark);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      padding: 28px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      transition: box-shadow 0.12s, transform 0.12s;
+    }
+    .belief-card:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+    .belief-card.featured {
+      grid-column: 1 / -1;
+      text-align: center;
+      background: var(--warm-dark);
+      padding: 44px 48px;
+    }
+    .belief-card.featured h3 {
+      font-size: clamp(22px, 2.6vw, 32px);
+      color: var(--cream);
+      letter-spacing: -0.5px;
+    }
+    .belief-card.featured p {
+      color: var(--warm-gray);
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .belief-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 12px;
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 20px;
+    }
+    .belief-card h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      line-height: 1.3;
+    }
+    .belief-card p {
+      font-size: 14px;
+      color: var(--warm-dark-light);
+      line-height: 1.7;
+    }
+
+    /* ─── Pricing ────────────────────────────────────── */
+    #pricing {
+      padding: 80px 0;
+      text-align: center;
+    }
+    .pricing-wrap {
+      display: flex;
+      justify-content: center;
+      margin-top: 48px;
+    }
+    .pricing-card {
+      background: var(--cream);
+      border: 2px solid var(--warm-dark);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      padding: 52px 60px;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+    }
+    .pricing-price {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 72px;
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -2px;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+    .pricing-price span {
+      font-size: 26px;
+      font-weight: 600;
+      letter-spacing: 0;
+    }
+    .pricing-sub {
+      font-size: 16px;
+      color: var(--warm-dark-light);
+      margin-bottom: 36px;
+    }
+    .pricing-features {
+      list-style: none;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 13px;
+      margin-bottom: 36px;
+    }
+    .pricing-features li {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 16px;
+      color: var(--warm-dark);
+      font-weight: 500;
+    }
+    .check {
+      width: 22px;
+      height: 22px;
+      flex-shrink: 0;
+      border-radius: 50%;
+      background: rgba(255,168,70,0.25);
+      border: 1.5px solid var(--warm-dark);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+    }
+    .pricing-note {
+      font-size: 13px;
+      color: var(--warm-gray);
+      margin-top: 14px;
+    }
+
+    /* ─── FAQ ────────────────────────────────────────── */
+    #faq {
+      padding: 80px 0;
+      background: var(--cream-dark);
+    }
+    .faq-list {
+      max-width: 760px;
+      margin: 52px auto 0;
+    }
+    .faq-item {
+      border-bottom: 1.5px solid var(--warm-gray-light);
+    }
+    .faq-item:first-child {
+      border-top: 1.5px solid var(--warm-gray-light);
+    }
+    .faq-q {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 24px 0;
+      cursor: pointer;
+      gap: 20px;
+      user-select: none;
+    }
+    .faq-q-text {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--warm-dark);
+      line-height: 1.35;
+    }
+    .faq-icon {
+      width: 30px;
+      height: 30px;
+      flex-shrink: 0;
+      border-radius: 8px;
+      background: var(--cream);
+      border: 1.5px solid var(--warm-dark);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 18px;
+      font-style: normal;
+      color: var(--warm-dark);
+      transition: transform 0.3s ease;
+      line-height: 1;
+    }
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+    .faq-answer {
+      overflow: hidden;
+      max-height: 0;
+      transition: max-height 0.38s ease;
+    }
+    .faq-answer-inner {
+      padding-bottom: 24px;
+      font-size: 16px;
+      color: var(--warm-dark-light);
+      line-height: 1.75;
+    }
+
+    /* ─── Closing CTA ────────────────────────────────── */
+    #closing-cta {
+      background: var(--warm-dark);
+      padding: 96px 48px;
+    }
+    .closing-inner {
+      max-width: 1200px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    #closing-cta h2 {
+      font-size: clamp(30px, 4vw, 54px);
+      font-weight: 800;
+      color: var(--cream);
+      max-width: 700px;
+      margin: 0 auto 18px;
+      letter-spacing: -1px;
+      line-height: 1.1;
+    }
+    #closing-cta p {
+      font-size: 17px;
+      color: var(--warm-gray);
+      max-width: 600px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* ─── Footer ─────────────────────────────────────── */
+    footer {
+      background: var(--cream-dark);
+      padding: 36px 0;
+      border-top: 1.5px solid var(--warm-gray-light);
+    }
+    .footer-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 16px;
+    }
+    .footer-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 800;
+      font-size: 20px;
+      color: var(--warm-dark);
+      text-decoration: none;
+    }
+    .footer-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+      flex-wrap: wrap;
+    }
+    .footer-links a {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+      text-decoration: none;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--warm-dark); }
+    .footer-copy {
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
+
+    /* ─── Scroll Animations ──────────────────────────── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.65s ease, transform 0.65s ease;
+    }
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .stagger > * {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+    .stagger.visible > *:nth-child(1) { opacity:1; transform:none; transition-delay: 0.05s; }
+    .stagger.visible > *:nth-child(2) { opacity:1; transform:none; transition-delay: 0.12s; }
+    .stagger.visible > *:nth-child(3) { opacity:1; transform:none; transition-delay: 0.19s; }
+    .stagger.visible > *:nth-child(4) { opacity:1; transform:none; transition-delay: 0.26s; }
+    .stagger.visible > *:nth-child(5) { opacity:1; transform:none; transition-delay: 0.33s; }
+    .stagger.visible > *:nth-child(6) { opacity:1; transform:none; transition-delay: 0.40s; }
+
+    /* ─── Responsive ─────────────────────────────────── */
+    @media (max-width: 1024px) {
+      .container { padding: 0 32px; }
+    }
+
+    @media (max-width: 860px) {
+      .container { padding: 0 24px; }
+
+      .recognition-grid { grid-template-columns: 1fr; }
+      .steps-grid { grid-template-columns: 1fr; }
+      .testimonials-grid { grid-template-columns: 1fr; }
+
+      .missing-piece-layout {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+      .missing-piece-image { max-width: 400px; margin: 0 auto; }
+
+      .founder-story {
+        grid-template-columns: 1fr;
+        gap: 36px;
+        text-align: center;
+      }
+      .founder-photo { max-width: 280px; margin: 0 auto; }
+      .founder-sig { justify-content: center; }
+      .beliefs-grid { grid-template-columns: 1fr; }
+      .belief-card.featured { padding: 36px 28px; }
+
+      #closing-cta { padding: 72px 24px; }
+    }
+
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      #hero h1 { font-size: 34px; letter-spacing: -0.8px; }
+      .hero-sub { font-size: 16px; }
+      .pricing-card { padding: 36px 28px; }
+      .pricing-price { font-size: 56px; }
+      .faq-q-text { font-size: 16px; }
+      footer { padding: 28px 0; }
+      .demo-placeholder { aspect-ratio: 4 / 3; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─────────────────── NAV ─────────────────── -->
+<nav id="main-nav">
+  <div class="container">
+    <a href="/" class="nav-logo">unsnag</a>
+    <ul class="nav-links">
+      <li><a href="#how-it-works">How It Works</a></li>
+      <li><a href="#founder">Why</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#pricing">Pricing</a></li>
+    </ul>
+    <a href="https://app.unsnag.co/signup" class="btn btn-mauve">Start free trial</a>
+  </div>
+</nav>
+
+<!-- ─────────────────── HERO ─────────────────── -->
+<section id="hero">
+  <div class="container">
+    <span class="hero-badge">Move the feeling. Make a different choice.</span>
+    <h1>You've done the work.<br>You're still stuck.</h1>
+    <p class="hero-sub">Thinking about a feeling is not the same as actually feeling it. Unsnag moves the feeling through your body in minutes — six steps, under ten minutes, every time something fires.</p>
+    <div class="hero-ctas">
+      <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
+      <a href="#how-it-works" class="hero-secondary">See how it works ↓</a>
+    </div>
+    <p style="font-size: 13px; color: var(--warm-gray); margin-top: 12px;">No credit card required</p>
+  </div>
+</section>
+
+<!-- ─────────────────── RECOGNITION ─────────────────── -->
+<section id="recognition">
+  <div class="container">
+    <span class="section-label">Sound Familiar?</span>
+    <h2 class="section-heading">You know the pattern.<br>You just can't stop it.</h2>
+
+    <div class="recognition-grid stagger fade-up">
+      <div class="recognition-card">
+        <span class="card-tag tag-tomato">the group chat</span>
+        <h3>You're in the group chat but you're convinced nobody actually wants you there.</h3>
+        <p>You overanalyze every message, every reaction, every silence. You can't just be in it without scanning for proof that you're in the way. That's not insecurity talking — it's a physical feeling you never learned how to sit with.</p>
+      </div>
+      <div class="recognition-card">
+        <span class="card-tag tag-orange">the unanswered text</span>
+        <h3>One unanswered text and you've spent four hours deciding it's your fault.</h3>
+        <p>You know it's probably nothing. But you can't stop the spiral — because the discomfort underneath it is a sensation in your body, not a thought. You've been trying to think your way through something that lives in your chest.</p>
+      </div>
+      <div class="recognition-card">
+        <span class="card-tag tag-blush">the hard conversation</span>
+        <h3>You want to tell your partner what you need but you're terrified you'll sound like you're nagging.</h3>
+        <p>So you stay quiet. You swallow it. You resent it later. The thing stopping you isn't a lack of courage — it's a physical response your body learned a long time ago: don't rock the boat, or someone won't be okay.</p>
+      </div>
+      <div class="recognition-card">
+        <span class="card-tag tag-mauve">the parking lot</span>
+        <h3>You get nervous parking the car when someone's watching — even though you do it perfectly every day.</h3>
+        <p>You know the answer in trivia but you won't say it — what if you're wrong? You're good at this stuff. But performing it in front of people fires something old: don't be wrong, don't be judged, don't take up space.</p>
+      </div>
+      <div class="recognition-card">
+        <span class="card-tag tag-tomato">the disappointment</span>
+        <h3>You want to let people be disappointed in you without falling apart over it.</h3>
+        <p>You want to just ask for what you need without it turning into a thing. You want to pursue things because you want to — not because it'll make someone proud. But you can't, because the feeling that fires when someone's upset stops you every time.</p>
+      </div>
+      <div class="recognition-card">
+        <span class="card-tag tag-orange">the exhaustion</span>
+        <h3>You hold it together for everyone and wonder why nobody holds it together for you.</h3>
+        <p>You're impressive. You're capable. You need nothing. And you're exhausted from all of it. You want to stop performing, stop keeping the peace, stop being so damn responsible for everything. You want to just be normal.</p>
+      </div>
+    </div>
+    <p style="margin-top: 36px; font-size: 16px; color: var(--warm-dark-light); max-width: 560px; line-height: 1.7;" class="fade-up">Nobody's blaming anyone. Your parents did what they had to do. But this stuff has a grip on you — and you want to be free of it.</p>
+  </div>
+</section>
+
+<!-- ─────────────────── MISSING PIECE ─────────────────── -->
+<section id="missing-piece">
+  <div class="container">
+    <div class="missing-piece-layout fade-up">
+      <div class="missing-piece-text">
+        <span class="section-label">The Missing Piece</span>
+        <h2 class="section-heading">Thinking about a feeling<br>is not the same as feeling it.</h2>
+        <p>You've done therapy. You've journaled. You've read the books. You can name every pattern you have. <strong>And the feeling is still stuck.</strong></p>
+        <p>That's because the feeling lives in your body — the tight chest, the clenched jaw, the pit in your stomach. All the thinking in the world won't move it. It needs to be felt. Actually felt. For about 90 seconds. Then it releases, you can see what's yours and what isn't, and you make a different choice.</p>
+        <p><strong>That's what Unsnag does.</strong> Six steps. Under ten minutes. No appointment, no practitioner, no homework. It doesn't make you feel like a patient or like something's wrong with you. It's just a thing you reach for — and every time you do, you're building a new default. That's how things actually change. Not by understanding the pattern better. By feeling the feeling underneath it enough times that you stop reacting from that old place.</p>
+      </div>
+      <img src="images/woman-cozy-phone.png" alt="Woman using Unsnag on her phone" class="missing-piece-image" />
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── HOW IT WORKS ─────────────────── -->
+<section id="how-it-works">
+  <div class="container">
+    <div class="how-intro">
+      <span class="section-label">How It Works</span>
+      <h2 class="section-heading">Six steps. The feeling moves.<br>You make a different choice.</h2>
+      <p>Open it when something fires — someone's tone, an unanswered text, the panic before a hard conversation. Six steps, under ten minutes. Then you close it and go live your life. Do it enough times and the old reactive pattern starts to lose its grip.</p>
+    </div>
+
+    <div class="steps-grid stagger fade-up">
+      <div class="step-card">
+        <div class="step-badge">U</div>
+        <span class="step-label">Unload</span>
+        <h3>Dump it out.</h3>
+        <p>What just happened? What are you spiraling about? Type or talk — no filter. Get the overthinking out of your head so you can drop into your body.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-badge">N</div>
+        <span class="step-label">Name</span>
+        <h3>Tap what you're feeling.</h3>
+        <p>Anxious? Guilty? Resentful? Overwhelmed? Tap the ones that fit. Just naming it turns the volume down — it shifts the activation out of your amygdala and into the part of your brain that can actually do something with it.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-badge">S</div>
+        <span class="step-label">Sense</span>
+        <h3>Find it in your body.</h3>
+        <p>Clenched jaw? Tight chest? Pit in your stomach? This is where you stop thinking about the feeling and start actually locating it.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-badge">N</div>
+        <span class="step-label">Notice</span>
+        <h3>Just feel it. Don't fix it.</h3>
+        <p>A feeling fully felt lasts about 90 seconds — that's how long the neurochemical wave takes to peak and pass. The timer holds space for that. You don't have to do anything. Just be with it. Most people feel the grip loosen before the timer ends.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-badge">A</div>
+        <span class="step-label">Ask</span>
+        <h3>What does it actually want to say?</h3>
+        <p>Let it out raw — the thing you'd never say out loud. Not the spiral. What's underneath it.</p>
+      </div>
+      <div class="step-card">
+        <div class="step-badge">G</div>
+        <span class="step-label">Go</span>
+        <h3>Make a different choice.</h3>
+        <p>Before this, you would've spiraled. Apologized. Gone quiet. Taken it on. Now you've actually felt the feeling and seen what's yours — so what's available to you now that wasn't before? Say the thing. Let them be disappointed. Not your circus. Every time you make that choice, you're building a new default.</p>
+      </div>
+    </div>
+
+    <!-- AI callout -->
+    <div style="max-width: 680px; margin: 48px auto 0; text-align: center;" class="fade-up">
+      <div style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 100px; background: var(--mauve-light); border: 1.5px solid var(--mauve-dark); font-size: 12px; font-weight: 600; color: var(--warm-dark); letter-spacing: 0.04em; margin-bottom: 16px;">✦ Yes, there's a little AI in here</div>
+      <p style="font-size: 17px; color: var(--warm-dark); font-weight: 600; line-height: 1.5; margin-bottom: 8px;">It shows you what's yours — and what was never yours to carry.</p>
+      <p style="font-size: 15px; color: var(--warm-dark-light); line-height: 1.7;">After you move through the steps, the AI reads what you wrote and lays it out clearly: your frustration, your unspoken need, the choice you've been avoiding — that's yours to own. Their reaction, their mood, whether they get upset — never yours. For someone who's been carrying everyone else's stuff their whole life, seeing this separated is usually where something clicks.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── INTERACTIVE DEMO ─────────────────── -->
+<section id="demo">
+  <div class="container">
+    <div class="how-intro">
+      <span class="section-label">Try It</span>
+      <h2 class="section-heading">See the full UNSNAG process.</h2>
+    </div>
+    <div class="demo-placeholder fade-up">
+      <div class="demo-placeholder-icon">📱</div>
+      <p class="demo-placeholder-text">Interactive product demo</p>
+      <p class="demo-placeholder-sub">Embed walkthrough or link to demo-full-flow.html</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── WHAT CHANGES ─────────────────── -->
+<section id="what-changes">
+  <div class="container">
+    <span class="section-label">What Actually Changes</span>
+    <h2 class="section-heading">The pattern doesn't disappear overnight.<br>But it starts to lose its grip.</h2>
+  </div>
+
+  <div class="changes-scroll-wrap">
+    <div class="changes-track" id="changesTrack">
+
+      <div class="change-card">
+        <span class="change-scenario scenario-tomato">the coworker's tone</span>
+        <div class="change-before-block">
+          <p class="change-before-label">Before</p>
+          <p class="change-before-text">She has a tone and you spend three hours deciding what you did wrong. You replay it. You draft a text. You delete it. You draft another one.</p>
+        </div>
+        <div class="change-divider"></div>
+        <div class="change-after-block">
+          <p class="change-after-label">After</p>
+          <p class="change-after-text">You feel the discomfort in your chest, see that her mood was never yours to manage, and go back to work. That's new.</p>
+        </div>
+      </div>
+
+      <div class="change-card">
+        <span class="change-scenario scenario-orange">telling your partner</span>
+        <div class="change-before-block">
+          <p class="change-before-label">Before</p>
+          <p class="change-before-text">You want to tell him what you actually need but the panic stops you — you'll sound like you're nagging. So you swallow it and resent it for weeks.</p>
+        </div>
+        <div class="change-divider"></div>
+        <div class="change-after-block">
+          <p class="change-after-label">After</p>
+          <p class="change-after-text">You feel the fear, see that his reaction isn't yours to control, and say the thing. He's fine. You're better than fine.</p>
+        </div>
+      </div>
+
+      <div class="change-card">
+        <span class="change-scenario scenario-blush">the disappointment</span>
+        <div class="change-before-block">
+          <p class="change-before-label">Before</p>
+          <p class="change-before-text">Someone's disappointed in you and it destroys your entire week. You rearrange your life to fix it. You apologize for things that aren't yours.</p>
+        </div>
+        <div class="change-divider"></div>
+        <div class="change-after-block">
+          <p class="change-after-label">After</p>
+          <p class="change-after-text">You let them be disappointed. You don't fall apart. You feel what's yours, let go of what isn't, and keep going. It was always going to be fine.</p>
+        </div>
+      </div>
+
+      <div class="change-card">
+        <span class="change-scenario scenario-mauve">the trivia night</span>
+        <div class="change-before-block">
+          <p class="change-before-label">Before</p>
+          <p class="change-before-text">You know the answer but you won't say it — what if you're wrong? So you stay quiet. Someone else says it. They were right. You were right. You said nothing.</p>
+        </div>
+        <div class="change-divider"></div>
+        <div class="change-after-block">
+          <p class="change-after-label">After</p>
+          <p class="change-after-text">You feel the fear of being wrong, recognize it as an old pattern, and say the thing anyway. You were right. And even if you weren't — you'd be fine.</p>
+        </div>
+      </div>
+
+      <div class="change-card">
+        <span class="change-scenario scenario-tomato">the 11pm spiral</span>
+        <div class="change-before-block">
+          <p class="change-before-label">Before</p>
+          <p class="change-before-text">It's 11pm. Something someone said six hours ago is eating you alive. You can't sleep. You can't stop replaying it. Your therapist isn't available until Thursday.</p>
+        </div>
+        <div class="change-divider"></div>
+        <div class="change-after-block">
+          <p class="change-after-label">After</p>
+          <p class="change-after-text">You open Unsnag. Six steps. The feeling moves. You see what's yours and what isn't. You put the phone down and actually sleep.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="changes-arrows">
+      <div class="changes-arrow" id="changesPrev">←</div>
+      <div class="changes-dots" id="changesDots"></div>
+      <div class="changes-arrow" id="changesNext">→</div>
+    </div>
+
+    <div style="text-align: center; margin-top: 48px;">
+      <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
+      <p style="font-size: 13px; color: var(--warm-gray); margin-top: 12px;">No credit card required</p>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── TESTIMONIALS ─────────────────── -->
+<section id="testimonials">
+  <div class="container">
+    <span class="section-label">From People Using It</span>
+    <h2 class="section-heading">Same triggers. Different response.<br>That's how you know it's working.</h2>
+
+    <div class="testimonials-grid stagger fade-up">
+      <!-- PLACEHOLDER TESTIMONIAL 1 -->
+      <div class="testimonial-placeholder">
+        <p>Testimonial placeholder<br><span style="font-size: 12px;">Replace with real user quote about the first time the feeling actually moved</span></p>
+      </div>
+      <!-- PLACEHOLDER TESTIMONIAL 2 -->
+      <div class="testimonial-placeholder">
+        <p>Testimonial placeholder<br><span style="font-size: 12px;">Replace with real user quote about the "yours vs. not yours" moment</span></p>
+      </div>
+      <!-- PLACEHOLDER TESTIMONIAL 3 -->
+      <div class="testimonial-placeholder">
+        <p>Testimonial placeholder<br><span style="font-size: 12px;">Replace with real user quote about a specific behavior change (spoke up, let it go, etc.)</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── FOUNDER + PHILOSOPHY ─────────────────── -->
+<section id="founder">
+  <div class="container">
+
+    <!-- ── Origin Story ── -->
+    <div class="founder-story fade-up">
+      <img src="images/afi-photo.jpg" alt="Afi Catena" class="founder-photo" />
+      <div class="founder-text">
+        <span class="section-label">Why I Built This</span>
+        <h2>Hey, I'm Afi. Recovering overthinker. Mostly.</h2>
+        <p>I spent years doing the work — therapy, the books, journaling, all of it. I could name every pattern I had. And I still spiraled over a coworker's tone, still panicked before hard conversations, still took responsibility for everyone else's feelings. What finally changed wasn't more understanding. It was learning that the feeling was stuck in my body, not my head — and that a feeling fully felt lasts about 90 seconds. Nobody had ever told me that.</p>
+        <p>That discovery changed everything for me. And I couldn't stop thinking: why is this so hard to access? Why does it live behind a practitioner, a waitlist, a $200 session? I have a background in psychology, I'm a certified life coach, and I'm obsessed with building systems that people actually use — not just understand in theory. So I built the thing I wish I'd had: something simple enough to reach for every time something fires. Something that doesn't make you feel like a patient. Something my daughter won't have to wait thirty years to find.</p>
+        <div class="founder-sig">
+          <img src="images/afi-catena-headshot.jpg" alt="Afi" class="founder-sig-photo" />
+          <div>
+            <p class="founder-sig-name">Afi Catena</p>
+            <p class="founder-sig-title">Founder, mom, certified life coach</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── Philosophy / What I Believe ── -->
+    <div class="philosophy fade-up">
+      <div class="philosophy-header">
+        <span class="section-label">What I Believe</span>
+        <h2 class="section-heading">This stuff doesn't have to be<br>so heavy and precious.</h2>
+        <p>Emotional processing shouldn't require a practitioner, a waiting room, or a specific vocabulary. It should be as normal as brushing your teeth.</p>
+      </div>
+
+      <div class="beliefs-grid stagger">
+
+        <div class="belief-card">
+          <div class="belief-icon" style="background: var(--mauve-light);">🔁</div>
+          <h3>Simplicity is the feature, not the limitation.</h3>
+          <p>Things don't change because you had one big breakthrough. They change because you did the same small thing over and over until it became your new default. That's why Unsnag is built to be used every time — not once in a while.</p>
+        </div>
+
+        <div class="belief-card">
+          <div class="belief-icon" style="background: rgba(255,168,70,0.18);">🎭</div>
+          <h3>Levity and depth can coexist.</h3>
+          <p>This work doesn't need to be quiet, soft, and timid. It doesn't need to feel like therapy. It can be bold and funny and real — like a friend who's been through it and just wants you to know what she learned.</p>
+        </div>
+
+        <div class="belief-card">
+          <div class="belief-icon" style="background: rgba(255,188,242,0.28);">🪞</div>
+          <h3>Nothing is wrong with you.</h3>
+          <p>You're not broken. You don't need to be fixed. You learned to manage everyone else's feelings to survive, and it made sense at the time. Now it doesn't. That's not a diagnosis — it's just a pattern that's ready to move.</p>
+        </div>
+
+        <div class="belief-card">
+          <div class="belief-icon" style="background: rgba(255,107,76,0.15);">🌍</div>
+          <h3>The whole point of being here is to actually be here.</h3>
+          <p>To feel things, to let things move through us, to express ourselves and contribute what we came here to do. We can't do any of that if we're stuck in the same loops, managing everyone else's feelings, too afraid to take up space. I want us all to be more awake for this.</p>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ─────────────────── PRICING ─────────────────── -->
+<section id="pricing">
+  <div class="container">
+    <span class="section-label" style="display:block; text-align:center;">Pricing</span>
+    <h2 class="section-heading" style="text-align:center;">Less than one therapy co-pay.<br>Available every time something fires.</h2>
+    <div class="pricing-wrap fade-up">
+      <div class="pricing-card">
+        <div class="pricing-price">$5<span> / mo</span></div>
+        <p class="pricing-sub">Unlimited sessions. Cancel any time.</p>
+        <ul class="pricing-features">
+          <li><span class="check">✓</span> Full 6-step UNSNAG process</li>
+          <li><span class="check">✓</span> AI validation + "yours vs. not yours"</li>
+          <li><span class="check">✓</span> Save for later</li>
+          <li><span class="check">✓</span> Session history — watch the pattern change</li>
+          <li><span class="check">✓</span> Private and secure</li>
+        </ul>
+        <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg" style="width:100%;">
+          Start my free trial
+        </a>
+        <p class="pricing-note">14 days free. No credit card required. Then $5/month.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── FAQ ─────────────────── -->
+<section id="faq">
+  <div class="container">
+    <h2 class="section-heading" style="text-align:center;">Frequently asked questions</h2>
+    <div class="faq-list">
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">Is this therapy?</span>
+          <i class="faq-icon">+</i>
+        </div>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">No. It's a self-guided processing tool — not a clinical intervention and not a replacement for therapy. Think of it as what you reach for between sessions. At 11pm when the spiral hits and your therapist isn't available. In the car after a conversation that activated something old. Therapy gives you insight. Unsnag gives the feeling somewhere to go.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">Is this just journaling?</span>
+          <i class="faq-icon">+</i>
+        </div>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">No. Writing is involved in the Unload step, but the goal isn't to think about the feeling — it's to get it out of your head so you can move into your body. The 6-step process is somatic, not reflective. Journaling gives you more thoughts. Unsnag gives the feeling somewhere to go.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">I don't have time for another wellness thing.</span>
+          <i class="faq-icon">+</i>
+        </div>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">A full session is under 10 minutes. The 90-second Notice step is the only timed part. This isn't a wellness practice you dedicate yourself to. It's a thing you reach for when something fires — in the moment, not as homework.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">Do I need to know anything about somatic work?</span>
+          <i class="faq-icon">+</i>
+        </div>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Not at all. The app guides you through every step. Just show up with whatever's going on.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">Will this actually change anything, or just help in the moment?</span>
+          <i class="faq-icon">+</i>
+        </div>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Both — in that order. Each session processes what's happening right now. Over time, you're building a new default response. The pattern starts to lose its grip. You'll notice it in small moments first: you don't spiral over the text. You say the thing. You let someone be disappointed without it destroying you.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">What happens after my free trial?</span>
+          <i class="faq-icon">+</i>
+        </div>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">After 14 days, it's $5/month for unlimited sessions. Cancel any time. No contracts, no pressure.</p>
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-q">
+          <span class="faq-q-text">Is my data private?</span>
+          <i class="faq-icon">+</i>
+        </div>
+        <div class="faq-answer">
+          <p class="faq-answer-inner">Yes. Password protected. What you put in here is yours. Nobody sees it. This is your space.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── CLOSING CTA ─────────────────── -->
+<div id="closing-cta" class="fade-up">
+  <div class="closing-inner">
+    <h2>You don't have to be so impressive all the time.</h2>
+    <p>You don't have to hold it together for everyone. You don't have to keep the peace. You don't have to need nothing. You just need to feel what you're actually feeling — for about 90 seconds — so it stops running everything. Let yourself just be normal. Six steps. A few minutes. Try it free for 14 days. $5/month after that.</p>
+    <a href="https://app.unsnag.co/signup" class="btn btn-mauve-dark btn-lg">Start free trial</a>
+    <p style="font-size: 13px; color: var(--warm-gray); margin-top: 14px;">No credit card required. 14 days free. $5/month after that.</p>
+  </div>
+</div>
+
+<!-- ─────────────────── FOOTER ─────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="/" class="footer-logo">unsnag</a>
+      <ul class="footer-links">
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#founder">Why</a></li>
+        <li><a href="privacy.html">Privacy</a></li>
+        <li><a href="terms.html">Terms</a></li>
+      </ul>
+      <span class="footer-copy">© 2026 Unsnag</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ── Sticky nav
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+
+  // ── FAQ accordion
+  document.querySelectorAll('.faq-q').forEach(q => {
+    q.addEventListener('click', () => {
+      const item = q.closest('.faq-item');
+      const answer = item.querySelector('.faq-answer');
+      const isOpen = item.classList.contains('open');
+
+      document.querySelectorAll('.faq-item.open').forEach(i => {
+        i.classList.remove('open');
+        i.querySelector('.faq-answer').style.maxHeight = '0';
+      });
+
+      if (!isOpen) {
+        item.classList.add('open');
+        answer.style.maxHeight = answer.scrollHeight + 'px';
+      }
+    });
+  });
+
+  // ── Changes carousel
+  (function() {
+    const track = document.getElementById('changesTrack');
+    const dotsWrap = document.getElementById('changesDots');
+    const prevBtn = document.getElementById('changesPrev');
+    const nextBtn = document.getElementById('changesNext');
+    const cards = track.querySelectorAll('.change-card');
+    const total = cards.length;
+    let current = 0;
+
+    // Create dots
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement('div');
+      dot.className = 'changes-dot' + (i === 0 ? ' active' : '');
+      dot.addEventListener('click', () => scrollToCard(i));
+      dotsWrap.appendChild(dot);
+    }
+
+    function scrollToCard(index) {
+      if (index < 0 || index >= total) return;
+      current = index;
+      cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
+      updateDots();
+    }
+
+    function updateDots() {
+      dotsWrap.querySelectorAll('.changes-dot').forEach((d, i) => {
+        d.classList.toggle('active', i === current);
+      });
+    }
+
+    prevBtn.addEventListener('click', () => scrollToCard(current - 1));
+    nextBtn.addEventListener('click', () => scrollToCard(current + 1));
+
+    // Update dots on scroll
+    let scrollTimeout;
+    track.addEventListener('scroll', () => {
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(() => {
+        const trackRect = track.getBoundingClientRect();
+        let closest = 0;
+        let closestDist = Infinity;
+        cards.forEach((card, i) => {
+          const cardRect = card.getBoundingClientRect();
+          const dist = Math.abs(cardRect.left - trackRect.left);
+          if (dist < closestDist) { closestDist = dist; closest = i; }
+        });
+        current = closest;
+        updateDots();
+      }, 60);
+    }, { passive: true });
+  })();
+
+  // ── Scroll-reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -48px 0px' });
+
+  document.querySelectorAll('.fade-up, .stagger').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>

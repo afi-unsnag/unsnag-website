@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unsnag Demo 08 — GO</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE3;
+    --warm-dark: #2D2A26;
+    --warm-dark-light: #4A4640;
+    --mauve: #E2C6FD;
+    --mauve-dark: #C9A4E8;
+    --mauve-light: #F0DEFF;
+    --tomato: #FF6B4C;
+    --orange: #FFA846;
+    --warm-gray: #B8B2A8;
+    --warm-gray-light: #E8E3DB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+  }
+
+  .phone-frame {
+    width: 320px;
+    background: #1a1a1a;
+    border-radius: 44px;
+    padding: 12px;
+    position: relative;
+  }
+
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto 8px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 36px;
+    overflow: hidden;
+    min-height: 580px;
+    position: relative;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* Cursor */
+  .cursor {
+    width: 10px;
+    height: 10px;
+    background: var(--warm-dark);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  .cursor.visible { opacity: 1; }
+  .cursor.clicking {
+    transform: scale(0.7);
+    transition: transform 100ms ease;
+  }
+
+  /* Progress dots */
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .progress-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--warm-dark);
+  }
+
+  /* Step label */
+  .step-label {
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--warm-dark-light);
+    margin-bottom: 12px;
+  }
+
+  /* Heading */
+  .go-heading {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 15px;
+    font-weight: 800;
+    color: var(--warm-dark);
+    text-align: center;
+    line-height: 1.4;
+    margin-bottom: 8px;
+    max-width: 240px;
+  }
+
+  /* Subtext */
+  .go-subtext {
+    font-size: 12px;
+    color: var(--warm-dark-light);
+    text-align: center;
+    margin-bottom: 20px;
+    max-width: 230px;
+    line-height: 1.5;
+  }
+
+  /* Text area */
+  .text-area-wrapper {
+    width: 100%;
+    position: relative;
+    margin-bottom: 12px;
+  }
+  .text-area {
+    width: 100%;
+    min-height: 130px;
+    background: var(--cream);
+    border: 2px solid var(--warm-gray-light);
+    border-radius: 12px;
+    padding: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--warm-dark);
+    line-height: 1.55;
+    resize: none;
+    outline: none;
+    transition: border-color 200ms ease;
+  }
+  .text-area.focused {
+    border-color: var(--mauve-dark);
+  }
+  .text-cursor {
+    display: inline;
+    border-right: 2px solid var(--warm-dark);
+    animation: blink-caret 600ms step-end infinite;
+    margin-left: 1px;
+  }
+  @keyframes blink-caret {
+    0%, 100% { border-color: var(--warm-dark); }
+    50% { border-color: transparent; }
+  }
+
+  /* Mic button */
+  .mic-btn {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background: var(--cream-dark);
+    border: 1.5px solid var(--warm-gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    align-self: flex-end;
+    margin-top: -4px;
+  }
+  .mic-btn svg {
+    width: 16px;
+    height: 16px;
+    fill: none;
+    stroke: var(--warm-dark-light);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+  }
+
+  /* CTA */
+  .cta-btn {
+    width: 100%;
+    padding: 16px;
+    background: var(--mauve);
+    border: none;
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--warm-dark);
+    cursor: pointer;
+    box-shadow: 4px 4px 0 var(--mauve-dark);
+    transition: transform 100ms ease, box-shadow 100ms ease;
+  }
+  .cta-btn.pressed {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 var(--mauve-dark);
+  }
+
+  /* Main content & completion wrappers */
+  .main-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    opacity: 1;
+    transition: opacity 400ms ease;
+  }
+  .main-content.hidden { opacity: 0; }
+
+  .completion {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 400ms ease;
+    pointer-events: none;
+  }
+  .completion.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .completion-title {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 20px;
+    font-weight: 800;
+    color: var(--warm-dark);
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms ease, transform 500ms ease;
+  }
+  .completion-title.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .completion-sub {
+    font-size: 14px;
+    color: var(--warm-dark-light);
+    margin-top: 10px;
+    opacity: 0;
+    transform: translateY(8px);
+    transition: opacity 500ms ease 200ms, transform 500ms ease 200ms;
+  }
+  .completion-sub.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* Mauve pulse */
+  .pulse-ring {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background: var(--mauve-light);
+    opacity: 0;
+    pointer-events: none;
+  }
+  .pulse-ring.animate {
+    animation: pulse-out 1000ms ease-out forwards;
+  }
+  @keyframes pulse-out {
+    0% {
+      transform: translate(-50%, -50%) scale(0);
+      opacity: 0.5;
+    }
+    100% {
+      transform: translate(-50%, -50%) scale(2.5);
+      opacity: 0;
+    }
+  }
+
+  /* Fade wrapper for entire phone */
+  .demo-wrapper {
+    opacity: 0;
+    transition: opacity 500ms ease;
+  }
+  .demo-wrapper.visible { opacity: 1; }
+</style>
+</head>
+<body>
+
+<div class="demo-wrapper" id="demoWrapper">
+  <div class="phone-frame">
+    <div class="phone-notch"></div>
+    <div class="phone-screen" id="phoneScreen">
+
+      <div class="cursor" id="cursor"></div>
+
+      <div class="main-content" id="mainContent">
+        <div class="progress-dots">
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+          <div class="dot"></div>
+        </div>
+
+        <div class="step-label">GO</div>
+
+        <div class="go-heading">What's one small thing you can do differently now?</div>
+
+        <div class="go-subtext">What's available to you now that wasn't before?</div>
+
+        <div class="text-area-wrapper">
+          <div class="text-area" id="textArea"><span id="typedText"></span><span class="text-cursor" id="textCursor" style="display:none;"></span></div>
+        </div>
+
+        <div class="mic-btn">
+          <svg viewBox="0 0 24 24">
+            <rect x="9" y="2" width="6" height="12" rx="3"/>
+            <path d="M5 10a7 7 0 0 0 14 0"/>
+            <line x1="12" y1="17" x2="12" y2="21"/>
+            <line x1="8" y1="21" x2="16" y2="21"/>
+          </svg>
+        </div>
+
+        <button class="cta-btn" id="ctaBtn">I'll do this</button>
+      </div>
+
+      <div class="completion" id="completion">
+        <div class="pulse-ring" id="pulseRing"></div>
+        <div class="completion-title" id="completionTitle">unsnag complete ✦</div>
+        <div class="completion-sub" id="completionSub">You just built a new default.</div>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const TEXT = "just ask him. say 'hey, is everything okay with us?' and let him respond however he responds. his reaction isn't mine to manage.";
+  const CHAR_DELAY = 40;
+
+  const wrapper = document.getElementById('demoWrapper');
+  const cursor = document.getElementById('cursor');
+  const textArea = document.getElementById('textArea');
+  const typedText = document.getElementById('typedText');
+  const textCursor = document.getElementById('textCursor');
+  const ctaBtn = document.getElementById('ctaBtn');
+  const mainContent = document.getElementById('mainContent');
+  const completion = document.getElementById('completion');
+  const completionTitle = document.getElementById('completionTitle');
+  const completionSub = document.getElementById('completionSub');
+  const pulseRing = document.getElementById('pulseRing');
+  const screen = document.getElementById('phoneScreen');
+
+  function moveCursor(el, offsetX, offsetY) {
+    return new Promise(resolve => {
+      const screenRect = screen.getBoundingClientRect();
+      const elRect = el.getBoundingClientRect();
+      const x = elRect.left - screenRect.left + (offsetX || elRect.width / 2);
+      const y = elRect.top - screenRect.top + (offsetY || elRect.height / 2);
+      cursor.style.transition = 'left 400ms ease, top 400ms ease';
+      cursor.style.left = x + 'px';
+      cursor.style.top = y + 'px';
+      setTimeout(resolve, 450);
+    });
+  }
+
+  function click() {
+    return new Promise(resolve => {
+      cursor.classList.add('clicking');
+      setTimeout(() => {
+        cursor.classList.remove('clicking');
+        resolve();
+      }, 150);
+    });
+  }
+
+  function typeText(text) {
+    return new Promise(resolve => {
+      let i = 0;
+      function next() {
+        if (i < text.length) {
+          typedText.textContent += text[i];
+          i++;
+          setTimeout(next, CHAR_DELAY);
+        } else {
+          resolve();
+        }
+      }
+      next();
+    });
+  }
+
+  function wait(ms) {
+    return new Promise(r => setTimeout(r, ms));
+  }
+
+  async function runDemo() {
+    // Reset
+    typedText.textContent = '';
+    textCursor.style.display = 'none';
+    textArea.classList.remove('focused');
+    ctaBtn.classList.remove('pressed');
+    mainContent.classList.remove('hidden');
+    mainContent.style.display = '';
+    completion.classList.remove('visible');
+    completionTitle.classList.remove('visible');
+    completionSub.classList.remove('visible');
+    pulseRing.classList.remove('animate');
+    cursor.classList.remove('visible');
+    cursor.style.transition = 'none';
+    cursor.style.left = '140px';
+    cursor.style.top = '400px';
+    wrapper.classList.remove('visible');
+
+    // 1. Fade in
+    await wait(100);
+    wrapper.classList.add('visible');
+    await wait(600);
+
+    // 2. Show cursor, move to text area
+    cursor.classList.add('visible');
+    await moveCursor(textArea, 30, 30);
+    await click();
+    textArea.classList.add('focused');
+    textCursor.style.display = 'inline';
+    await wait(300);
+
+    // 3. Type text
+    await typeText(TEXT);
+
+    // 4. Pause
+    await wait(500);
+
+    // 5. Move to CTA, tap
+    textCursor.style.display = 'none';
+    await moveCursor(ctaBtn);
+    await click();
+    ctaBtn.classList.add('pressed');
+    await wait(200);
+
+    // 6. Transition to completion
+    cursor.classList.remove('visible');
+    mainContent.classList.add('hidden');
+    await wait(400);
+    mainContent.style.display = 'none';
+    completion.classList.add('visible');
+
+    // 7. Title fades in
+    await wait(100);
+    completionTitle.classList.add('visible');
+
+    // 8. Subtitle fades in
+    await wait(400);
+    completionSub.classList.add('visible');
+
+    // 9. Pulse
+    await wait(300);
+    pulseRing.classList.add('animate');
+
+    // 10. Hold
+    await wait(2000);
+
+    // 11. Fade out
+    wrapper.classList.remove('visible');
+    await wait(800);
+
+    // Loop
+    runDemo();
+  }
+
+  runDemo();
+})();
+</script>
+</body>
+</html>

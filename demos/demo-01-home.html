@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unsnag Demo 1 — Home Screen</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE3;
+    --warm-dark: #2D2A26;
+    --warm-dark-light: #4A4640;
+    --mauve: #E2C6FD;
+    --mauve-dark: #C9A4E8;
+    --mauve-light: #F0DEFF;
+    --tomato: #FF6B4C;
+    --orange: #FFA846;
+    --warm-gray: #B8B2A8;
+    --warm-gray-light: #E8E3DB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'DM Sans', sans-serif;
+    color: var(--warm-dark);
+  }
+
+  /* Phone Frame */
+  .phone-frame {
+    width: 320px;
+    background: #1a1a1a;
+    border-radius: 44px;
+    padding: 12px;
+    position: relative;
+  }
+
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto 8px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 36px;
+    overflow: hidden;
+    min-height: 580px;
+    position: relative;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* Screen content */
+  .screen-content {
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+
+  /* Logo */
+  .logo {
+    font-family: 'Bricolage Grotesque', serif;
+    font-weight: 800;
+    font-size: 26px;
+    letter-spacing: -0.5px;
+  }
+
+  .divider {
+    width: 40px;
+    height: 4px;
+    background: var(--mauve);
+    border-radius: 2px;
+    margin: 10px 0 0;
+  }
+
+  /* Greeting */
+  .greeting {
+    margin-top: 40px;
+  }
+
+  .greeting-wave {
+    font-size: 28px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .greeting-sub {
+    font-size: 17px;
+    color: var(--warm-dark-light);
+    margin-top: 4px;
+  }
+
+  /* CTA Button */
+  .cta-btn {
+    display: block;
+    width: 100%;
+    margin-top: 32px;
+    background: var(--mauve);
+    border: 2px solid var(--warm-dark);
+    border-radius: 12px;
+    box-shadow: 4px 4px 0px 0px var(--warm-dark);
+    padding: 16px 28px;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 600;
+    font-size: 16px;
+    color: var(--warm-dark);
+    cursor: pointer;
+    text-align: center;
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
+    position: relative;
+  }
+
+  .cta-btn.pressed {
+    box-shadow: 1px 1px 0px 0px var(--warm-dark);
+    transform: translate(3px, 3px);
+  }
+
+  /* Stat cards */
+  .stat-cards {
+    display: flex;
+    gap: 12px;
+    margin-top: 20px;
+  }
+
+  .stat-card {
+    flex: 1;
+    border: 2px solid var(--warm-dark);
+    border-radius: 12px;
+    padding: 16px 14px;
+    box-shadow: 2px 2px 0px 0px var(--warm-dark);
+  }
+
+  .stat-card--tomato { background: var(--tomato); }
+  .stat-card--orange { background: var(--orange); }
+
+  .stat-number {
+    font-family: 'Bricolage Grotesque', serif;
+    font-weight: 700;
+    font-size: 26px;
+    color: var(--warm-dark);
+    line-height: 1;
+  }
+
+  .stat-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--warm-dark);
+    margin-top: 4px;
+    opacity: 0.85;
+  }
+
+  /* Bottom nav */
+  .bottom-nav {
+    margin-top: auto;
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+  }
+
+  .nav-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 3px;
+    font-size: 11px;
+    font-weight: 500;
+    color: var(--warm-gray);
+  }
+
+  .nav-item.active { color: var(--warm-dark); }
+
+  .nav-icon {
+    width: 28px;
+    height: 28px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 8px;
+  }
+
+  .nav-item.active .nav-icon {
+    background: var(--mauve);
+    border: 1.5px solid var(--warm-dark);
+  }
+
+  .nav-icon svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  /* Animated cursor */
+  .cursor {
+    width: 10px;
+    height: 10px;
+    background: var(--warm-dark);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    will-change: transform, left, top;
+  }
+
+  .cursor.tapping {
+    transform: scale(0.7);
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+  <div class="phone-notch"></div>
+  <div class="phone-screen" id="phoneScreen">
+    <div class="screen-content" id="screenContent">
+      <!-- Logo -->
+      <div class="logo">unsnag</div>
+      <div class="divider"></div>
+
+      <!-- Greeting -->
+      <div class="greeting">
+        <div class="greeting-wave">&#x1F44B; Hey, You!</div>
+        <div class="greeting-sub">Feeling stuck?</div>
+      </div>
+
+      <!-- CTA -->
+      <button class="cta-btn" id="ctaBtn">Let's move through it</button>
+
+      <!-- Stat cards -->
+      <div class="stat-cards">
+        <div class="stat-card stat-card--tomato">
+          <div class="stat-number">3</div>
+          <div class="stat-label">unsnags</div>
+        </div>
+        <div class="stat-card stat-card--orange">
+          <div class="stat-number">0</div>
+          <div class="stat-label">for later</div>
+        </div>
+      </div>
+
+      <!-- Bottom nav -->
+      <div class="bottom-nav">
+        <div class="nav-item active">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <span>Home</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+          </div>
+          <span>History</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
+          </div>
+          <span>Saved</span>
+        </div>
+        <div class="nav-item">
+          <div class="nav-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </div>
+          <span>Settings</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cursor -->
+    <div class="cursor" id="cursor"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const screen = document.getElementById('screenContent');
+  const cursor = document.getElementById('cursor');
+  const ctaBtn = document.getElementById('ctaBtn');
+  const phoneScreen = document.getElementById('phoneScreen');
+  const ease = 'cubic-bezier(0.4, 0, 0.2, 1)';
+
+  function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function moveCursor(x, y, duration) {
+    return new Promise(resolve => {
+      cursor.style.transition = `left ${duration}ms ${ease}, top ${duration}ms ${ease}`;
+      cursor.style.left = x + 'px';
+      cursor.style.top = y + 'px';
+      setTimeout(resolve, duration);
+    });
+  }
+
+  function getButtonCenter() {
+    const btnRect = ctaBtn.getBoundingClientRect();
+    const screenRect = phoneScreen.getBoundingClientRect();
+    return {
+      x: btnRect.left - screenRect.left + btnRect.width / 2 - 5,
+      y: btnRect.top - screenRect.top + btnRect.height / 2 - 5
+    };
+  }
+
+  async function runLoop() {
+    // Reset state
+    screen.style.transition = 'none';
+    screen.style.opacity = '0';
+    cursor.style.opacity = '0';
+    cursor.style.transition = 'none';
+    ctaBtn.classList.remove('pressed');
+
+    // Start cursor off-screen bottom-right area
+    cursor.style.left = '200px';
+    cursor.style.top = '480px';
+
+    // 1. Fade in screen (300ms)
+    await sleep(50);
+    screen.style.transition = 'opacity 300ms ease';
+    screen.style.opacity = '1';
+    await sleep(300);
+
+    // 2. Brief pause (1s)
+    await sleep(1000);
+
+    // 3. Cursor appears
+    cursor.style.opacity = '1';
+    await sleep(150);
+
+    // 4. Move cursor to CTA button
+    const target = getButtonCenter();
+    await moveCursor(target.x, target.y, 600);
+
+    // 5. Pause before tap (400ms)
+    await sleep(400);
+
+    // 6. Tap — press down
+    cursor.classList.add('tapping');
+    ctaBtn.classList.add('pressed');
+    await sleep(200);
+
+    // 7. Release tap
+    cursor.classList.remove('tapping');
+    await sleep(300);
+
+    // 8. Screen fades out
+    screen.style.transition = 'opacity 350ms ease';
+    screen.style.opacity = '0';
+    cursor.style.transition = 'opacity 200ms ease';
+    cursor.style.opacity = '0';
+    await sleep(400);
+
+    // 9. Pause before loop restart
+    await sleep(800);
+
+    // Reset button
+    ctaBtn.classList.remove('pressed');
+
+    // Loop
+    runLoop();
+  }
+
+  // Kick off after fonts are ready
+  if (document.fonts && document.fonts.ready) {
+    document.fonts.ready.then(() => sleep(200)).then(runLoop);
+  } else {
+    setTimeout(runLoop, 500);
+  }
+})();
+</script>
+</body>
+</html>

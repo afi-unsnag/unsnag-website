@@ -1,13 +1,13 @@
 # Product Marketing Context
 
-*Last updated: 2026-03-31*
+*Last updated: 2026-04-01*
 
 ## Product Overview
-**One-liner:** A guided app that teaches you to actually feel what you're feeling — so it stops running your life.
-**What it does:** Unsnag guides users through a 6-step somatic process (UNSNAG: Unload, Name, Sense, Notice, Ask, Go) with one AI reflection moment. You open it when something's activated — someone's tone, an unanswered text, the panic before a hard conversation. The steps move you from overthinking into your body, where the feeling can actually be felt, processed, and released. Then it shows you what's yours to own and what isn't. Simple enough to use every time something fires, and every time you do, you're building a new default. That's how the overthinking, people-pleasing, and over-functioning actually stop — not by understanding them better, but by processing the feeling underneath them.
+**One-liner:** A guided app that teaches you to actually feel what you're feeling — so you can stop overthinking it and start living from a different place.
+**What it does:** Unsnag guides you through a 6-step somatic process (UNSNAG: Unload, Name, Sense, Notice, Ask, Go) with two AI moments. You open it when something fires — someone's tone, an unanswered text, the panic before a hard conversation. The steps move you from your head into your body, where the feeling can actually be felt, processed, and released. Then it shows you what's yours to own and what isn't. Simple enough to use every time something fires, and every time you do, you're building a new default. That's how the overthinking, people-pleasing, and over-functioning actually stop — not by understanding them better, but by processing the feeling underneath them.
 **Product category:** Emotional wellness / somatic processing app
 **Product type:** B2C SaaS (mobile/web app)
-**Business model:** $5/month after 14-day free trial. Unlimited sessions. Cancel any time.
+**Business model:** $5/month after 14-day free trial. Unlimited sessions. Cancel any time. Less than one therapy co-pay. Available every time something fires.
 
 ## Target Audience
 **Target users:** Millennial women who grew up having to be responsible for everyone else's feelings. They overthink everything — constantly assuming people are mad at them, taking on blame that isn't theirs, unable to speak up without panicking. They've done therapy, journaling, all the reflection. But they've been thinking about their feelings instead of actually feeling them, and that's why they're stuck. They don't know that the discomfort they can't sit with is a feeling in their body that needs to move — not a thought that needs to be figured out. Unsnag is the missing piece: a simple, repeatable tool that teaches them to feel it, see what's theirs, and make a different choice.
@@ -20,12 +20,20 @@
 - Get out of their own way — stop needing everyone else to be okay to feel okay themselves
 - Build a repeatable habit — every time they use it, they're building a new default response so they stop living from that reactive place
 **Use cases:**
-- Someone has a tone and you instantly think they're mad at you — you can't sit with the discomfort, so you start managing them
+- Feeling like you were left out of a group chat — or you're in it but nobody wants you there
+- Wanting to express your needs to your partner but terrified you'll come off as nagging or annoying
+- Getting nervous doing something you're typically good at in front of people — parking a car, giving a presentation — because what if they judge you
+- Knowing the answer in a trivia game but being too afraid to be wrong, so you stay quiet — and you were right
 - An unanswered text and you've already decided it's your fault — four hours of overthinking
+- Someone has a tone and you instantly think they're mad at you — you can't sit with the discomfort, so you start managing them
 - You need to say something hard but the panic stops you — you stay quiet and resent it later
 - You hold it together for everyone and wonder why nobody holds it together for you
 - Carrying guilt or responsibility that was never yours to carry
 - The 11pm spiral when your therapist isn't available
+- Wanting to disappoint someone — just tell them what you actually need — without it turning into a huge fight
+- Wanting to pursue something because YOU want to, not because you think it'll make someone proud
+- Wanting to let other people be disappointed in you and not fall apart over it
+- Always feeling like you're in the way, like you're too much, like you're annoying
 
 ## Personas
 B2C only for now. The core user is a millennial woman who grew up having to be the good one — responsible, accommodating, managing everyone else's emotions. A B2B angle (corporate wellness) is possible later but would require repositioning the voice. Don't chase B2B until B2C is proven.
@@ -34,13 +42,15 @@ B2C only for now. The core user is a millennial woman who grew up having to be t
 **Core problem:** These women grew up in a time when they had to be responsible for everybody else's feelings. They never learned how to feel their own. Now when something activates them — someone's comment, a tone, a look — they can't feel the discomfort. They can't process it. So it lingers, and it drives them to try to make the other person okay so THEY can feel okay. That's the cycle: can't feel it → overthink it → try to fix it → take responsibility for someone else's feelings → lose themselves in the process.
 
 They've done plenty of reflection — therapy, journaling, the books. But thinking about a feeling is not the same as feeling it. The feeling is stuck in their body, and all the thinking in the world won't move it. They're missing the piece they didn't know existed: actually feeling it somatically, so it can release and stop running their behavior.
+
+Nobody's blaming anyone. Their parents did what they had to do. But they want to be free of the grip this stuff has on them.
 **Why alternatives fall short:**
 - Therapy: valuable for insight, but keeps you in your head — and isn't available in the moment when the trigger fires
 - Journaling: more thinking about the feeling, not actually feeling it
 - Mindfulness/breathing: calming but doesn't address the root — why the moment keeps happening
 - Somatic coaching: right approach, but requires a practitioner and isn't available at 11pm on a Tuesday
-**What it costs them:** They stay stuck in the same reactive patterns — overthinking, people-pleasing, taking responsibility for things that aren't theirs, unable to speak up. They're confused about why, because they've been doing the work. They just didn't know the work needed to happen in the body, not the mind.
-**Emotional tension:** They're not lazy or unaware. They've tried hard. They're stuck because they've been using the wrong tool — thinking, when the feeling needs to be felt. There's a quiet frustration: "I've done so much work on myself, why do I still do this?" The answer is that they've been working in the wrong place.
+**What it costs them:** They stay stuck in the same reactive patterns — overthinking, people-pleasing, taking responsibility for things that aren't theirs, unable to speak up, unable to just ask for what they need. They're confused about why, because they've been doing the work. They just didn't know the work needed to happen in the body, not the mind. They can't pursue what they actually want. They can't let people be disappointed. They can't stop performing. They're exhausted from being impressive all the time.
+**Emotional tension:** They're not lazy or unaware. They've tried hard. They're stuck because they've been using the wrong tool — thinking, when the feeling needs to be felt. There's a quiet frustration: "I've done so much work on myself, why do I still do this?" The answer is that they've been working in the wrong place — their head instead of their body. That's not their fault. Nobody showed them.
 
 ## Competitive Landscape
 **Direct:** No direct app competitor doing guided, self-serve somatic processing. The real competition is what they're already doing.
@@ -56,6 +66,7 @@ They've done plenty of reflection — therapy, journaling, the books. But thinki
 - Simple enough to use every time — repetition builds a new default response (habit, not one-off)
 - Structured 6-step process with a 90-second timed somatic step — not open-ended or vague
 - AI that separates what's yours from what isn't — not a chatbot, not advice
+- Doesn't make you feel like a patient or like something's wrong with you — it's just a thing you reach for
 **How we do it differently:** Other tools keep you thinking. Unsnag gets you feeling. The overthinking, people-pleasing, and over-functioning don't stop because you understand them. They stop because you process the feeling underneath — and do it enough times that you build a different default.
 **Why that's better:** You can't think your way out of something that lives in your body. The feeling has to be felt and released. Then you can actually see what's yours, let go of what isn't, and make a different choice. Do this repeatedly and you stop needing everyone else to be okay to feel okay yourself.
 **Why customers choose us:** They've been overthinking, people-pleasing, and taking on everyone else's stuff — and couldn't figure out why years of self-work hadn't changed it. This is the missing piece: actually feeling the feeling. And it's simple enough that they use it every time, which is how it actually sticks.
@@ -71,8 +82,8 @@ They've done plenty of reflection — therapy, journaling, the books. But thinki
 **Anti-persona:** People looking for meditation or mindfulness. People in acute crisis who need clinical support. People who want a chatbot to talk to. People who aren't yet doing any self-work.
 
 ## Switching Dynamics
-**Push:** Years of overthinking, people-pleasing, and taking responsibility for everyone else — and confused about why all their self-work hasn't changed it.
-**Pull:** Something that actually moves the feeling — gets you out of your head and into your body. Simple enough to use every time, so it becomes a habit. Clearly shows what's yours to own vs. what isn't.
+**Push:** Years of overthinking, people-pleasing, and taking responsibility for everyone else — and confused about why all their self-work hasn't changed it. Exhausted from being impressive, from keeping the peace, from needing nothing.
+**Pull:** Something that actually moves the feeling — gets you out of your head and into your body. Simple enough to use every time, so it becomes a habit. Clearly shows what's yours to own vs. what isn't. Doesn't make you feel like a patient.
 **Habit:** Therapy feels like the responsible thing. Journaling feels productive. "I'm someone who does the work" is an identity. The idea that the work has been in the wrong place is uncomfortable.
 **Anxiety:** "What if this is too simple to actually work?" "Am I giving up on therapy?" "What if I feel something I can't handle?" "What if the problem really IS me?"
 
@@ -82,13 +93,17 @@ They've done plenty of reflection — therapy, journaling, the books. But thinki
 - "I always think people are mad at me and I can't stop trying to fix it."
 - "I can't speak up without panicking — I just go quiet and resent it later."
 - "I'm exhausted by being the one who holds it together for everyone."
+- "I always feel like I'm in the way."
+- "I'm afraid I'm annoying them."
+- "I just want to be able to ask for what I need without it turning into a thing."
+- "I can't let people be disappointed in me — it destroys me."
 - *(Replace with verbatim quotes from real users as soon as available)*
 **How they describe us:**
 - "This is the first thing that actually interrupted the pattern."
 - "I kept waiting for it to feel like work. It just... moved."
 - *(Replace with verbatim quotes from real users as soon as available)*
-**Words to use:** move through, stuck, body, feeling, in the moment, process, release, actually feel it, what's yours, let go, different choice, habit, default, over and over
-**Words to avoid:** heal, fix, cure, broken, regulate, manage, optimize, hack, wellness journey, self-care routine, manifest, self-aware, insight, understand the pattern
+**Words to use:** move through, stuck, body, feeling, in the moment, process, release, actually feel it, what's yours, let go, different choice, habit, default, over and over, fires, activated, grip
+**Words to avoid:** heal, fix, cure, broken, regulate, manage, optimize, hack, wellness journey, self-care routine, manifest, self-aware, insight, understand the pattern, mindful, centered, grounded (when used in a soft/wellness way)
 **Glossary:**
 | Term | Meaning |
 |------|---------|
@@ -104,9 +119,11 @@ They've done plenty of reflection — therapy, journaling, the books. But thinki
 | Move through | Process an emotion somatically rather than intellectually |
 
 ## Brand Voice
-**Tone:** Gentle but direct. Warm, not soft. Specific, not vague.
-**Style:** Never clinical, never hype. Speaks to someone who has been doing the work and is confused about why she's still stuck. Person-to-person. Validates the effort, names the missing piece, doesn't make her feel stupid for not knowing.
-**Personality:** Emotionally intelligent, honest, grounded, quietly confident, zero-bullshit
+**Tone:** Direct, warm, a little edgy. Levity and depth coexist. Like a girl next door who's been through it and wants you to know what she learned. Not soft, not quiet, not timid. Bold but not aggressive. Funny when it fits. Never clinical, never hype.
+**Style:** Person-to-person. Speaks to someone who has been doing the work and is confused about why she's still stuck. Validates the effort, names the missing piece, doesn't make her feel stupid for not knowing. Doesn't make her feel like a patient or like something's wrong with her. Makes this stuff feel approachable and normal — not precious, not heavy. Just a thing you reach for. Let yourself just be normal; you don't have to be so impressive all the time.
+**Personality:** Emotionally intelligent, honest, bold, funny, zero-bullshit, approachable, alive
+**What it's NOT:** Soft wellness. Quiet and calm and timid. Therapy-speak. Patient-speak. Heavy, precious, or sacred. Generic self-care. The kind of thing that makes you feel like something's wrong with you.
+**Philosophy:** The whole point of the human experience is to be here and to feel things and to let things move through us and to grow and to evolve and to express ourselves and to contribute what we came here to do. If we can't feel our feelings and move this stuff out of our way, we're never going to express ourselves the way we're meant to. Levity and depth can coexist. Make it simple. Make it approachable. Don't make a big deal of it. Just use it and let it change you.
 
 ## Proof Points
 **Metrics:** *(Fill in with real data — even small numbers beat vague claims. E.g., "47 beta users, 89% completed their first session")*
@@ -116,19 +133,28 @@ They've done plenty of reflection — therapy, journaling, the books. But thinki
 **Value themes:**
 | Theme | Proof |
 |-------|-------|
-| Founded from real experience | Built by Afi Catena (psychology & life coaching background), from personal experience — not a whiteboard |
+| Founded from real experience | Built by Afi Catena — psychology background, certified life coach, built from personal experience, not a whiteboard |
 | Body-based, not mind-based | Grounded in somatic psychology — feeling is physical, processing is physical |
 | Simple enough to build a habit | Under 10 minutes, no homework, use it every time something fires |
 | Yours vs. not yours | AI separates what's yours to own from what was never yours to carry |
 
 ## Goals
-**Business goal:** Grow a paying subscriber base of women who use Unsnag as their go-to tool every time something activates them — building a habit of somatic processing that changes how they show up in relationships.
+**Business goal:** Grow a paying subscriber base of women who use Unsnag as their go-to tool every time something activates them — building a habit of somatic processing that changes how they show up in relationships and in their lives.
 **Conversion action:** Start free trial (14 days) → paid subscription ($5/mo)
 **Current metrics:** Currently in coming-soon / pre-launch phase. Full marketing site built but serving a coming-soon page at index.html.
 
 ## Key Messaging Principles
 1. **Lead with symptoms, not root cause.** She's searching for help with overthinking, people-pleasing, assuming everything's her fault — not "somatic processing." The copy should name what she's experiencing, then reveal the missing piece.
 2. **Don't assume she knows the body piece.** The insight that thinking about a feeling ≠ feeling it is NEW to her. That's the aha moment. Don't skip it — earn it.
-3. **The transformation is internal strength.** She stops needing everyone else to be okay to feel okay herself. She takes accountability for what's hers, lets go of what isn't, and holds other people accountable. She gets out of her own way.
-4. **Repetition = habit = real change.** The simplicity isn't a limitation — it's the feature. She can use it every time something fires, and every time she does, the old reactive pattern loses a little more grip. Actions stack. Things actually change.
-5. **Validate the effort, name the gap.** She's been working hard. Don't make her feel like she's been doing it wrong. She's been doing it in the wrong place — her head instead of her body. That's not her fault. Nobody showed her.
+3. **Be stupidly specific.** Group chats, parking the car, trivia night, unanswered texts. The more specific the scenario, the more she feels like you're in her head.
+4. **The transformation is internal freedom.** She stops needing everyone else to be okay to feel okay herself. She lets people be disappointed. She asks for what she needs. She pursues things because she wants to, not because it'll make someone proud. She lets things fall apart sometimes.
+5. **Repetition = habit = real change.** The simplicity isn't a limitation — it's the feature. She can use it every time something fires, and every time she does, the old reactive pattern loses a little more grip. Actions stack. Things actually change.
+6. **Validate the effort, name the gap.** She's been working hard. Don't make her feel like she's been doing it wrong. She's been doing it in the wrong place — her head instead of her body. That's not her fault. Nobody showed her.
+7. **No blame.** Her parents did what they had to do. This isn't about blame. It's about being free of the grip.
+8. **Don't sound like wellness.** This is not soft, quiet, calm, timid wellness content. It's bold, specific, funny when it fits, and it feels like a real person talking to you. A thing you reach for — not a practice you dedicate yourself to.
+9. **Never make her feel like a patient.** Nothing is wrong with her. She doesn't need to be fixed. She just needs to feel the feeling so it stops driving everything.
+
+## Founder
+**Who:** Afi Catena — mom, wife, has an extremely funny, smart, creative, active three-year-old. Background in psychology, certified life coach. Obsessed with the human experience, obsessed with systems and making things easy and applicable to real life.
+**Why:** "I could explain every pattern I had — therapy, the books, all of it. And I still fell apart over an unanswered text. What finally changed wasn't more understanding. It was getting out of my head and into my body — actually feeling the feeling instead of thinking about it. A feeling fully felt lasts about 90 seconds. Nobody told me that."
+**Mission:** Make this stuff simple, approachable, accessible. It's not lost on her what an incredible experience this is — being alive, being here — and she wants us all to be awake for it. She wants to make the world a better place for her daughter, for all of us. If we can't feel our feelings and move this stuff out of our way, we're never going to express ourselves the way we're meant to.

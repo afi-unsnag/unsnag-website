@@ -299,24 +299,6 @@
     .founder-text p:last-of-type {
       margin-bottom: 32px;
     }
-    .creds {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-    }
-    .cred-pill {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 14px;
-      border-radius: 100px;
-      background: var(--cream-dark);
-      border: 1.5px solid var(--warm-dark);
-      box-shadow: var(--shadow-sm);
-      font-size: 12px;
-      font-weight: 600;
-      color: var(--warm-dark);
-      letter-spacing: 0.02em;
-    }
     .founder-name {
       font-size: 14px !important;
       font-weight: 600 !important;
@@ -335,6 +317,13 @@
       font-weight: 800;
       color: var(--warm-dark);
       letter-spacing: -0.6px;
+      margin-bottom: 14px;
+    }
+    #difference .section-sub {
+      font-size: 18px;
+      color: var(--warm-dark-light);
+      line-height: 1.7;
+      max-width: 620px;
       margin-bottom: 40px;
     }
     .diff-grid {
@@ -409,7 +398,8 @@
       font-size: 18px;
       font-weight: 700;
       color: var(--warm-dark);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
+      line-height: 1.3;
     }
     .belief-card p {
       font-size: 15px;
@@ -434,7 +424,73 @@
     #closing-cta p {
       font-size: 17px;
       color: var(--warm-gray);
-      margin-bottom: 40px;
+      max-width: 560px;
+      margin: 0 auto 40px;
+      line-height: 1.7;
+    }
+
+    /* ─── Mobile Menu ───────────────────────────────── */
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 4px;
+      color: var(--warm-dark);
+    }
+    .mobile-menu-btn svg {
+      width: 26px;
+      height: 26px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
+    }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      z-index: 200;
+      background: var(--cream);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+    }
+    .mobile-nav.open {
+      display: flex;
+    }
+    .mobile-nav a {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--warm-dark);
+      text-decoration: none;
+      letter-spacing: -0.5px;
+    }
+    .mobile-nav a:hover {
+      color: var(--mauve-dark);
+    }
+    .mobile-nav .mobile-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--warm-dark);
+      padding: 4px;
+    }
+    .mobile-nav .mobile-close svg {
+      width: 28px;
+      height: 28px;
+      stroke: currentColor;
+      stroke-width: 2;
+      fill: none;
+      stroke-linecap: round;
     }
 
     /* ─── Footer ─────────────────────────────────────── */
@@ -527,6 +583,7 @@
     }
     @media (max-width: 640px) {
       .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
       #hero { padding: 64px 0 48px; }
       #hero h1 { font-size: 36px; letter-spacing: -0.8px; }
       .hero-sub { font-size: 17px; }
@@ -549,8 +606,21 @@
       <li><a href="index.html#pricing">Pricing</a></li>
     </ul>
     <a href="https://app.unsnag.co/signup" class="btn btn-mauve">Try it free</a>
+    <button class="mobile-menu-btn" aria-label="Open menu" onclick="document.getElementById('mobile-nav').classList.add('open')">
+      <svg viewBox="0 0 24 24"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+    </button>
   </div>
 </nav>
+
+<div id="mobile-nav" class="mobile-nav">
+  <button class="mobile-close" aria-label="Close menu" onclick="document.getElementById('mobile-nav').classList.remove('open')">
+    <svg viewBox="0 0 24 24"><line x1="6" y1="6" x2="18" y2="18"/><line x1="18" y1="6" x2="6" y2="18"/></svg>
+  </button>
+  <a href="index.html#how-it-works" onclick="document.getElementById('mobile-nav').classList.remove('open')">How It Works</a>
+  <a href="about.html">About</a>
+  <a href="index.html#pricing" onclick="document.getElementById('mobile-nav').classList.remove('open')">Pricing</a>
+  <a href="https://app.unsnag.co/signup" class="btn btn-mauve" style="margin-top: 8px;">Try it free</a>
+</div>
 
 <!-- ─────────────────── HERO ─────────────────── -->
 <section id="hero">
@@ -558,8 +628,8 @@
     <div class="hero-grid fade-up">
       <div class="hero-text">
         <span class="section-label">Who Unsnag Is For</span>
-        <h1>You're warm, funny, generous —<br>and somehow still convinced<br>you're the problem.</h1>
-        <p class="hero-sub">You're not. You've just never had a way to actually process what you're feeling in the moment — instead of carrying it for hours. Unsnag is a guided emotional processing app, built for you. By someone who needed it too.</p>
+        <h1>You've done the work.<br>You're still stuck.<br>Here's what's missing.</h1>
+        <p class="hero-sub">You've done the therapy. You have the insight. You can explain your patterns perfectly — and you still spiral over an unanswered text. You're stuck because you've been thinking about your feelings instead of actually feeling them. The feeling lives in your body, not your head. Unsnag moves it through. Built by someone who needed it too.</p>
       </div>
       <img
         src="images/woman-cozy-phone.png"
@@ -576,47 +646,44 @@
     <div class="recognition-inner">
       <div class="fade-up">
         <span class="section-label">Does This Sound Like You?</span>
-        <h2>Hi. I see you.</h2>
+        <h2>You grew up being responsible<br>for everyone else's feelings.</h2>
       </div>
       <div class="truth-list stagger fade-up">
         <div class="truth-item">
           <span class="truth-num">01</span>
           <div class="truth-text">
-            <strong>You'd rather disappear than disappoint someone.</strong>
-            <p>Not because you're weak — because somewhere along the way you figured out that keeping the peace was safer than being honest about what you needed. That made sense then. It's exhausting now.</p>
+            <strong>Someone seems off and your whole body braces.</strong>
+            <p>You can't just let them be upset. Their mood becomes your emergency — because somewhere in your body there's a feeling that says: if they're not okay, you're not okay. That's not a thought. It's a physical response you learned a long time ago. And it runs you.</p>
           </div>
         </div>
         <div class="truth-item">
           <span class="truth-num">02</span>
           <div class="truth-text">
-            <strong>When someone seems off with you, you assume it's your fault.</strong>
-            <p>Doesn't matter if you did anything. Doesn't matter if you literally can't think of a single reason they'd be upset. The spiral starts anyway. You're already apologizing in your head.</p>
+            <strong>One unanswered text and you've spent four hours deciding it's your fault.</strong>
+            <p>You know it's probably nothing. But the discomfort underneath the spiral is a physical sensation, not a thought. You've been trying to think your way through something that lives in your body. That's why it never resolves.</p>
           </div>
         </div>
         <div class="truth-item">
           <span class="truth-num">03</span>
           <div class="truth-text">
-            <strong>You can see yourself doing the thing while you're doing it.</strong>
-            <p>You have the insight. You have the language. You're watching yourself react in a way you hate — and you still can't stop it. That's not a character flaw. That's a missing tool.</p>
+            <strong>You need to say something but the panic won't let you.</strong>
+            <p>So you stay quiet. You swallow it. You resent it later. The thing stopping you isn't a lack of courage — it's a physical response your body learned: don't rock the boat, or someone won't be okay. That response needs to move before you can.</p>
           </div>
         </div>
         <div class="truth-item">
           <span class="truth-num">04</span>
           <div class="truth-text">
-            <strong>You're tired of needing to know everything is okay.</strong>
-            <p>You don't want to be the person who texts back immediately to make sure they're not mad. You want to trust that things are fine without having to check. You want to stop bracing for the thing that probably isn't coming.</p>
+            <strong>You can see yourself doing the thing — and you still can't stop it.</strong>
+            <p>You have the insight. You have the language. You can explain your patterns perfectly. But knowing why you do something doesn't stop the feeling that drives it. That feeling is in your body, and all the understanding in the world won't move it.</p>
           </div>
         </div>
         <div class="truth-item">
           <span class="truth-num">05</span>
           <div class="truth-text">
-            <strong>You feel guilty for having needs.</strong>
-            <p>You're not high-maintenance. You're not selfish. You're not annoying. You were just taught — by experience, not by anyone sitting you down — that your needs were a lot. They're not.</p>
+            <strong>You've gotten very good at needing nothing.</strong>
+            <p>You're not high-maintenance. You're not too much. You've just spent so long making yourself smaller so other people feel comfortable that you've almost forgotten what you actually want. That pattern lives in your body — and it's ready to move.</p>
           </div>
         </div>
-      </div>
-      <div class="recognition-img fade-up">
-        <img src="images/woman-park-bench.png" alt="" style="width:100%; max-width:520px; border-radius:20px; border:1.5px solid var(--warm-dark); box-shadow:var(--shadow); display:block; margin: 48px auto 0;">
       </div>
     </div>
   </div>
@@ -633,18 +700,10 @@
 />
       <div class="founder-text">
         <span class="section-label">Why I Built This</span>
-        <h2>I was all of the above.<br>Still am sometimes.<br>This is what finally worked.</h2>
+        <h2>I did the work for years.<br>Then I found the piece<br>that was actually missing.</h2>
         <p class="founder-name">— Afi Catena, founder of Unsnag</p>
-        <p>I held everything together for everyone. I was terrified of disappointing anyone. I could explain my patterns perfectly — had been in therapy, had done the reading, genuinely understood where it all came from. And I still fell apart over an unanswered text. Still felt guilty for things that had nothing to do with me. Still couldn't speak up without spending three days recovering from it.</p>
-        <p>What changed wasn't more understanding. It was learning how to actually feel what was happening in my body — not think about it, not manage it — and let it move through. That sounds like a lot. It isn't. Once I had a simple process for it, things shifted in ways that years of insight never touched.</p>
-        <p>I'm a mom. A regular person. I built Unsnag because the tool I needed didn't exist — and because the gap between knowing your patterns and actually being able to change them is real, it's solvable, and it doesn't require another commitment. Just a few minutes when you need it. Then you close it and go live your life.</p>
-        <p>Here's what I actually believe: you have something real and irreplaceable to offer. And you can't fully give it when you're spending your energy managing everyone else's reactions. When you stop needing their approval to feel okay — not by deciding to, but because something in your body actually shifted — you get yourself back. That's the whole point. Not to fix you. To free you.</p>
-        <div class="creds">
-          <span class="cred-pill">B.S. Psychology</span>
-          <span class="cred-pill">Certified Life Coach</span>
-          <span class="cred-pill">Somatic practice</span>
-          <span class="cred-pill">Human design</span>
-        </div>
+        <p>I could explain every pattern I had — therapy, the books, all of it. And I still fell apart over an unanswered text. Still couldn't say what I needed without three days of recovery. What finally changed wasn't more understanding. It was getting out of my head and into my body — actually feeling the feeling instead of thinking about it. A feeling fully felt lasts about 90 seconds. Nobody told me that.</p>
+        <p>I built Unsnag because the tool I needed didn't exist. Closing the gap between knowing your patterns and actually changing them shouldn't require another appointment. Just a few minutes when something fires. Then you close it and go live your life.</p>
       </div>
     </div>
   </div>
@@ -655,23 +714,24 @@
   <div class="container">
     <div class="fade-up">
       <span class="section-label">What Makes This Different</span>
-      <h2>No courses. No journaling. No homework.<br>Just a process you follow when something activates — and then close when you're done.</h2>
+      <h2>This isn't more insight.<br>It's a different tool.</h2>
+      <p class="section-sub">A process that moves the feeling through your body — so it stops running your behavior. No courses. No journaling. No homework.</p>
     </div>
     <div class="diff-grid stagger fade-up">
       <div class="diff-card">
         <div class="diff-icon" style="background: rgba(255,168,70,0.2);">⚡</div>
-        <h3>You don't have to learn anything new.</h3>
-        <p>Open it. Follow it. Close it. No framework to memorize, no concept to understand. Just a process that works.</p>
+        <h3>Open it when something fires. Follow six steps. Close it.</h3>
+        <p>No framework to memorize. No concept to understand first. The steps move you from your head into your body, where the feeling can actually be felt and released. Under 10 minutes.</p>
       </div>
       <div class="diff-card">
         <div class="diff-icon" style="background: var(--mauve-light);">↗</div>
-        <h3>It meets you when you actually need it.</h3>
-        <p>Mid-spiral, mid-frustration, mid-whatever. You don't need to be calm or prepared to use it. That's the whole point.</p>
+        <h3>It meets you mid-spiral. That's the point.</h3>
+        <p>Someone's tone. A text that sent you spiraling. The panic before a hard conversation. You don't need to be calm to use it. You use it because you're not calm. That's when it works.</p>
       </div>
       <div class="diff-card">
         <div class="diff-icon" style="background: rgba(255,188,242,0.35);">◎</div>
-        <h3>Small shifts. They compound into a different person.</h3>
-        <p>You won't notice a breakthrough. You'll just notice one day that you didn't spiral over the text. That you said the thing. That someone was disappointed and you were okay. That's the shift.</p>
+        <h3>Every time you use it, you're building a new default.</h3>
+        <p>You won't notice a breakthrough. You'll just notice one day that you didn't spiral over the text. That you said the thing. That someone was disappointed and you were okay. The old pattern lost its grip — because you moved it enough times.</p>
       </div>
     </div>
   </div>
@@ -682,20 +742,24 @@
   <div class="container">
     <div class="fade-up">
       <span class="section-label">What I Know To Be True</span>
-      <h2>What I know to be true about you.</h2>
+      <h2>You're not broken. You're just using<br>the wrong tool.</h2>
     </div>
     <div class="beliefs-grid stagger fade-up">
       <div class="belief-card">
-        <h3>You're not too sensitive. You just never had a way to actually process what you feel — so it stays stuck.</h3>
+        <h3>Thinking about a feeling is not the same as feeling it.</h3>
+        <p>You've been working in your head. The feeling lives in your body. That's the gap — and nobody showed you.</p>
       </div>
       <div class="belief-card">
-        <h3>The guilt you carry for other people's reactions — that's not accountability. That's a pattern you learned. And patterns can be unlearned in the body, not just understood in the head.</h3>
+        <h3>That guilt isn't accountability. It's a pattern.</h3>
+        <p>The guilt you carry for other people's reactions — you learned it. Patterns don't change by understanding them. They change by moving the feeling underneath.</p>
       </div>
       <div class="belief-card">
-        <h3>You have something real to give. You just can't give it when you're spending all your energy managing other people's reactions.</h3>
+        <h3>You have something real to give.</h3>
+        <p>You just can't give it when you're spending all your energy managing everyone else's feelings so you can feel okay.</p>
       </div>
       <div class="belief-card">
-        <h3>The shift doesn't announce itself. It feels like the tightness in your chest released — and then you notice you said the thing, and nothing fell apart.</h3>
+        <h3>The shift doesn't announce itself.</h3>
+        <p>The tightness in your chest releases. You say the thing. Nothing falls apart. And you realize: you stopped needing their reaction to know you're okay.</p>
       </div>
     </div>
   </div>
@@ -703,9 +767,9 @@
 
 <!-- ─────────────────── CLOSING CTA ─────────────────── -->
 <div id="closing-cta" class="fade-up">
-  <h2>You've carried enough.<br>You don't have to keep being this version of yourself.</h2>
-  <p>Six guided steps that process what you're feeling in your body — not just in your head. Use it enough and something actually changes. 14 days free. $5/month after that.</p>
-  <a href="https://app.unsnag.co/signup" class="btn btn-mauve-on-dark btn-lg">Start free trial</a>
+  <h2>Stop thinking about it.<br>Start moving through it.</h2>
+  <p>Six steps. The feeling moves through your body instead of running your behavior. Use it every time something fires and it becomes a habit. That's how things actually change. 14 days free. $5/month after that.</p>
+  <a href="https://app.unsnag.co/signup" class="btn btn-mauve-on-dark btn-lg">Start free — 14 days on us →</a>
 </div>
 
 <!-- ─────────────────── FOOTER ─────────────────── -->
@@ -719,7 +783,7 @@
         <li><a href="privacy.html">Privacy</a></li>
         <li><a href="terms.html">Terms</a></li>
       </ul>
-      <span class="footer-copy">© 2025 Unsnag</span>
+      <span class="footer-copy">© 2026 Unsnag</span>
     </div>
   </div>
 </footer>
@@ -743,7 +807,8 @@
 
   document.querySelectorAll('.fade-up, .stagger').forEach(el => observer.observe(el));
 
-  document.querySelector('#hero .hero-inner').classList.add('visible');
+  const heroEl = document.querySelector('#hero .fade-up');
+  if (heroEl) heroEl.classList.add('visible');
 </script>
 
 </body>

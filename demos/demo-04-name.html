@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unsnag — Demo 04: Name</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE3;
+    --warm-dark: #2D2A26;
+    --warm-dark-light: #4A4640;
+    --mauve: #E2C6FD;
+    --mauve-dark: #C9A4E8;
+    --mauve-light: #F0DEFF;
+    --tomato: #FF6B4C;
+    --orange: #FFA846;
+    --warm-gray: #B8B2A8;
+    --warm-gray-light: #E8E3DB;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { overflow-x: hidden; }
+  body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background: var(--cream);
+    font-family: 'DM Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    padding: 16px;
+  }
+
+  .phone-frame {
+    width: 320px;
+    max-width: calc(100vw - 32px);
+    background: #1a1a1a;
+    border-radius: 44px;
+    padding: 12px;
+    position: relative;
+    transform-origin: top center;
+  }
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto 8px;
+  }
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 36px;
+    min-height: 580px;
+    padding: 24px 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* ── Cursor ── */
+  .cursor {
+    width: 10px;
+    height: 10px;
+    background: var(--warm-dark);
+    border-radius: 50%;
+    position: absolute;
+    pointer-events: none;
+    z-index: 100;
+    opacity: 0;
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease;
+  }
+  .cursor.visible { opacity: 1; }
+  .cursor.tapping {
+    transform: scale(0.65);
+    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
+                opacity 0.3s ease,
+                transform 0.1s ease;
+  }
+
+  /* ── Progress dots ── */
+  .progress-dots {
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 20px;
+  }
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--warm-gray-light);
+  }
+  .dot.filled { background: var(--warm-dark); }
+  .dot.active { background: var(--mauve); }
+
+  /* ── Step label ── */
+  .step-label {
+    text-align: center;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--warm-gray);
+    margin-bottom: 12px;
+  }
+
+  /* ── Heading ── */
+  .heading {
+    text-align: center;
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--warm-dark);
+    margin-bottom: 6px;
+  }
+
+  /* ── Subtext ── */
+  .subtext {
+    text-align: center;
+    font-size: 12px;
+    color: var(--warm-dark-light);
+    margin-bottom: 24px;
+  }
+
+  /* ── Emotion tags ── */
+  .tag-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 32px;
+  }
+  .tag {
+    background: var(--cream-dark);
+    border: 2px solid var(--warm-gray-light);
+    border-radius: 20px;
+    box-shadow: 2px 2px 0px 0px var(--warm-dark);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--warm-dark);
+    padding: 8px 16px;
+    cursor: default;
+    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
+    user-select: none;
+  }
+  .tag.selected {
+    border-color: var(--tomato);
+    color: var(--tomato);
+    background: var(--cream);
+  }
+
+  /* ── CTA ── */
+  .cta-btn {
+    display: block;
+    width: 100%;
+    padding: 14px;
+    border: none;
+    border-radius: 14px;
+    background: var(--mauve);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--warm-dark);
+    text-align: center;
+    cursor: default;
+    box-shadow: 3px 3px 0px 0px var(--warm-dark);
+    transition: box-shadow 0.1s ease, transform 0.1s ease;
+  }
+  .cta-btn.pressed {
+    box-shadow: 1px 1px 0px 0px var(--warm-dark);
+    transform: translate(2px, 2px);
+  }
+
+  /* ── Fade overlay ── */
+  .fade-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--cream);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.4s ease;
+    z-index: 90;
+    border-radius: 36px;
+  }
+  .fade-overlay.active { opacity: 1; }
+
+  @media (max-width: 360px) {
+    .phone-frame {
+      width: 100%;
+      border-radius: 36px;
+      padding: 8px;
+    }
+    .phone-notch {
+      width: 80px;
+      height: 22px;
+      border-radius: 0 0 14px 14px;
+      margin: 0 auto 6px;
+    }
+    .phone-screen {
+      border-radius: 30px;
+    }
+  }
+</style>
+</head>
+<body>
+
+<div class="phone-frame">
+  <div class="phone-notch"></div>
+  <div class="phone-screen" id="screen">
+
+    <div class="progress-dots">
+      <div class="dot filled"></div>
+      <div class="dot active"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+      <div class="dot"></div>
+    </div>
+
+    <div class="step-label">Name</div>
+    <div class="heading">What are you feeling?</div>
+    <div class="subtext">Tap anything that fits.</div>
+
+    <div class="tag-grid" id="tagGrid">
+      <span class="tag" data-tag="anxious">anxious</span>
+      <span class="tag" data-tag="guilty">guilty</span>
+      <span class="tag" data-tag="overwhelmed">overwhelmed</span>
+      <span class="tag" data-tag="frustrated">frustrated</span>
+      <span class="tag" data-tag="sad">sad</span>
+      <span class="tag" data-tag="angry">angry</span>
+      <span class="tag" data-tag="resentful">resentful</span>
+      <span class="tag" data-tag="confused">confused</span>
+      <span class="tag" data-tag="disappointed">disappointed</span>
+    </div>
+
+    <button class="cta-btn" id="ctaBtn">continue</button>
+
+    <div class="fade-overlay" id="fadeOverlay"></div>
+    <div class="cursor" id="cursor"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const cursor = document.getElementById('cursor');
+  const fadeOverlay = document.getElementById('fadeOverlay');
+  const ctaBtn = document.getElementById('ctaBtn');
+  const screen = document.getElementById('screen');
+  const tags = document.querySelectorAll('.tag');
+
+  function getCenter(el) {
+    const screenRect = screen.getBoundingClientRect();
+    const rect = el.getBoundingClientRect();
+    return {
+      x: rect.left - screenRect.left + rect.width / 2 - 5,
+      y: rect.top - screenRect.top + rect.height / 2 - 5
+    };
+  }
+
+  function moveCursor(el, duration) {
+    return new Promise(resolve => {
+      const pos = getCenter(el);
+      cursor.style.transitionDuration = duration + 'ms';
+      cursor.style.left = pos.x + 'px';
+      cursor.style.top = pos.y + 'px';
+      setTimeout(resolve, duration);
+    });
+  }
+
+  function tap() {
+    return new Promise(resolve => {
+      cursor.classList.add('tapping');
+      setTimeout(() => {
+        cursor.classList.remove('tapping');
+        resolve();
+      }, 150);
+    });
+  }
+
+  function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function getTag(name) {
+    return document.querySelector('.tag[data-tag="' + name + '"]');
+  }
+
+  function resetAll() {
+    tags.forEach(t => t.classList.remove('selected'));
+    ctaBtn.classList.remove('pressed');
+    fadeOverlay.classList.remove('active');
+    cursor.classList.remove('visible');
+    cursor.style.transitionDuration = '0ms';
+  }
+
+  async function runLoop() {
+    resetAll();
+
+    // Position cursor off-screen initially
+    cursor.style.left = '140px';
+    cursor.style.top = '500px';
+
+    await wait(400);
+    cursor.classList.add('visible');
+
+    // 1. Tap "anxious"
+    const anxious = getTag('anxious');
+    await moveCursor(anxious, 500);
+    await wait(200);
+    await tap();
+    anxious.classList.add('selected');
+    await wait(300);
+
+    // 2. Tap "overwhelmed"
+    const overwhelmed = getTag('overwhelmed');
+    await moveCursor(overwhelmed, 450);
+    await wait(200);
+    await tap();
+    overwhelmed.classList.add('selected');
+    await wait(300);
+
+    // 3. Tap "frustrated"
+    const frustrated = getTag('frustrated');
+    await moveCursor(frustrated, 400);
+    await wait(200);
+    await tap();
+    frustrated.classList.add('selected');
+    await wait(600);
+
+    // 4. Tap "continue"
+    await moveCursor(ctaBtn, 500);
+    await wait(200);
+    await tap();
+    ctaBtn.classList.add('pressed');
+    await wait(300);
+
+    // 5. Fade out
+    fadeOverlay.classList.add('active');
+    cursor.classList.remove('visible');
+    await wait(500);
+
+    // 6. Pause, then loop
+    await wait(800);
+
+    runLoop();
+  }
+
+  // Start on load
+  runLoop();
+})();
+</script>
+</body>
+</html>

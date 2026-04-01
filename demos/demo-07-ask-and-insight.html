@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Unsnag Demo 07 — Ask & AI Insight</title>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=DM+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --cream: #FAF7F2;
+    --cream-dark: #F0EBE3;
+    --warm-dark: #2D2A26;
+    --warm-dark-light: #4A4640;
+    --mauve: #E2C6FD;
+    --mauve-dark: #C9A4E8;
+    --mauve-light: #F0DEFF;
+    --tomato: #FF6B4C;
+    --orange: #FFA846;
+    --warm-gray: #B8B2A8;
+    --warm-gray-light: #E8E3DB;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+  }
+
+  .phone-frame {
+    width: 320px;
+    background: #1a1a1a;
+    border-radius: 44px;
+    padding: 12px;
+    position: relative;
+  }
+
+  .phone-notch {
+    width: 100px;
+    height: 28px;
+    background: #1a1a1a;
+    border-radius: 0 0 18px 18px;
+    margin: 0 auto 8px;
+    position: relative;
+    z-index: 10;
+  }
+
+  .phone-screen {
+    background: var(--cream);
+    border-radius: 36px;
+    overflow: hidden;
+    min-height: 580px;
+    position: relative;
+  }
+
+  /* Screens container for sliding */
+  .screens-wrapper {
+    display: flex;
+    width: 200%;
+    transition: transform 500ms cubic-bezier(0.4, 0, 0.2, 1);
+  }
+  .screens-wrapper.slide-left {
+    transform: translateX(-50%);
+  }
+
+  .screen-panel {
+    width: 50%;
+    min-height: 580px;
+    padding: 24px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex-shrink: 0;
+  }
+
+  /* Progress dots */
+  .progress-dots {
+    display: flex;
+    gap: 6px;
+    margin-bottom: 24px;
+  }
+  .progress-dots .dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--warm-gray-light);
+  }
+  .progress-dots .dot.filled {
+    background: var(--warm-dark);
+  }
+  .progress-dots .dot.active {
+    background: var(--warm-dark);
+    box-shadow: 0 0 0 3px rgba(45, 42, 38, 0.15);
+  }
+
+  /* Step label */
+  .step-label {
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.12em;
+    color: var(--warm-gray);
+    margin-bottom: 10px;
+  }
+
+  /* Headings */
+  .screen-heading {
+    font-family: 'Bricolage Grotesque', serif;
+    font-weight: 800;
+    color: var(--warm-dark);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .screen-heading.ask {
+    font-size: 15px;
+  }
+  .screen-heading.insight {
+    font-size: 14px;
+  }
+
+  /* Whisper text */
+  .whisper {
+    font-size: 10px;
+    color: var(--warm-gray);
+    font-style: italic;
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.5;
+  }
+
+  /* Textarea */
+  .text-area-wrap {
+    width: 100%;
+    position: relative;
+    margin-bottom: 16px;
+    flex: 1;
+  }
+  .text-area {
+    width: 100%;
+    min-height: 160px;
+    background: var(--cream);
+    border: 2px solid var(--warm-gray-light);
+    border-radius: 12px;
+    padding: 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--warm-dark);
+    line-height: 1.6;
+    resize: none;
+    outline: none;
+  }
+  .text-area.focused {
+    border-color: var(--mauve-dark);
+  }
+  .text-area-content {
+    min-height: 130px;
+  }
+  .text-cursor-blink {
+    display: inline-block;
+    width: 1px;
+    height: 13px;
+    background: var(--warm-dark);
+    vertical-align: text-bottom;
+    margin-left: 1px;
+    animation: blink 800ms step-end infinite;
+  }
+  @keyframes blink {
+    50% { opacity: 0; }
+  }
+
+  .mic-btn {
+    position: absolute;
+    bottom: 10px;
+    right: 10px;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: var(--warm-gray-light);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .mic-btn svg {
+    width: 13px;
+    height: 13px;
+    fill: var(--warm-dark-light);
+  }
+
+  /* AI badge */
+  .ai-badge {
+    background: var(--mauve-light);
+    border: 1px solid var(--mauve-dark);
+    border-radius: 100px;
+    padding: 4px 10px;
+    font-size: 9px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--warm-dark);
+    margin-bottom: 12px;
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+  .ai-badge.visible { opacity: 1; }
+
+  /* Subtext */
+  .subtext {
+    font-size: 10px;
+    color: var(--warm-dark-light);
+    text-align: center;
+    line-height: 1.5;
+    margin-bottom: 16px;
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+  .subtext.visible { opacity: 1; }
+
+  /* Insight cards */
+  .insight-card {
+    width: 100%;
+    border-radius: 12px;
+    padding: 12px;
+    margin-bottom: 10px;
+    opacity: 0;
+    transition: opacity 400ms ease;
+  }
+  .insight-card.visible { opacity: 1; }
+
+  .insight-card.yours {
+    border: 2px solid var(--tomato);
+  }
+  .insight-card.not-yours {
+    border: 2px solid var(--orange);
+  }
+
+  .card-header {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 12px;
+    font-weight: 700;
+    margin-bottom: 8px;
+  }
+  .card-header.yours { color: var(--tomato); }
+  .card-header.not-yours { color: #C87A00; }
+
+  .card-list {
+    list-style: none;
+    padding: 0;
+  }
+  .card-list li {
+    font-size: 11px;
+    color: var(--warm-dark);
+    line-height: 1.5;
+    padding-left: 14px;
+    position: relative;
+    margin-bottom: 4px;
+    opacity: 0;
+    transition: opacity 300ms ease;
+  }
+  .card-list li.visible { opacity: 1; }
+
+  .card-list li::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    top: 7px;
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+  }
+  .yours .card-list li::before { background: var(--tomato); }
+  .not-yours .card-list li::before { background: var(--orange); }
+
+  /* CTA button */
+  .cta-btn {
+    margin-top: auto;
+    width: 100%;
+    padding: 14px 0;
+    background: var(--mauve);
+    color: var(--warm-dark);
+    border: 2px solid var(--warm-dark);
+    border-radius: 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+    cursor: pointer;
+    box-shadow: 4px 4px 0px 0px var(--warm-dark);
+    text-transform: lowercase;
+    position: relative;
+    transition: box-shadow 80ms ease, transform 80ms ease;
+  }
+  .cta-btn.pressed {
+    box-shadow: 1px 1px 0px 0px var(--warm-dark);
+    transform: translate(3px, 3px);
+  }
+
+  /* Cursor */
+  .demo-cursor {
+    width: 10px;
+    height: 10px;
+    background: var(--warm-dark);
+    border-radius: 50%;
+    position: absolute;
+    z-index: 20;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 250ms ease;
+  }
+  .demo-cursor.visible { opacity: 1; }
+
+  /* Fade wrapper for loop */
+  .fade-layer {
+    opacity: 1;
+    transition: opacity 400ms ease;
+  }
+  .fade-layer.fade-out { opacity: 0; }
+</style>
+</head>
+<body>
+<div class="phone-frame">
+  <div class="phone-notch"></div>
+  <div class="phone-screen" id="phoneScreen">
+    <div class="fade-layer" id="fadeLayer">
+      <div class="screens-wrapper" id="screensWrapper">
+
+        <!-- SCREEN 1: ASK -->
+        <div class="screen-panel" id="screen1">
+          <div class="progress-dots">
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="step-label">ASK</div>
+          <div class="screen-heading ask">What does the feeling actually want to say?</div>
+          <div class="whisper">say it raw — the thing you'd never say out loud</div>
+          <div class="text-area-wrap">
+            <div class="text-area" id="textArea">
+              <div class="text-area-content" id="typedText"></div>
+            </div>
+            <div class="mic-btn">
+              <svg viewBox="0 0 24 24"><path d="M12 14c1.66 0 3-1.34 3-3V5c0-1.66-1.34-3-3-3S9 3.34 9 5v6c0 1.66 1.34 3 3 3zm-1-9c0-.55.45-1 1-1s1 .45 1 1v6c0 .55-.45 1-1 1s-1-.45-1-1V5zm6 6c0 2.76-2.24 5-5 5s-5-2.24-5-5H5c0 3.53 2.61 6.43 6 6.92V21h2v-3.08c3.39-.49 6-3.39 6-6.92h-2z"/></svg>
+            </div>
+          </div>
+          <div class="cta-btn" id="cta1">continue</div>
+        </div>
+
+        <!-- SCREEN 2: AI INSIGHT -->
+        <div class="screen-panel" id="screen2">
+          <div class="progress-dots">
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot filled"></div>
+            <div class="dot active"></div>
+            <div class="dot"></div>
+          </div>
+          <div class="ai-badge" id="aiBadge">&#10022; AI</div>
+          <div class="screen-heading insight" id="insightHeading" style="opacity:0;transition:opacity 400ms ease">Let's separate what's yours from what isn't.</div>
+          <div class="subtext" id="insightSubtext">Your feelings are yours. Other people's reactions aren't.</div>
+
+          <div class="insight-card yours" id="cardYours">
+            <div class="card-header yours">What's yours</div>
+            <ul class="card-list" id="listYours">
+              <li>The anxiety you feel when he goes quiet</li>
+              <li>Whether you've said what you actually need</li>
+              <li>The choice to keep spiraling or to ask</li>
+            </ul>
+          </div>
+
+          <div class="insight-card not-yours" id="cardNotYours">
+            <div class="card-header not-yours">What's not yours</div>
+            <ul class="card-list" id="listNotYours">
+              <li>Why he hasn't texted back</li>
+              <li>Whether he's annoyed</li>
+              <li>How he reacts when you ask</li>
+            </ul>
+          </div>
+
+          <div class="cta-btn" id="cta2">continue</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="demo-cursor" id="cursor"></div>
+  </div>
+</div>
+
+<script>
+(function() {
+  const phoneScreen = document.getElementById('phoneScreen');
+  const fadeLayer = document.getElementById('fadeLayer');
+  const wrapper = document.getElementById('screensWrapper');
+  const textArea = document.getElementById('textArea');
+  const typedText = document.getElementById('typedText');
+  const cta1 = document.getElementById('cta1');
+  const cta2 = document.getElementById('cta2');
+  const cursor = document.getElementById('cursor');
+  const aiBadge = document.getElementById('aiBadge');
+  const insightHeading = document.getElementById('insightHeading');
+  const insightSubtext = document.getElementById('insightSubtext');
+  const cardYours = document.getElementById('cardYours');
+  const cardNotYours = document.getElementById('cardNotYours');
+  const listYours = document.querySelectorAll('#listYours li');
+  const listNotYours = document.querySelectorAll('#listNotYours li');
+
+  const MESSAGE = "I just want to know if we're okay. I'm scared to ask because what if he thinks I'm too much. what if he's already pulling away and asking makes it worse";
+
+  function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function moveCursor(el, offsetX, offsetY) {
+    const sr = phoneScreen.getBoundingClientRect();
+    const er = el.getBoundingClientRect();
+    const x = er.left - sr.left + (offsetX != null ? offsetX : er.width / 2) - 5;
+    const y = er.top - sr.top + (offsetY != null ? offsetY : er.height / 2) - 5;
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+  }
+
+  function resetAll() {
+    // Reset wrapper
+    wrapper.classList.remove('slide-left');
+    wrapper.style.transition = 'none';
+    wrapper.offsetHeight; // force reflow
+    wrapper.style.transition = '';
+    fadeLayer.classList.remove('fade-out');
+    fadeLayer.style.opacity = '1';
+
+    // Reset screen 1
+    typedText.innerHTML = '';
+    textArea.classList.remove('focused');
+    cta1.classList.remove('pressed');
+
+    // Reset screen 2
+    aiBadge.classList.remove('visible');
+    insightHeading.style.opacity = '0';
+    insightSubtext.classList.remove('visible');
+    cardYours.classList.remove('visible');
+    cardNotYours.classList.remove('visible');
+    listYours.forEach(li => li.classList.remove('visible'));
+    listNotYours.forEach(li => li.classList.remove('visible'));
+    cta2.classList.remove('pressed');
+
+    // Reset cursor
+    cursor.classList.remove('visible');
+    cursor.style.transition = 'opacity 250ms ease';
+  }
+
+  async function runLoop() {
+    resetAll();
+    await sleep(400);
+
+    // === SCREEN 1: ASK ===
+
+    // Show cursor, move to textarea
+    cursor.style.transition = 'opacity 250ms ease';
+    const sr = phoneScreen.getBoundingClientRect();
+    cursor.style.left = (sr.width / 2 + 20) + 'px';
+    cursor.style.top = (sr.height / 2 - 40) + 'px';
+    cursor.classList.add('visible');
+    await sleep(300);
+
+    // Move cursor to textarea
+    cursor.style.transition = 'opacity 250ms ease, left 400ms cubic-bezier(0.4,0,0.2,1), top 400ms cubic-bezier(0.4,0,0.2,1)';
+    moveCursor(textArea, 80, 30);
+    await sleep(500);
+
+    // Click textarea
+    textArea.classList.add('focused');
+    await sleep(200);
+
+    // Hide cursor during typing
+    cursor.classList.remove('visible');
+    await sleep(200);
+
+    // Type the message
+    for (let i = 0; i < MESSAGE.length; i++) {
+      typedText.innerHTML = MESSAGE.substring(0, i + 1) + '<span class="text-cursor-blink"></span>';
+      await sleep(40);
+    }
+
+    // Remove blinking cursor after typing
+    await sleep(400);
+    typedText.innerHTML = MESSAGE;
+
+    // Show cursor, move to CTA
+    await sleep(300);
+    cursor.style.transition = 'opacity 250ms ease';
+    cursor.classList.add('visible');
+    await sleep(200);
+
+    cursor.style.transition = 'opacity 250ms ease, left 450ms cubic-bezier(0.4,0,0.2,1), top 450ms cubic-bezier(0.4,0,0.2,1)';
+    moveCursor(cta1);
+    await sleep(550);
+
+    // Tap continue
+    cta1.classList.add('pressed');
+    await sleep(150);
+    cursor.classList.remove('visible');
+    await sleep(100);
+
+    // Slide to screen 2
+    wrapper.classList.add('slide-left');
+    await sleep(600);
+
+    // === SCREEN 2: AI INSIGHT ===
+
+    // AI badge + heading appear
+    aiBadge.classList.add('visible');
+    await sleep(300);
+    insightHeading.style.opacity = '1';
+    await sleep(300);
+    insightSubtext.classList.add('visible');
+    await sleep(400);
+
+    // "What's yours" card
+    cardYours.classList.add('visible');
+    await sleep(400);
+
+    // Bullets one by one
+    for (let i = 0; i < listYours.length; i++) {
+      listYours[i].classList.add('visible');
+      await sleep(200);
+    }
+    await sleep(300);
+
+    // "What's not yours" card
+    cardNotYours.classList.add('visible');
+    await sleep(400);
+
+    // Bullets one by one
+    for (let i = 0; i < listNotYours.length; i++) {
+      listNotYours[i].classList.add('visible');
+      await sleep(200);
+    }
+
+    // Pause — let it land
+    await sleep(2000);
+
+    // Cursor appears and moves to CTA
+    cursor.style.transition = 'opacity 250ms ease';
+    const sr2 = phoneScreen.getBoundingClientRect();
+    cursor.style.left = (sr2.width / 2 + 20) + 'px';
+    cursor.style.top = (sr2.height / 2) + 'px';
+    cursor.classList.add('visible');
+    await sleep(300);
+
+    cursor.style.transition = 'opacity 250ms ease, left 450ms cubic-bezier(0.4,0,0.2,1), top 450ms cubic-bezier(0.4,0,0.2,1)';
+    moveCursor(cta2);
+    await sleep(550);
+
+    // Tap continue
+    cta2.classList.add('pressed');
+    await sleep(150);
+
+    // Fade out
+    cursor.classList.remove('visible');
+    await sleep(100);
+    fadeLayer.classList.add('fade-out');
+    await sleep(500);
+
+    // Loop
+    await sleep(800);
+    runLoop();
+  }
+
+  setTimeout(runLoop, 400);
+})();
+</script>
+</body>
+</html>
