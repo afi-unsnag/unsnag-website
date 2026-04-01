@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unsnag — Demo 05: Sense</title>
+<title>Unsnag Demo 05 — Sensation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -18,313 +20,344 @@
     --orange: #FFA846;
     --warm-gray: #B8B2A8;
     --warm-gray-light: #E8E3DB;
-    --shadow-chunky: 4px 4px 0px 0px #2D2A26;
-    --shadow-chunky-sm: 2px 2px 0px 0px #2D2A26;
-    --shadow-pressed: 1px 1px 0px 0px #2D2A26;
   }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { overflow-x: hidden; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    padding: 16px;
+    color: #2D2A26;
+    overflow: hidden;
   }
-
   .phone-frame {
-    width: 320px;
-    max-width: calc(100vw - 32px);
-    background: #1a1a1a;
-    border-radius: 44px;
-    padding: 12px;
+    width: 100%;
+    height: 100vh;
+    background: none;
+    border-radius: 0;
+    padding: 0;
     position: relative;
-    transform-origin: top center;
+    box-shadow: none;
   }
   .phone-notch {
-    width: 100px;
-    height: 28px;
+    width: 0; height: 0;
     background: #1a1a1a;
-    border-radius: 0 0 18px 18px;
-    margin: 0 auto 8px;
+    display: none;
+    margin: 0;
+    position: relative; z-index: 10;
   }
   .phone-screen {
     background: var(--cream);
-    border-radius: 36px;
+    border-radius: 0;
     overflow: hidden;
-    min-height: 580px;
+    
+    
     position: relative;
+    display: flex;
+    flex-direction: column;
+  height: 100vh; }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    
+    padding: 16px 16px 0;
+    margin-bottom: 24px;
+    flex-shrink: 0;
   }
-
-  @media (max-width: 360px) {
-    .phone-frame {
-      width: 100%;
-      border-radius: 36px;
-      padding: 8px;
-    }
-    .phone-notch {
-      width: 80px;
-      height: 22px;
-      border-radius: 0 0 14px 14px;
-      margin: 0 auto 6px;
-    }
-    .phone-screen {
-      border-radius: 30px;
-    }
+  .top-btn {
+    width: 36px; height: 36px;
+    background: var(--cream-dark);
+    border: 2px solid var(--warm-gray-light);
+    border-radius: 8px;
+    display: flex;
+    
+    
   }
-
-  /* ── Cursor ── */
-  .cursor {
-    width: 10px;
-    height: 10px;
-    background: var(--warm-dark);
-    border-radius: 50%;
-    position: absolute;
-    pointer-events: none;
-    z-index: 100;
-    opacity: 0;
-    transition: opacity 0.3s;
-  }
-  .cursor.visible { opacity: 1; }
-  .cursor.tapping { transform: scale(0.7); }
-
-  /* ── Screen content ── */
-  .screen-content {
-    padding: 24px 20px;
-    opacity: 0;
-    transition: opacity 0.4s ease;
-  }
-  .screen-content.visible { opacity: 1; }
-
-  /* ── Progress dots ── */
+  .top-btn svg { width: 18px; height: 18px; }
   .progress-dots {
     display: flex;
-    gap: 6px;
-    justify-content: center;
-    margin-bottom: 20px;
+    gap: 12px;
+    
   }
   .dot {
-    width: 8px;
-    height: 8px;
+    width: 12px; height: 12px;
     border-radius: 50%;
-    background: var(--warm-gray-light);
+    border: 2px solid var(--warm-gray-light);
+    background: transparent;
   }
-  .dot.filled { background: var(--warm-dark); }
-  .dot.active { background: var(--mauve); }
-
-  /* ── Step label ── */
+  .dot.filled {
+    background: var(--warm-dark);
+    border-color: var(--warm-dark);
+  }
+  .dot.current {
+    width: 14px; height: 14px;
+    background: var(--mauve);
+    border: 2px solid var(--warm-dark);
+    position: relative;
+  }
+  .dot.current::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--mauve);
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0% { width: 14px; height: 14px; opacity: 1; }
+    100% { width: 24px; height: 24px; opacity: 0; }
+  }
+  .scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scroll-area::-webkit-scrollbar { display: none; }
+  .step-content {
+    padding: 32px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    
+  }
   .step-label {
     font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--warm-gray);
+    letter-spacing: 0.15em;
+    color: var(--warm-dark-light);
     text-align: center;
     margin-bottom: 8px;
   }
-
-  /* ── Heading ── */
   .heading {
     font-family: 'Bricolage Grotesque', serif;
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 800;
     color: var(--warm-dark);
     text-align: center;
-    line-height: 1.3;
+    line-height: 1.2;
     margin-bottom: 6px;
   }
-
-  /* ── Subtext ── */
   .subtext {
-    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
     color: var(--warm-dark-light);
     text-align: center;
-    margin-bottom: 22px;
+    margin-bottom: 16px;
+    line-height: 1.4;
   }
-
-  /* ── Tag grid ── */
-  .tag-grid {
+  .helper {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--warm-dark-light);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .chips {
     display: flex;
     flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
+    
+    gap: 8px;
+    margin-bottom: 24px;
   }
-
-  .sensation-tag {
-    display: inline-flex;
-    align-items: center;
-    padding: 8px 14px;
-    border-radius: 20px;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 13px;
-    font-weight: 500;
-    color: var(--warm-dark);
+  .chip {
     background: var(--cream-dark);
     border: 2px solid var(--warm-gray-light);
-    box-shadow: var(--shadow-chunky-sm);
-    cursor: pointer;
-    transition: all 0.2s ease;
-    user-select: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--warm-dark-light);
+    transition: all 0.15s;
   }
-
-  .sensation-tag.selected {
-    border-color: var(--orange);
-    color: #A06800;
-    background: var(--cream);
-    box-shadow: var(--shadow-pressed);
-    transform: translate(1px, 1px);
+  .chip.selected {
+    background: var(--orange);
+    border-color: var(--warm-dark);
+    color: var(--warm-dark);
+    box-shadow: 2px 2px 0 0 var(--warm-dark);
   }
+  .cta-btn {
+    width: 100%;
+    max-width: 280px;
+    padding: 16px;
+    background: var(--mauve);
+    border: 3px solid var(--warm-dark);
+    border-radius: 12px;
+    box-shadow: 3px 3px 0 0 var(--warm-dark);
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 18px;
+    font-weight: 600;
+    color: var(--warm-dark-light);
+    text-align: center;
+    transition: box-shadow 0.1s, transform 0.1s;
+    margin-bottom: 20px;
+  }
+  .cta-btn.pressed {
+    box-shadow: 1px 1px 0 0 var(--warm-dark);
+    transform: translate(2px, 2px);
+  }
+  .cursor {
+    position: absolute;
+    z-index: 100;
+    pointer-events: none;
+    opacity: 0;
+  }
+  .cursor svg { display: block; transition: transform 0.1s; }
+  .cursor.tap svg { transform: scale(0.85); }
 </style>
 </head>
 <body>
-
 <div class="phone-frame">
   <div class="phone-notch"></div>
   <div class="phone-screen">
-    <div class="cursor" id="cursor"></div>
-    <div class="screen-content" id="screen">
-
+    <div class="top-bar">
+      <div class="top-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </div>
       <div class="progress-dots">
         <div class="dot filled"></div>
         <div class="dot filled"></div>
-        <div class="dot active"></div>
+        <div class="dot current"></div>
+        <div class="dot"></div>
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-
-      <div class="step-label">SENSATION</div>
-      <div class="heading">Where are you feeling this?</div>
-      <div class="subtext">Tap anything that fits.</div>
-
-      <div class="tag-grid">
-        <div class="sensation-tag" data-tag="lump-in-throat">lump in throat</div>
-        <div class="sensation-tag" data-tag="tight-chest">tight chest</div>
-        <div class="sensation-tag" data-tag="clenched-jaw">clenched jaw</div>
-        <div class="sensation-tag" data-tag="shallow-breathing">shallow breathing</div>
-        <div class="sensation-tag" data-tag="stomach-knot">stomach knot</div>
-        <div class="sensation-tag" data-tag="racing-heart">racing heart</div>
-        <div class="sensation-tag" data-tag="tingling">tingling</div>
-        <div class="sensation-tag" data-tag="pit-in-stomach">pit in stomach</div>
-        <div class="sensation-tag" data-tag="tight-shoulders">tight shoulders</div>
+      <div class="top-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
       </div>
-
     </div>
+    <div class="scroll-area" id="scrollArea">
+      <div class="step-content">
+        <div class="step-label">SENSATION</div>
+        <div class="heading">Where are you feeling this?</div>
+        <div class="subtext">Feelings live in the body. Finding it is what lets it move.</div>
+        <div class="helper">Tap anything that fits.</div>
+        <div class="chips" id="chips">
+          <div class="chip" data-name="lump in throat">lump in throat</div>
+          <div class="chip" data-name="tight chest">tight chest</div>
+          <div class="chip" data-name="jittery">jittery</div>
+          <div class="chip" data-name="stomach knot">stomach knot</div>
+          <div class="chip" data-name="clenched jaw">clenched jaw</div>
+          <div class="chip" data-name="shallow breathing">shallow breathing</div>
+          <div class="chip" data-name="numb">numb</div>
+          <div class="chip" data-name="racing heart">racing heart</div>
+          <div class="chip" data-name="tingling">tingling</div>
+          <div class="chip" data-name="hot face">hot face</div>
+          <div class="chip" data-name="tight shoulders">tight shoulders</div>
+          <div class="chip" data-name="pit in stomach">pit in stomach</div>
+          <div class="chip" data-name="dizzy">dizzy</div>
+          <div class="chip" data-name="sweaty palms">sweaty palms</div>
+          <div class="chip" data-name="pressure in head">pressure in head</div>
+          <div class="chip" data-name="can't sit still">can't sit still</div>
+          <div class="chip" data-name="exhausted">exhausted</div>
+          <div class="chip" data-name="chest flutter">chest flutter</div>
+        </div>
+        <div class="cta-btn" id="ctaBtn">continue</div>
+      </div>
+    </div>
+  </div>
+  <div class="cursor" id="cursor">
+    <svg width="17" height="23" viewBox="0 0 17 23" fill="none">
+      <path d="M1 1L1 19.5L5.5 15L10 22L13 20.5L8.5 13.5L14.5 13.5L1 1Z" fill="white" stroke="#2D2A26" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
   </div>
 </div>
 
 <script>
-(function() {
-  const cursor = document.getElementById('cursor');
-  const screen = document.getElementById('screen');
-  const tags = {};
+const cursor = document.getElementById('cursor');
+const ctaBtn = document.getElementById('ctaBtn');
+const scrollArea = document.getElementById('scrollArea');
 
-  document.querySelectorAll('.sensation-tag').forEach(el => {
-    tags[el.dataset.tag] = el;
+function getChip(name) {
+  return document.querySelector(`.chip[data-name="${name}"]`);
+}
+
+function moveCursor(x, y, duration = 700) {
+  return new Promise(resolve => {
+    cursor.style.transition = `left ${duration}ms cubic-bezier(0.4,0,0.2,1), top ${duration}ms cubic-bezier(0.4,0,0.2,1), opacity 0.3s`;
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+    setTimeout(resolve, duration);
   });
+}
+function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-  // Animation timeline
-  const tapSequence = ['tight-chest', 'pit-in-stomach', 'shallow-breathing'];
+function getPos(el) {
+  const frameRect = document.querySelector('.phone-frame').getBoundingClientRect();
+  const r = el.getBoundingClientRect();
+  return { x: r.left - frameRect.left + r.width/2, y: r.top - frameRect.top + r.height/2 };
+}
 
-  function getCenterOf(el) {
-    const screenEl = document.querySelector('.phone-screen');
-    const screenRect = screenEl.getBoundingClientRect();
-    const rect = el.getBoundingClientRect();
-    return {
-      x: rect.left - screenRect.left + rect.width / 2 - 5,
-      y: rect.top - screenRect.top + rect.height / 2 - 5
-    };
+async function tapChip(name) {
+  const chip = getChip(name);
+  const pos = getPos(chip);
+  await moveCursor(pos.x, pos.y, 700);
+  await wait(400);
+  cursor.classList.add('tap');
+  chip.classList.add('selected');
+  await wait(150);
+  cursor.classList.remove('tap');
+}
+
+async function animate() {
+  // Reset
+  document.querySelectorAll('.chip').forEach(c => c.classList.remove('selected'));
+  ctaBtn.classList.remove('pressed');
+  scrollArea.scrollTop = 0;
+  cursor.style.transition = 'none';
+  cursor.style.left = '260px';
+  cursor.style.top = '500px';
+  cursor.style.opacity = '0';
+  await wait(500);
+
+  cursor.style.opacity = '1';
+  await wait(300);
+
+  await tapChip('tight chest');
+  await wait(300);
+  await tapChip('racing heart');
+  await wait(300);
+  await tapChip('tight shoulders');
+  await wait(500);
+
+  // Scroll to continue
+  scrollArea.scrollTo({ top: scrollArea.scrollHeight, behavior: 'smooth' });
+  await wait(600);
+
+  const btnPos = getPos(ctaBtn);
+  await moveCursor(btnPos.x, btnPos.y, 700);
+  await wait(400);
+  cursor.classList.add('tap');
+  ctaBtn.classList.add('pressed');
+  await wait(150);
+  cursor.classList.remove('tap');
+  ctaBtn.classList.remove('pressed');
+  await wait(400);
+
+  cursor.style.opacity = '0';
+  const screen = document.querySelector('.phone-screen');
+  screen.style.transition = 'opacity 300ms';
+  screen.style.opacity = '0';
+  await wait(800);
+  screen.style.transition = 'none';
+  screen.style.opacity = '1';
+}
+
+async function loop() {
+  while (true) {
+    await animate();
+    await wait(800);
   }
-
-  function moveCursor(x, y, duration) {
-    return new Promise(resolve => {
-      cursor.style.transition = `left ${duration}ms ease-in-out, top ${duration}ms ease-in-out, opacity 0.3s`;
-      cursor.style.left = x + 'px';
-      cursor.style.top = y + 'px';
-      setTimeout(resolve, duration);
-    });
-  }
-
-  function tap(tag) {
-    return new Promise(resolve => {
-      cursor.classList.add('tapping');
-      setTimeout(() => {
-        tag.classList.add('selected');
-        cursor.classList.remove('tapping');
-        setTimeout(resolve, 150);
-      }, 120);
-    });
-  }
-
-  function wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
-
-  function resetAll() {
-    document.querySelectorAll('.sensation-tag').forEach(el => {
-      el.classList.remove('selected');
-    });
-    cursor.classList.remove('visible');
-    cursor.style.transition = 'none';
-    screen.classList.remove('visible');
-  }
-
-  async function runLoop() {
-    while (true) {
-      resetAll();
-
-      // Position cursor at starting spot (center-ish, off to the right)
-      cursor.style.left = '200px';
-      cursor.style.top = '350px';
-
-      // Fade in screen
-      await wait(100);
-      screen.classList.add('visible');
-      await wait(500);
-
-      // Show cursor
-      cursor.classList.add('visible');
-      await wait(300);
-
-      // Tap each sensation in sequence
-      for (let i = 0; i < tapSequence.length; i++) {
-        const tagEl = tags[tapSequence[i]];
-        const pos = getCenterOf(tagEl);
-
-        // Move to tag
-        await moveCursor(pos.x, pos.y, 450);
-        await wait(200);
-
-        // Tap it
-        await tap(tagEl);
-        await wait(350);
-      }
-
-      // Pause after all selections
-      await wait(800);
-
-      // Fade out
-      screen.style.transition = 'opacity 0.4s ease';
-      screen.classList.remove('visible');
-      cursor.classList.remove('visible');
-
-      await wait(800);
-
-      // Reset transition for next loop
-      screen.style.transition = 'opacity 0.4s ease';
-    }
-  }
-
-  // Start after a brief initial delay
-  setTimeout(runLoop, 300);
-})();
+}
+loop();
 </script>
-
 </body>
 </html>

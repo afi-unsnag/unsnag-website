@@ -5,6 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Unsnag — You've done the work. You're still stuck.</title>
   <meta name="description" content="Unsnag is a guided app that moves the feeling through your body in minutes — so it stops driving the overthinking, people-pleasing, and taking-it-all-on. 14 days free." />
+  <link rel="canonical" href="https://unsnag.co/" />
+  <meta property="og:title" content="Unsnag — You've done the work. You're still stuck." />
+  <meta property="og:description" content="Unsnag is a guided app that moves the feeling through your body in minutes — so it stops driving the overthinking, people-pleasing, and taking-it-all-on. 14 days free." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://unsnag.co/" />
+  <meta property="og:image" content="https://unsnag.co/images/og-home.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Unsnag — You've done the work. You're still stuck." />
+  <meta name="twitter:description" content="Unsnag is a guided app that moves the feeling through your body in minutes — so it stops driving the overthinking, people-pleasing, and taking-it-all-on. 14 days free." />
+  <meta name="twitter:image" content="https://unsnag.co/images/og-home.jpg" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23E2C6FD'/><text x='50' y='68' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-size='60' font-weight='800' fill='%232D2A26'>u</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
@@ -170,44 +183,156 @@
     }
     #hero .container {
       display: flex;
-      flex-direction: column;
+      gap: 32px;
       align-items: center;
-      text-align: center;
+      justify-content: center;
     }
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      padding: 6px 18px;
-      border-radius: 100px;
-      background: rgba(255,107,76,0.15);
-      border: 1.5px solid var(--warm-dark);
-      box-shadow: var(--shadow-sm);
-      font-size: 13px;
-      font-weight: 600;
-      color: var(--warm-dark);
-      letter-spacing: 0.01em;
-      margin-bottom: 24px;
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      flex: 1;
+      min-width: 0;
     }
     #hero h1 {
-      font-size: clamp(40px, 5.5vw, 64px);
+      font-size: clamp(36px, 4.5vw, 56px);
       font-weight: 800;
       color: var(--warm-dark);
-      max-width: 780px;
-      letter-spacing: -2px;
+      letter-spacing: -1.5px;
       margin-bottom: 20px;
+      text-align: left;
     }
     .hero-sub {
       font-size: 17px;
       color: var(--warm-dark-light);
-      max-width: 620px;
+      max-width: 520px;
       line-height: 1.7;
       margin-bottom: 36px;
+      text-align: left;
     }
     .hero-ctas {
       display: flex;
       flex-direction: column;
-      align-items: center;
+      align-items: flex-start;
       gap: 12px;
+    }
+    .hero-mockup-wrap {
+      position: relative;
+      flex-shrink: 0;
+      width: 340px;
+    }
+    .hero-mockup-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 340px;
+      height: 600px;
+      border-radius: 50%;
+      background: var(--blush);
+      opacity: 0.3;
+      filter: blur(60px);
+      z-index: 0;
+    }
+    /* shape removed — using shadow instead */
+    .hero-mockup {
+      position: relative;
+      width: 340px;
+      min-height: 580px;
+      background: var(--cream);
+      border: 3px solid var(--warm-dark);
+      border-radius: 24px;
+      box-shadow: 6px 6px 0px 0px rgba(45,42,38,0.15);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      z-index: 1;
+      overflow: hidden;
+      animation: mockupFloat 6s ease-in-out infinite;
+    }
+    @keyframes mockupFloat {
+      0%, 100% { transform: translateY(0) translateX(0); }
+      25% { transform: translateY(-6px) translateX(3px); }
+      50% { transform: translateY(-10px) translateX(0); }
+      75% { transform: translateY(-6px) translateX(-3px); }
+    }
+    .hero-mockup .mock-logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 38px;
+      font-weight: 800;
+      color: var(--warm-dark);
+      letter-spacing: -1px;
+    }
+    .hero-mockup .mock-divider {
+      width: 36px;
+      height: 3px;
+      background: var(--mauve);
+      border-radius: 2px;
+      margin-top: -8px;
+    }
+    .hero-mockup .mock-greeting {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      color: var(--warm-dark-light);
+      text-align: center;
+      line-height: 1.5;
+    }
+    .hero-mockup .mock-greeting strong {
+      color: var(--warm-dark);
+    }
+    .hero-mockup .mock-cta {
+      width: 100%;
+      padding: 16px;
+      border-radius: 12px;
+      background: var(--mauve);
+      border: 3px solid var(--warm-dark);
+      box-shadow: var(--shadow);
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--warm-dark-light);
+      text-align: center;
+      margin-top: auto;
+      margin-bottom: auto;
+    }
+    .hero-mockup .mock-footnote {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 11px;
+      color: var(--warm-dark-light);
+      opacity: 0.5;
+      text-align: center;
+      line-height: 1.5;
+      max-width: 240px;
+    }
+    .hero-mockup .mock-nav {
+      width: 340px;
+      margin: 8px -28px -36px;
+      padding: 12px 0 14px;
+      border-top: 2px solid var(--warm-dark);
+      display: flex;
+      justify-content: space-around;
+      border-radius: 0 0 21px 21px;
+      box-sizing: border-box;
+    }
+    .hero-mockup .mock-nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 10px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+    }
+    .hero-mockup .mock-nav-item.active {
+      color: var(--mauve-dark);
+      font-weight: 600;
+    }
+    .hero-mockup .mock-nav-item svg {
+      width: 18px;
+      height: 18px;
     }
     .hero-secondary {
       font-size: 15px;
@@ -221,42 +346,7 @@
     }
     .hero-secondary:hover { color: var(--warm-dark); }
 
-    /* ─── Demo Placeholder ───────────────────────────── */
-    .demo-placeholder {
-      width: 100%;
-      max-width: 800px;
-      margin: 56px auto 0;
-      aspect-ratio: 16 / 9;
-      background: var(--cream-dark);
-      border: 2px dashed var(--warm-gray-light);
-      border-radius: 24px;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 12px;
-    }
-    .demo-placeholder-icon {
-      width: 56px;
-      height: 56px;
-      border-radius: 14px;
-      background: var(--mauve-light);
-      border: 2px solid var(--warm-dark);
-      box-shadow: var(--shadow-sm);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 24px;
-    }
-    .demo-placeholder-text {
-      font-size: 15px;
-      font-weight: 600;
-      color: var(--warm-gray);
-    }
-    .demo-placeholder-sub {
-      font-size: 13px;
-      color: var(--warm-gray);
-    }
+    /* (demo placeholder styles removed — replaced by demo player) */
 
     /* ─── Recognition / "Sound Familiar" ─────────────── */
     #recognition {
@@ -270,11 +360,32 @@
       max-width: 580px;
       line-height: 1.7;
     }
+    .recognition-hero {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: 40px;
+      align-items: center;
+      margin-bottom: 48px;
+    }
+    .recognition-hero-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      border-radius: 20px;
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow);
+    }
+    .recognition-hero-text {
+      display: flex;
+      flex-direction: column;
+    }
+    .recognition-hero-text .section-heading {
+      text-align: left;
+    }
     .recognition-grid {
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       gap: 20px;
-      margin-top: 48px;
     }
     .recognition-card {
       background: var(--cream);
@@ -312,10 +423,10 @@
       border: 1.5px solid var(--warm-dark);
       box-shadow: var(--shadow-sm);
     }
-    .tag-tomato { background: rgba(255,107,76,0.15); color: var(--warm-dark); }
-    .tag-orange { background: rgba(255,168,70,0.18); color: var(--warm-dark); }
-    .tag-blush { background: rgba(255,188,242,0.28); color: var(--warm-dark); }
-    .tag-mauve { background: var(--mauve-light); color: var(--warm-dark); }
+    .tag-tomato { background: var(--tomato); color: white; }
+    .tag-orange { background: var(--orange); color: var(--warm-dark); }
+    .tag-blush { background: var(--blush); color: var(--warm-dark); }
+    .tag-mauve { background: var(--mauve); color: var(--warm-dark); }
 
     /* ─── The Missing Piece ──────────────────────────── */
     #missing-piece {
@@ -425,52 +536,222 @@
       color: var(--warm-gray);
     }
 
-    /* ─── Demo Section ───────────────────────────────── */
-    #demo {
-      padding: 80px 0;
+    /* ─── AI + Demo Section ────────────────────────────── */
+    #ai-demo-wrap {
+      padding: 120px 48px;
+      background: var(--cream);
     }
-    #demo .how-intro { margin-bottom: 40px; }
+    #ai-demo {
+      padding: 56px 48px;
+      background: var(--warm-dark);
+      border-radius: 24px;
+      max-width: 1200px;
+      margin: 0 auto;
+      overflow: visible;
+    }
+    .ai-demo-layout {
+      display: grid;
+      grid-template-columns: 1fr 330px;
+      gap: 64px;
+      align-items: center;
+    }
+    .ai-demo-text {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .ai-demo-badge {
+      display: inline-flex;
+      align-self: flex-start;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 18px;
+      border-radius: 100px;
+      background: var(--mauve);
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--warm-dark);
+      letter-spacing: 0.04em;
+    }
+    .ai-demo-text h2 {
+      font-size: clamp(24px, 3vw, 36px);
+      font-weight: 800;
+      color: var(--cream);
+      letter-spacing: -0.5px;
+      line-height: 1.15;
+    }
+    .ai-demo-text p {
+      font-size: 16px;
+      color: var(--warm-gray);
+      line-height: 1.75;
+    }
+    .insight-card {
+      width: 340px;
+      background: var(--cream);
+      border-radius: 24px;
+      border: 3px solid var(--warm-dark);
+      box-shadow: 6px 6px 0px 0px rgba(45,42,38,0.15);
+      padding: 36px 28px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      margin-top: -100px;
+      margin-bottom: -40px;
+      position: relative;
+      z-index: 2;
+    }
+    .insight-card .ai-chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 5px 14px;
+      border-radius: 100px;
+      background: var(--mauve-light);
+      border: 1.5px solid var(--mauve-dark);
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--warm-dark);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+    .insight-card h3 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 22px;
+      font-weight: 800;
+      color: var(--warm-dark);
+      text-align: center;
+      letter-spacing: -0.3px;
+      line-height: 1.2;
+    }
+    .insight-card .insight-sub {
+      font-size: 13px;
+      color: var(--warm-dark-light);
+      text-align: center;
+      line-height: 1.5;
+      margin-bottom: 4px;
+    }
+    .yours-card {
+      width: 100%;
+      border-radius: 16px;
+      padding: 20px;
+      border: 2px solid var(--tomato);
+    }
+    .yours-card h4 {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--tomato);
+      margin-bottom: 12px;
+    }
+    .yours-card ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .yours-card li {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      font-size: 14px;
+      color: var(--warm-dark-light);
+      line-height: 1.5;
+    }
+    .yours-card li::before {
+      content: '';
+      flex-shrink: 0;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      margin-top: 5px;
+    }
+    .yours-card.yours li::before { background: var(--tomato); }
+    .yours-card.not-yours { border-color: var(--orange); }
+    .yours-card.not-yours h4 { color: #C87A00; }
+    .yours-card.not-yours li::before { background: var(--orange); }
 
-    /* ─── What Changes — Horizontal Scroll ──────────── */
+    /* Stagger animation for insight bullets */
+    .insight-card .yours-card {
+      opacity: 0;
+      transform: translateY(12px);
+      transition: opacity 0.4s ease, transform 0.4s ease;
+    }
+    .insight-card.visible .yours-card.yours {
+      opacity: 1; transform: none; transition-delay: 0.3s;
+    }
+    .insight-card.visible .yours-card.not-yours {
+      opacity: 1; transform: none; transition-delay: 0.7s;
+    }
+
+    @media (max-width: 860px) {
+      .changes-layout {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .ai-demo-layout {
+        grid-template-columns: 1fr;
+        gap: 48px;
+        text-align: center;
+      }
+      .ai-demo-badge { align-self: center; }
+      .insight-card {
+        margin: 0 auto;
+        margin-top: -60px;
+        margin-bottom: -20px;
+        width: 100%;
+        max-width: 340px;
+      }
+      #ai-demo-wrap { padding: 60px 24px; }
+      #ai-demo {
+        border-radius: 20px;
+        padding: 40px 24px;
+      }
+    }
+    /* (demo phone wrap removed — replaced by insight card) */
+
+    /* ─── What Changes — Single Card Slider ─────────── */
     #what-changes {
       padding: 80px 0;
       background: var(--cream-dark);
-      overflow: hidden;
     }
-    .changes-scroll-wrap {
-      position: relative;
-      margin-top: 48px;
+    .changes-layout {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 48px;
+      align-items: center;
+      margin-top: 0;
     }
-    .changes-track {
+    .changes-text {
       display: flex;
-      gap: 20px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      scroll-behavior: smooth;
-      -webkit-overflow-scrolling: touch;
-      padding: 4px 4px 20px;
-      scrollbar-width: none;
+      flex-direction: column;
+      gap: 14px;
     }
-    .changes-track::-webkit-scrollbar { display: none; }
-
+    .changes-slider {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+    }
+    .changes-card-area {
+      min-height: 380px;
+    }
     .change-card {
-      flex: 0 0 380px;
-      scroll-snap-align: start;
+      display: none;
       background: var(--cream);
       border: 2px solid var(--warm-dark);
       border-radius: 20px;
       box-shadow: var(--shadow);
       padding: 32px 28px;
-      display: flex;
       flex-direction: column;
       gap: 20px;
-      transition: box-shadow 0.12s, transform 0.12s;
     }
-    .change-card:first-child { margin-left: calc((100vw - 1200px) / 2 + 48px); }
-    .change-card:last-child { margin-right: 48px; }
-    .change-card:hover {
-      box-shadow: var(--shadow-pressed);
-      transform: translate(2px, 2px);
+    .change-card.active { display: flex; animation: cardSwoop 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
+    @keyframes cardSwoop {
+      from { opacity: 0; transform: translateX(40px); }
+      to { opacity: 1; transform: translateX(0); }
     }
 
     .change-scenario {
@@ -485,13 +766,12 @@
       display: inline-flex;
       align-self: flex-start;
     }
-    .scenario-tomato { background: rgba(255,107,76,0.15); }
-    .scenario-orange { background: rgba(255,168,70,0.18); }
-    .scenario-blush { background: rgba(255,188,242,0.28); }
-    .scenario-mauve { background: var(--mauve-light); }
+    .scenario-tomato { background: var(--tomato); color: white; }
+    .scenario-orange { background: var(--orange); }
+    .scenario-blush { background: var(--blush); }
+    .scenario-mauve { background: var(--mauve); }
 
     .change-before-block {
-      position: relative;
       padding-left: 16px;
       border-left: 3px solid var(--warm-gray-light);
     }
@@ -504,20 +784,17 @@
       margin-bottom: 6px;
     }
     .change-before-text {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--warm-gray);
       line-height: 1.65;
     }
-
     .change-divider {
       width: 32px;
       height: 2px;
       background: var(--mauve);
       border-radius: 2px;
     }
-
     .change-after-block {
-      position: relative;
       padding-left: 16px;
       border-left: 3px solid var(--mauve);
     }
@@ -530,39 +807,18 @@
       margin-bottom: 6px;
     }
     .change-after-text {
-      font-size: 15px;
+      font-size: 16px;
       color: var(--warm-dark);
       line-height: 1.65;
       font-weight: 500;
     }
 
-    /* Scroll dots */
-    .changes-dots {
+    .changes-nav {
       display: flex;
+      align-items: center;
       justify-content: center;
-      gap: 8px;
-      margin-top: 24px;
-    }
-    .changes-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--warm-gray-light);
-      border: 1.5px solid var(--warm-gray);
-      transition: background 0.2s, border-color 0.2s;
-      cursor: pointer;
-    }
-    .changes-dot.active {
-      background: var(--mauve);
-      border-color: var(--warm-dark);
-    }
-
-    /* Scroll arrows */
-    .changes-arrows {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      margin-top: 20px;
+      gap: 16px;
+      margin-top: 28px;
     }
     .changes-arrow {
       width: 40px;
@@ -584,15 +840,22 @@
       box-shadow: var(--shadow-pressed);
       transform: translate(1px, 1px);
     }
-
-    @media (max-width: 860px) {
-      .change-card { flex: 0 0 320px; }
-      .change-card:first-child { margin-left: 24px; }
-      .change-card:last-child { margin-right: 24px; }
+    .changes-dots {
+      display: flex;
+      gap: 8px;
     }
-    @media (max-width: 640px) {
-      .change-card { flex: 0 0 calc(100vw - 64px); }
-      .change-card:first-child { margin-left: 24px; }
+    .changes-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--warm-gray-light);
+      border: 1.5px solid var(--warm-gray);
+      transition: background 0.2s, border-color 0.2s;
+      cursor: pointer;
+    }
+    .changes-dot.active {
+      background: var(--mauve);
+      border-color: var(--warm-dark);
     }
 
     /* ─── Testimonials ───────────────────────────────── */
@@ -663,13 +926,30 @@
       max-width: 880px;
       margin: 0 auto;
     }
+    .founder-photo-wrap {
+      position: relative;
+      width: 100%;
+    }
+    .founder-photo-shape {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 100%;
+      height: 100%;
+      border-radius: 20px;
+      background: var(--blush);
+      border: 2px solid var(--warm-dark);
+      transform: rotate(3deg);
+    }
     .founder-photo {
+      position: relative;
       width: 100%;
       aspect-ratio: 3 / 4;
       border-radius: 20px;
-      border: 2px solid var(--warm-dark);
-      box-shadow: var(--shadow-lg);
+      border: 3px solid var(--warm-dark);
       object-fit: cover;
+      display: block;
+      z-index: 1;
     }
     .founder-text {
       display: flex;
@@ -847,7 +1127,7 @@
       height: 22px;
       flex-shrink: 0;
       border-radius: 50%;
-      background: rgba(255,168,70,0.25);
+      background: var(--orange);
       border: 1.5px solid var(--warm-dark);
       display: inline-flex;
       align-items: center;
@@ -1019,6 +1299,22 @@
     @media (max-width: 860px) {
       .container { padding: 0 24px; }
 
+      #hero .container {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-content { align-items: center; }
+      .hero-ctas { align-items: center; }
+      .hero-sub { text-align: center; }
+      .hero-mockup-wrap { width: 300px; }
+
+      .recognition-hero {
+        grid-template-columns: 1fr;
+        gap: 24px;
+        text-align: center;
+      }
+      .recognition-hero-img { max-width: 200px; margin: 0 auto; }
+      .recognition-hero-text .section-heading { text-align: center; }
       .recognition-grid { grid-template-columns: 1fr; }
       .steps-grid { grid-template-columns: 1fr; }
       .testimonials-grid { grid-template-columns: 1fr; }
@@ -1034,7 +1330,7 @@
         gap: 36px;
         text-align: center;
       }
-      .founder-photo { max-width: 280px; margin: 0 auto; }
+      .founder-photo-wrap { max-width: 280px; margin: 0 auto; }
       .founder-sig { justify-content: center; }
       .beliefs-grid { grid-template-columns: 1fr; }
       .belief-card.featured { padding: 36px 28px; }
@@ -1053,6 +1349,91 @@
       .demo-placeholder { aspect-ratio: 4 / 3; }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "name": "Unsnag",
+        "url": "https://unsnag.co",
+        "logo": "https://unsnag.co/images/og-home.jpg"
+      },
+      {
+        "@type": "SoftwareApplication",
+        "name": "Unsnag",
+        "applicationCategory": "HealthApplication",
+        "operatingSystem": "Web",
+        "offers": {
+          "@type": "Offer",
+          "price": "5.00",
+          "priceCurrency": "USD"
+        }
+      },
+      {
+        "@type": "FAQPage",
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Is this therapy?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. It's a self-guided processing tool — not a clinical intervention and not a replacement for therapy. Think of it as what you reach for between sessions. At 11pm when the spiral hits and your therapist isn't available. In the car after a conversation that activated something old. Therapy gives you insight. Unsnag gives the feeling somewhere to go."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is this just journaling?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "No. Writing is involved in the Unload step, but the goal isn't to think about the feeling — it's to get it out of your head so you can move into your body. The 6-step process is somatic, not reflective. Journaling gives you more thoughts. Unsnag gives the feeling somewhere to go."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "I don't have time for another thing.",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "A full session is 5-8 minutes. The 90-second Notice step is the only timed part. This isn't a practice you dedicate yourself to. It's a thing you reach for when something's bothering you — in the moment, not as homework."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do I need to know anything about somatic work?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Not at all. The app guides you through every step. Just show up with whatever's going on."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Will this actually change anything, or just help in the moment?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Both — in that order. Each session processes what's happening right now. Over time, you're building a new default response. The pattern starts to lose its grip. You'll notice it in small moments first: you don't spiral over the text. You say the thing. You let someone be disappointed without it destroying you."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What happens after my free trial?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "After 14 days, it's $5/month for unlimited sessions. Cancel any time. No contracts, no pressure."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Is my data private?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Password protected. What you put in here is yours. Nobody sees it. This is your space."
+            }
+          }
+        ]
+      }
+    ]
+  }
+  </script>
 </head>
 <body>
 
@@ -1062,9 +1443,8 @@
     <a href="/" class="nav-logo">unsnag</a>
     <ul class="nav-links">
       <li><a href="#how-it-works">How It Works</a></li>
-      <li><a href="#founder">Why</a></li>
-      <li><a href="#faq">FAQ</a></li>
       <li><a href="#pricing">Pricing</a></li>
+      <li><a href="/blog/">Blog</a></li>
     </ul>
     <a href="https://app.unsnag.co/signup" class="btn btn-mauve">Start free trial</a>
   </div>
@@ -1073,22 +1453,58 @@
 <!-- ─────────────────── HERO ─────────────────── -->
 <section id="hero">
   <div class="container">
-    <span class="hero-badge">Move the feeling. Make a different choice.</span>
-    <h1>You've done the work.<br>You're still stuck.</h1>
-    <p class="hero-sub">Thinking about a feeling is not the same as actually feeling it. Unsnag moves the feeling through your body in minutes — six steps, under ten minutes, every time something fires.</p>
-    <div class="hero-ctas">
-      <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
-      <a href="#how-it-works" class="hero-secondary">See how it works ↓</a>
+    <div class="hero-content">
+      <h1>You've done the work.<br>You're still stuck.</h1>
+      <p class="hero-sub">Unsnag is a guided app that moves the feeling through your body — not around it. Six steps. Five to eight minutes. Use it every time something's bothering you.</p>
+      <div class="hero-ctas">
+        <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
+        <p style="font-size: 13px; color: var(--warm-gray); align-self: center;">No credit card required</p>
+      </div>
     </div>
-    <p style="font-size: 13px; color: var(--warm-gray); margin-top: 12px;">No credit card required</p>
+    <div class="hero-mockup-wrap">
+      <div class="hero-mockup-glow"></div>
+      <div class="hero-mockup">
+        <span class="mock-logo">unsnag</span>
+        <div class="mock-divider"></div>
+        <p class="mock-greeting">👋 <strong>Hey, You!</strong><br>Feeling stuck?</p>
+        <div class="mock-cta">Let's move through it</div>
+        <p class="mock-footnote">Every time you use Unsnag, you're building a new default response.</p>
+        <div class="mock-nav">
+          <div class="mock-nav-item active">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
+            Home
+          </div>
+          <div class="mock-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            History
+          </div>
+          <div class="mock-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/></svg>
+            Saved
+          </div>
+          <div class="mock-nav-item">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 010 2.83 2 2 0 01-2.83 0l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/></svg>
+            Settings
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div style="text-align: center; margin-top: 40px;">
+    <a href="#how-it-works" class="hero-secondary" style="justify-content: center;">See how it works ↓</a>
   </div>
 </section>
 
 <!-- ─────────────────── RECOGNITION ─────────────────── -->
 <section id="recognition">
   <div class="container">
-    <span class="section-label">Sound Familiar?</span>
-    <h2 class="section-heading">You know the pattern.<br>You just can't stop it.</h2>
+    <div class="recognition-hero fade-up">
+      <img src="images/woman-guilty.png" alt="" class="recognition-hero-img" />
+      <div class="recognition-hero-text">
+        <span class="section-label">Sound Familiar?</span>
+        <h2 class="section-heading">You know the pattern.<br>You just can't stop it.</h2>
+      </div>
+    </div>
 
     <div class="recognition-grid stagger fade-up">
       <div class="recognition-card">
@@ -1097,32 +1513,21 @@
         <p>You overanalyze every message, every reaction, every silence. You can't just be in it without scanning for proof that you're in the way. That's not insecurity talking — it's a physical feeling you never learned how to sit with.</p>
       </div>
       <div class="recognition-card">
-        <span class="card-tag tag-orange">the unanswered text</span>
-        <h3>One unanswered text and you've spent four hours deciding it's your fault.</h3>
-        <p>You know it's probably nothing. But you can't stop the spiral — because the discomfort underneath it is a sensation in your body, not a thought. You've been trying to think your way through something that lives in your chest.</p>
-      </div>
-      <div class="recognition-card">
-        <span class="card-tag tag-blush">the hard conversation</span>
+        <span class="card-tag tag-orange">the hard conversation</span>
         <h3>You want to tell your partner what you need but you're terrified you'll sound like you're nagging.</h3>
         <p>So you stay quiet. You swallow it. You resent it later. The thing stopping you isn't a lack of courage — it's a physical response your body learned a long time ago: don't rock the boat, or someone won't be okay.</p>
       </div>
       <div class="recognition-card">
-        <span class="card-tag tag-mauve">the parking lot</span>
-        <h3>You get nervous parking the car when someone's watching — even though you do it perfectly every day.</h3>
-        <p>You know the answer in trivia but you won't say it — what if you're wrong? You're good at this stuff. But performing it in front of people fires something old: don't be wrong, don't be judged, don't take up space.</p>
+        <span class="card-tag tag-blush">the spotlight</span>
+        <h3>You're good at this — you know you are — but the second someone's watching, you panic.</h3>
+        <p>The things you do effortlessly alone become impossible with an audience. Something old kicks in: don't be wrong, don't be judged, don't take up space. So you shrink. And then you're mad at yourself for shrinking.</p>
       </div>
       <div class="recognition-card">
-        <span class="card-tag tag-tomato">the disappointment</span>
+        <span class="card-tag tag-mauve">the disappointment</span>
         <h3>You want to let people be disappointed in you without falling apart over it.</h3>
-        <p>You want to just ask for what you need without it turning into a thing. You want to pursue things because you want to — not because it'll make someone proud. But you can't, because the feeling that fires when someone's upset stops you every time.</p>
-      </div>
-      <div class="recognition-card">
-        <span class="card-tag tag-orange">the exhaustion</span>
-        <h3>You hold it together for everyone and wonder why nobody holds it together for you.</h3>
-        <p>You're impressive. You're capable. You need nothing. And you're exhausted from all of it. You want to stop performing, stop keeping the peace, stop being so damn responsible for everything. You want to just be normal.</p>
+        <p>You want to just ask for what you need without it turning into a thing. You want to pursue things because you want to — not because it'll make someone proud. But you can't, because the feeling that comes up when someone's upset stops you every time.</p>
       </div>
     </div>
-    <p style="margin-top: 36px; font-size: 16px; color: var(--warm-dark-light); max-width: 560px; line-height: 1.7;" class="fade-up">Nobody's blaming anyone. Your parents did what they had to do. But this stuff has a grip on you — and you want to be free of it.</p>
   </div>
 </section>
 
@@ -1134,8 +1539,8 @@
         <span class="section-label">The Missing Piece</span>
         <h2 class="section-heading">Thinking about a feeling<br>is not the same as feeling it.</h2>
         <p>You've done therapy. You've journaled. You've read the books. You can name every pattern you have. <strong>And the feeling is still stuck.</strong></p>
-        <p>That's because the feeling lives in your body — the tight chest, the clenched jaw, the pit in your stomach. All the thinking in the world won't move it. It needs to be felt. Actually felt. For about 90 seconds. Then it releases, you can see what's yours and what isn't, and you make a different choice.</p>
-        <p><strong>That's what Unsnag does.</strong> Six steps. Under ten minutes. No appointment, no practitioner, no homework. It doesn't make you feel like a patient or like something's wrong with you. It's just a thing you reach for — and every time you do, you're building a new default. That's how things actually change. Not by understanding the pattern better. By feeling the feeling underneath it enough times that you stop reacting from that old place.</p>
+        <p>That's because the feeling lives in your body — the tight chest, the clenched jaw, the pit in your stomach. All the thinking in the world won't move it. It needs to be felt. Actually felt. Somatic psychology shows a feeling fully felt lasts about 90 seconds. Then it releases, you can see what's yours and what isn't, and you make a different choice.</p>
+        <p><strong>That's what Unsnag does.</strong> No appointment, no practitioner, no homework. It doesn't make you feel like a patient or like something's wrong with you. It's just a thing you reach for — and every time you do, you're building a new default.</p>
       </div>
       <img src="images/woman-cozy-phone.png" alt="Woman using Unsnag on her phone" class="missing-piece-image" />
     </div>
@@ -1148,159 +1553,175 @@
     <div class="how-intro">
       <span class="section-label">How It Works</span>
       <h2 class="section-heading">Six steps. The feeling moves.<br>You make a different choice.</h2>
-      <p>Open it when something fires — someone's tone, an unanswered text, the panic before a hard conversation. Six steps, under ten minutes. Then you close it and go live your life. Do it enough times and the old reactive pattern starts to lose its grip.</p>
+      <p>Open it when something's getting under your skin — someone's tone, an unanswered text, the panic before a hard conversation. Follow the steps. Close the app. Go live your life. Do it enough times and the old reactive pattern starts to lose its grip.</p>
     </div>
 
     <div class="steps-grid stagger fade-up">
       <div class="step-card">
         <div class="step-badge">U</div>
-        <span class="step-label">Unload</span>
+        <span class="step-label" style="color: var(--tomato);">Unload</span>
         <h3>Dump it out.</h3>
         <p>What just happened? What are you spiraling about? Type or talk — no filter. Get the overthinking out of your head so you can drop into your body.</p>
       </div>
       <div class="step-card">
         <div class="step-badge">N</div>
-        <span class="step-label">Name</span>
+        <span class="step-label" style="color: var(--orange);">Name</span>
         <h3>Tap what you're feeling.</h3>
-        <p>Anxious? Guilty? Resentful? Overwhelmed? Tap the ones that fit. Just naming it turns the volume down — it shifts the activation out of your amygdala and into the part of your brain that can actually do something with it.</p>
+        <p>Anxious? Guilty? Resentful? Overwhelmed? Tap the ones that fit. Just naming what you're feeling immediately turns the volume down — you go from spinning to processing.</p>
       </div>
       <div class="step-card">
         <div class="step-badge">S</div>
-        <span class="step-label">Sense</span>
+        <span class="step-label" style="color: var(--blush);">Sense</span>
         <h3>Find it in your body.</h3>
-        <p>Clenched jaw? Tight chest? Pit in your stomach? This is where you stop thinking about the feeling and start actually locating it.</p>
+        <p>Clenched jaw? Tight chest? Pit in your stomach? Once you find it in your body, you've shifted from a thought loop to something that can actually move.</p>
       </div>
       <div class="step-card">
         <div class="step-badge">N</div>
-        <span class="step-label">Notice</span>
+        <span class="step-label" style="color: var(--mauve-dark);">Notice</span>
         <h3>Just feel it. Don't fix it.</h3>
         <p>A feeling fully felt lasts about 90 seconds — that's how long the neurochemical wave takes to peak and pass. The timer holds space for that. You don't have to do anything. Just be with it. Most people feel the grip loosen before the timer ends.</p>
       </div>
       <div class="step-card">
         <div class="step-badge">A</div>
-        <span class="step-label">Ask</span>
+        <span class="step-label" style="color: var(--tomato);">Ask</span>
         <h3>What does it actually want to say?</h3>
         <p>Let it out raw — the thing you'd never say out loud. Not the spiral. What's underneath it.</p>
       </div>
       <div class="step-card">
         <div class="step-badge">G</div>
-        <span class="step-label">Go</span>
+        <span class="step-label" style="color: var(--orange);">Go</span>
         <h3>Make a different choice.</h3>
-        <p>Before this, you would've spiraled. Apologized. Gone quiet. Taken it on. Now you've actually felt the feeling and seen what's yours — so what's available to you now that wasn't before? Say the thing. Let them be disappointed. Not your circus. Every time you make that choice, you're building a new default.</p>
+        <p>Before this, you would've spiraled. Apologized. Gone quiet. Taken it on. Now you've felt the feeling and seen what's yours. Say the thing. Let them be disappointed. Not your circus. Every time you choose differently, you're building a new default.</p>
       </div>
     </div>
 
-    <!-- AI callout -->
-    <div style="max-width: 680px; margin: 48px auto 0; text-align: center;" class="fade-up">
-      <div style="display: inline-flex; align-items: center; gap: 6px; padding: 6px 16px; border-radius: 100px; background: var(--mauve-light); border: 1.5px solid var(--mauve-dark); font-size: 12px; font-weight: 600; color: var(--warm-dark); letter-spacing: 0.04em; margin-bottom: 16px;">✦ Yes, there's a little AI in here</div>
-      <p style="font-size: 17px; color: var(--warm-dark); font-weight: 600; line-height: 1.5; margin-bottom: 8px;">It shows you what's yours — and what was never yours to carry.</p>
-      <p style="font-size: 15px; color: var(--warm-dark-light); line-height: 1.7;">After you move through the steps, the AI reads what you wrote and lays it out clearly: your frustration, your unspoken need, the choice you've been avoiding — that's yours to own. Their reaction, their mood, whether they get upset — never yours. For someone who's been carrying everyone else's stuff their whole life, seeing this separated is usually where something clicks.</p>
-    </div>
   </div>
 </section>
 
-<!-- ─────────────────── INTERACTIVE DEMO ─────────────────── -->
-<section id="demo">
+<!-- ─────────────────── AI + DEMO ─────────────────── -->
+<div id="ai-demo-wrap">
+<section id="ai-demo">
   <div class="container">
-    <div class="how-intro">
-      <span class="section-label">Try It</span>
-      <h2 class="section-heading">See the full UNSNAG process.</h2>
-    </div>
-    <div class="demo-placeholder fade-up">
-      <div class="demo-placeholder-icon">📱</div>
-      <p class="demo-placeholder-text">Interactive product demo</p>
-      <p class="demo-placeholder-sub">Embed walkthrough or link to demo-full-flow.html</p>
+    <div class="ai-demo-layout fade-up">
+      <div class="ai-demo-text">
+        <span class="ai-demo-badge">✦ Yes, there's a little AI in here</span>
+        <h2>It shows you what's yours — and what was never yours to carry.</h2>
+        <p>Separating your stuff from someone else's stuff is one of the hardest things to do on your own — especially in the moment. So we built AI to do it with you.</p>
+      </div>
+      <div class="insight-card fade-up">
+        <span class="ai-chip">✦ AI</span>
+        <h3>Let's separate what's yours from what isn't.</h3>
+        <p class="insight-sub">Your feelings are yours. Other people's reactions aren't.</p>
+
+        <div class="yours-card yours">
+          <h4>What's yours</h4>
+          <ul>
+            <li>The anxiety you feel when he goes quiet</li>
+            <li>Whether you've said what you actually need</li>
+            <li>The choice to keep spiraling or to ask</li>
+          </ul>
+        </div>
+
+        <div class="yours-card not-yours">
+          <h4>What's not yours</h4>
+          <ul>
+            <li>Why he hasn't texted back</li>
+            <li>Whether he's annoyed</li>
+            <li>How he reacts when you ask</li>
+          </ul>
+        </div>
+      </div>
     </div>
   </div>
 </section>
+</div>
 
 <!-- ─────────────────── WHAT CHANGES ─────────────────── -->
 <section id="what-changes">
   <div class="container">
-    <span class="section-label">What Actually Changes</span>
-    <h2 class="section-heading">The pattern doesn't disappear overnight.<br>But it starts to lose its grip.</h2>
-  </div>
-
-  <div class="changes-scroll-wrap">
-    <div class="changes-track" id="changesTrack">
-
-      <div class="change-card">
-        <span class="change-scenario scenario-tomato">the coworker's tone</span>
-        <div class="change-before-block">
-          <p class="change-before-label">Before</p>
-          <p class="change-before-text">She has a tone and you spend three hours deciding what you did wrong. You replay it. You draft a text. You delete it. You draft another one.</p>
-        </div>
-        <div class="change-divider"></div>
-        <div class="change-after-block">
-          <p class="change-after-label">After</p>
-          <p class="change-after-text">You feel the discomfort in your chest, see that her mood was never yours to manage, and go back to work. That's new.</p>
-        </div>
+    <div class="changes-layout fade-up">
+      <div class="changes-text">
+        <span class="section-label">What Actually Changes</span>
+        <h2 class="section-heading">The pattern doesn't disappear overnight. But it starts to lose its grip.</h2>
       </div>
 
-      <div class="change-card">
-        <span class="change-scenario scenario-orange">telling your partner</span>
-        <div class="change-before-block">
-          <p class="change-before-label">Before</p>
-          <p class="change-before-text">You want to tell him what you actually need but the panic stops you — you'll sound like you're nagging. So you swallow it and resent it for weeks.</p>
-        </div>
-        <div class="change-divider"></div>
-        <div class="change-after-block">
-          <p class="change-after-label">After</p>
-          <p class="change-after-text">You feel the fear, see that his reaction isn't yours to control, and say the thing. He's fine. You're better than fine.</p>
-        </div>
-      </div>
+      <div class="changes-slider" id="changesSlider">
+        <div class="changes-card-area">
 
-      <div class="change-card">
-        <span class="change-scenario scenario-blush">the disappointment</span>
-        <div class="change-before-block">
-          <p class="change-before-label">Before</p>
-          <p class="change-before-text">Someone's disappointed in you and it destroys your entire week. You rearrange your life to fix it. You apologize for things that aren't yours.</p>
-        </div>
-        <div class="change-divider"></div>
-        <div class="change-after-block">
-          <p class="change-after-label">After</p>
-          <p class="change-after-text">You let them be disappointed. You don't fall apart. You feel what's yours, let go of what isn't, and keep going. It was always going to be fine.</p>
-        </div>
+    <div class="change-card active">
+      <span class="change-scenario scenario-tomato">the coworker's tone</span>
+      <div class="change-before-block">
+        <p class="change-before-label">Before</p>
+        <p class="change-before-text">She has a tone and you spend three hours deciding what you did wrong. You replay it. You draft a text. You delete it. You draft another one.</p>
       </div>
-
-      <div class="change-card">
-        <span class="change-scenario scenario-mauve">the trivia night</span>
-        <div class="change-before-block">
-          <p class="change-before-label">Before</p>
-          <p class="change-before-text">You know the answer but you won't say it — what if you're wrong? So you stay quiet. Someone else says it. They were right. You were right. You said nothing.</p>
-        </div>
-        <div class="change-divider"></div>
-        <div class="change-after-block">
-          <p class="change-after-label">After</p>
-          <p class="change-after-text">You feel the fear of being wrong, recognize it as an old pattern, and say the thing anyway. You were right. And even if you weren't — you'd be fine.</p>
-        </div>
+      <div class="change-divider"></div>
+      <div class="change-after-block">
+        <p class="change-after-label">After</p>
+        <p class="change-after-text">You feel the discomfort in your chest, see that her mood was never yours to manage, and go back to work. That's new.</p>
       </div>
-
-      <div class="change-card">
-        <span class="change-scenario scenario-tomato">the 11pm spiral</span>
-        <div class="change-before-block">
-          <p class="change-before-label">Before</p>
-          <p class="change-before-text">It's 11pm. Something someone said six hours ago is eating you alive. You can't sleep. You can't stop replaying it. Your therapist isn't available until Thursday.</p>
-        </div>
-        <div class="change-divider"></div>
-        <div class="change-after-block">
-          <p class="change-after-label">After</p>
-          <p class="change-after-text">You open Unsnag. Six steps. The feeling moves. You see what's yours and what isn't. You put the phone down and actually sleep.</p>
-        </div>
-      </div>
-
     </div>
 
-    <div class="changes-arrows">
+    <div class="change-card">
+      <span class="change-scenario scenario-orange">telling your partner</span>
+      <div class="change-before-block">
+        <p class="change-before-label">Before</p>
+        <p class="change-before-text">You want to tell him what you actually need but the panic stops you — you'll sound like you're nagging. So you swallow it and resent it for weeks.</p>
+      </div>
+      <div class="change-divider"></div>
+      <div class="change-after-block">
+        <p class="change-after-label">After</p>
+        <p class="change-after-text">You feel the fear, see that his reaction isn't yours to control, and say the thing. He's fine. You're better than fine.</p>
+      </div>
+    </div>
+
+    <div class="change-card">
+      <span class="change-scenario scenario-blush">the disappointment</span>
+      <div class="change-before-block">
+        <p class="change-before-label">Before</p>
+        <p class="change-before-text">Someone's disappointed in you and it destroys your entire week. You rearrange your life to fix it. You apologize for things that aren't yours.</p>
+      </div>
+      <div class="change-divider"></div>
+      <div class="change-after-block">
+        <p class="change-after-label">After</p>
+        <p class="change-after-text">You let them be disappointed. You don't fall apart. You feel what's yours, let go of what isn't, and keep going. It was always going to be fine.</p>
+      </div>
+    </div>
+
+    <div class="change-card">
+      <span class="change-scenario scenario-mauve">the trivia night</span>
+      <div class="change-before-block">
+        <p class="change-before-label">Before</p>
+        <p class="change-before-text">You know the answer but you won't say it — what if you're wrong? So you stay quiet. Someone else says it. They were right. You were right. You said nothing.</p>
+      </div>
+      <div class="change-divider"></div>
+      <div class="change-after-block">
+        <p class="change-after-label">After</p>
+        <p class="change-after-text">You feel the fear of being wrong, recognize it as an old pattern, and say the thing anyway. You were right. And even if you weren't — you'd be fine.</p>
+      </div>
+    </div>
+
+    <div class="change-card">
+      <span class="change-scenario scenario-tomato">the 11pm spiral</span>
+      <div class="change-before-block">
+        <p class="change-before-label">Before</p>
+        <p class="change-before-text">It's 11pm. Something someone said six hours ago is eating you alive. You can't sleep. You can't stop replaying it. Your therapist isn't available until Thursday.</p>
+      </div>
+      <div class="change-divider"></div>
+      <div class="change-after-block">
+        <p class="change-after-label">After</p>
+        <p class="change-after-text">You open Unsnag. Six steps. The feeling moves. You see what's yours and what isn't. You put the phone down and actually sleep.</p>
+      </div>
+    </div>
+
+        </div><!-- /changes-card-area -->
+    <div class="changes-nav">
       <div class="changes-arrow" id="changesPrev">←</div>
       <div class="changes-dots" id="changesDots"></div>
       <div class="changes-arrow" id="changesNext">→</div>
     </div>
+  </div>
 
-    <div style="text-align: center; margin-top: 48px;">
-      <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
-      <p style="font-size: 13px; color: var(--warm-gray); margin-top: 12px;">No credit card required</p>
-    </div>
+    </div><!-- /changes-layout -->
   </div>
 </section>
 
@@ -1311,17 +1732,17 @@
     <h2 class="section-heading">Same triggers. Different response.<br>That's how you know it's working.</h2>
 
     <div class="testimonials-grid stagger fade-up">
-      <!-- PLACEHOLDER TESTIMONIAL 1 -->
-      <div class="testimonial-placeholder">
-        <p>Testimonial placeholder<br><span style="font-size: 12px;">Replace with real user quote about the first time the feeling actually moved</span></p>
+      <div class="testimonial-card" style="border-color: var(--tomato);">
+        <p class="testimonial-body">"I grew up bottling my feelings — the only safe emotions were happy and angry. With Unsnag, I can process in the moment instead of dwelling. Instead of waiting days to finally feel relief, I can find it now. It's like my pocket therapist between sessions."</p>
+        <p class="testimonial-name">— CF</p>
       </div>
-      <!-- PLACEHOLDER TESTIMONIAL 2 -->
-      <div class="testimonial-placeholder">
-        <p>Testimonial placeholder<br><span style="font-size: 12px;">Replace with real user quote about the "yours vs. not yours" moment</span></p>
+      <div class="testimonial-card" style="border-color: var(--orange);">
+        <p class="testimonial-body">"What I loved was that it's structured — repeatable and predictable. When I'm in the middle of strong feelings of overwhelm, I don't need something open-ended. I need a process. Unsnag gave me that."</p>
+        <p class="testimonial-name">— LW</p>
       </div>
-      <!-- PLACEHOLDER TESTIMONIAL 3 -->
-      <div class="testimonial-placeholder">
-        <p>Testimonial placeholder<br><span style="font-size: 12px;">Replace with real user quote about a specific behavior change (spoke up, let it go, etc.)</span></p>
+      <div class="testimonial-card" style="border-color: var(--blush);">
+        <p class="testimonial-body">"It's so validating. It makes me feel like there's nothing wrong with me. Everything feels more manageable, and it's shown me what I actually have the capacity to take on — instead of just doing everything for everyone all at once."</p>
+        <p class="testimonial-name">— JB</p>
       </div>
     </div>
   </div>
@@ -1333,12 +1754,15 @@
 
     <!-- ── Origin Story ── -->
     <div class="founder-story fade-up">
-      <img src="images/afi-photo.jpg" alt="Afi Catena" class="founder-photo" />
+      <div class="founder-photo-wrap">
+        <div class="founder-photo-shape"></div>
+        <img src="images/afi-photo-green.jpg" alt="Afi Catena" class="founder-photo" />
+      </div>
       <div class="founder-text">
         <span class="section-label">Why I Built This</span>
         <h2>Hey, I'm Afi. Recovering overthinker. Mostly.</h2>
         <p>I spent years doing the work — therapy, the books, journaling, all of it. I could name every pattern I had. And I still spiraled over a coworker's tone, still panicked before hard conversations, still took responsibility for everyone else's feelings. What finally changed wasn't more understanding. It was learning that the feeling was stuck in my body, not my head — and that a feeling fully felt lasts about 90 seconds. Nobody had ever told me that.</p>
-        <p>That discovery changed everything for me. And I couldn't stop thinking: why is this so hard to access? Why does it live behind a practitioner, a waitlist, a $200 session? I have a background in psychology, I'm a certified life coach, and I'm obsessed with building systems that people actually use — not just understand in theory. So I built the thing I wish I'd had: something simple enough to reach for every time something fires. Something that doesn't make you feel like a patient. Something my daughter won't have to wait thirty years to find.</p>
+        <p>That discovery changed everything for me. And I couldn't stop thinking: why is this so hard to access? Why does it live behind a practitioner, a waitlist, a $200 session? I have a background in psychology, I'm a certified life coach, and I'm obsessed with building systems that people actually use — not just understand in theory. So I built the thing I wish I'd had: something simple enough to reach for every time something's bothering you. Something that doesn't make you feel like a patient. Something my daughter won't have to wait thirty years to find.</p>
         <div class="founder-sig">
           <img src="images/afi-catena-headshot.jpg" alt="Afi" class="founder-sig-photo" />
           <div>
@@ -1353,32 +1777,32 @@
     <div class="philosophy fade-up">
       <div class="philosophy-header">
         <span class="section-label">What I Believe</span>
-        <h2 class="section-heading">This stuff doesn't have to be<br>so heavy and precious.</h2>
-        <p>Emotional processing shouldn't require a practitioner, a waiting room, or a specific vocabulary. It should be as normal as brushing your teeth.</p>
+        <h2 class="section-heading">Heavy things can still be simple.</h2>
+        <p>Feeling your feelings shouldn't require a practitioner, a waiting room, or a specific vocabulary. It should be as normal as brushing your teeth.</p>
       </div>
 
       <div class="beliefs-grid stagger">
 
         <div class="belief-card">
-          <div class="belief-icon" style="background: var(--mauve-light);">🔁</div>
+          <div class="belief-icon" style="background: var(--mauve);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D2A26" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 4 23 10 17 10"/><polyline points="1 20 1 14 7 14"/><path d="M3.51 9a9 9 0 0114.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0020.49 15"/></svg></div>
           <h3>Simplicity is the feature, not the limitation.</h3>
           <p>Things don't change because you had one big breakthrough. They change because you did the same small thing over and over until it became your new default. That's why Unsnag is built to be used every time — not once in a while.</p>
         </div>
 
         <div class="belief-card">
-          <div class="belief-icon" style="background: rgba(255,168,70,0.18);">🎭</div>
+          <div class="belief-icon" style="background: var(--orange);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D2A26" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 110 20 10 10 0 010-20z"/><path d="M8 14s1.5 2 4 2 4-2 4-2"/><line x1="9" y1="9" x2="9.01" y2="9"/><line x1="15" y1="9" x2="15.01" y2="9"/></svg></div>
           <h3>Levity and depth can coexist.</h3>
           <p>This work doesn't need to be quiet, soft, and timid. It doesn't need to feel like therapy. It can be bold and funny and real — like a friend who's been through it and just wants you to know what she learned.</p>
         </div>
 
         <div class="belief-card">
-          <div class="belief-icon" style="background: rgba(255,188,242,0.28);">🪞</div>
+          <div class="belief-icon" style="background: var(--blush);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#2D2A26" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 00-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 00-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 000-7.78z"/></svg></div>
           <h3>Nothing is wrong with you.</h3>
           <p>You're not broken. You don't need to be fixed. You learned to manage everyone else's feelings to survive, and it made sense at the time. Now it doesn't. That's not a diagnosis — it's just a pattern that's ready to move.</p>
         </div>
 
         <div class="belief-card">
-          <div class="belief-icon" style="background: rgba(255,107,76,0.15);">🌍</div>
+          <div class="belief-icon" style="background: var(--tomato);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 01-3.46 0"/></svg></div>
           <h3>The whole point of being here is to actually be here.</h3>
           <p>To feel things, to let things move through us, to express ourselves and contribute what we came here to do. We can't do any of that if we're stuck in the same loops, managing everyone else's feelings, too afraid to take up space. I want us all to be more awake for this.</p>
         </div>
@@ -1393,17 +1817,17 @@
 <section id="pricing">
   <div class="container">
     <span class="section-label" style="display:block; text-align:center;">Pricing</span>
-    <h2 class="section-heading" style="text-align:center;">Less than one therapy co-pay.<br>Available every time something fires.</h2>
+    <h2 class="section-heading" style="text-align:center;">Five dollars a month.<br>Use it every time something's bothering you.</h2>
     <div class="pricing-wrap fade-up">
       <div class="pricing-card">
         <div class="pricing-price">$5<span> / mo</span></div>
         <p class="pricing-sub">Unlimited sessions. Cancel any time.</p>
         <ul class="pricing-features">
-          <li><span class="check">✓</span> Full 6-step UNSNAG process</li>
-          <li><span class="check">✓</span> AI validation + "yours vs. not yours"</li>
-          <li><span class="check">✓</span> Save for later</li>
-          <li><span class="check">✓</span> Session history — watch the pattern change</li>
-          <li><span class="check">✓</span> Private and secure</li>
+          <li><span class="check" style="background: var(--tomato); color: white;">✓</span> Full 6-step UNSNAG process</li>
+          <li><span class="check" style="background: var(--orange);">✓</span> AI validation + "yours vs. not yours"</li>
+          <li><span class="check" style="background: var(--blush);">✓</span> Save for later — log it now, process it when you're ready</li>
+          <li><span class="check" style="background: var(--mauve);">✓</span> Session history — watch the pattern change</li>
+          <li><span class="check" style="background: var(--tomato); color: white;">✓</span> Private and secure</li>
         </ul>
         <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg" style="width:100%;">
           Start my free trial
@@ -1423,7 +1847,7 @@
       <div class="faq-item">
         <div class="faq-q">
           <span class="faq-q-text">Is this therapy?</span>
-          <i class="faq-icon">+</i>
+          <i class="faq-icon" style="background: var(--tomato); color: white; border-color: var(--warm-dark);">+</i>
         </div>
         <div class="faq-answer">
           <p class="faq-answer-inner">No. It's a self-guided processing tool — not a clinical intervention and not a replacement for therapy. Think of it as what you reach for between sessions. At 11pm when the spiral hits and your therapist isn't available. In the car after a conversation that activated something old. Therapy gives you insight. Unsnag gives the feeling somewhere to go.</p>
@@ -1433,7 +1857,7 @@
       <div class="faq-item">
         <div class="faq-q">
           <span class="faq-q-text">Is this just journaling?</span>
-          <i class="faq-icon">+</i>
+          <i class="faq-icon" style="background: var(--orange); border-color: var(--warm-dark);">+</i>
         </div>
         <div class="faq-answer">
           <p class="faq-answer-inner">No. Writing is involved in the Unload step, but the goal isn't to think about the feeling — it's to get it out of your head so you can move into your body. The 6-step process is somatic, not reflective. Journaling gives you more thoughts. Unsnag gives the feeling somewhere to go.</p>
@@ -1442,18 +1866,18 @@
 
       <div class="faq-item">
         <div class="faq-q">
-          <span class="faq-q-text">I don't have time for another wellness thing.</span>
-          <i class="faq-icon">+</i>
+          <span class="faq-q-text">I don't have time for another thing.</span>
+          <i class="faq-icon" style="background: var(--blush); border-color: var(--warm-dark);">+</i>
         </div>
         <div class="faq-answer">
-          <p class="faq-answer-inner">A full session is under 10 minutes. The 90-second Notice step is the only timed part. This isn't a wellness practice you dedicate yourself to. It's a thing you reach for when something fires — in the moment, not as homework.</p>
+          <p class="faq-answer-inner">A full session is 5-8 minutes. The 90-second Notice step is the only timed part. This isn't a practice you dedicate yourself to. It's a thing you reach for when something's bothering you — in the moment, not as homework.</p>
         </div>
       </div>
 
       <div class="faq-item">
         <div class="faq-q">
           <span class="faq-q-text">Do I need to know anything about somatic work?</span>
-          <i class="faq-icon">+</i>
+          <i class="faq-icon" style="background: var(--mauve); border-color: var(--warm-dark);">+</i>
         </div>
         <div class="faq-answer">
           <p class="faq-answer-inner">Not at all. The app guides you through every step. Just show up with whatever's going on.</p>
@@ -1463,7 +1887,7 @@
       <div class="faq-item">
         <div class="faq-q">
           <span class="faq-q-text">Will this actually change anything, or just help in the moment?</span>
-          <i class="faq-icon">+</i>
+          <i class="faq-icon" style="background: var(--tomato); color: white; border-color: var(--warm-dark);">+</i>
         </div>
         <div class="faq-answer">
           <p class="faq-answer-inner">Both — in that order. Each session processes what's happening right now. Over time, you're building a new default response. The pattern starts to lose its grip. You'll notice it in small moments first: you don't spiral over the text. You say the thing. You let someone be disappointed without it destroying you.</p>
@@ -1473,7 +1897,7 @@
       <div class="faq-item">
         <div class="faq-q">
           <span class="faq-q-text">What happens after my free trial?</span>
-          <i class="faq-icon">+</i>
+          <i class="faq-icon" style="background: var(--orange); border-color: var(--warm-dark);">+</i>
         </div>
         <div class="faq-answer">
           <p class="faq-answer-inner">After 14 days, it's $5/month for unlimited sessions. Cancel any time. No contracts, no pressure.</p>
@@ -1483,7 +1907,7 @@
       <div class="faq-item">
         <div class="faq-q">
           <span class="faq-q-text">Is my data private?</span>
-          <i class="faq-icon">+</i>
+          <i class="faq-icon" style="background: var(--blush); border-color: var(--warm-dark);">+</i>
         </div>
         <div class="faq-answer">
           <p class="faq-answer-inner">Yes. Password protected. What you put in here is yours. Nobody sees it. This is your space.</p>
@@ -1498,9 +1922,9 @@
 <div id="closing-cta" class="fade-up">
   <div class="closing-inner">
     <h2>You don't have to be so impressive all the time.</h2>
-    <p>You don't have to hold it together for everyone. You don't have to keep the peace. You don't have to need nothing. You just need to feel what you're actually feeling — for about 90 seconds — so it stops running everything. Let yourself just be normal. Six steps. A few minutes. Try it free for 14 days. $5/month after that.</p>
+    <p>You don't have to hold it together for everyone. You don't have to keep the peace. You don't have to need nothing. You just need to feel what you're actually feeling — for about 90 seconds — so it stops running everything. Let yourself just be normal.</p>
     <a href="https://app.unsnag.co/signup" class="btn btn-mauve-dark btn-lg">Start free trial</a>
-    <p style="font-size: 13px; color: var(--warm-gray); margin-top: 14px;">No credit card required. 14 days free. $5/month after that.</p>
+    <p style="font-size: 13px; color: var(--warm-gray); margin-top: 14px;">No credit card required. 14 days free. Then $5/month.</p>
   </div>
 </div>
 
@@ -1512,6 +1936,7 @@
       <ul class="footer-links">
         <li><a href="#how-it-works">How It Works</a></li>
         <li><a href="#founder">Why</a></li>
+        <li><a href="/blog/">Blog</a></li>
         <li><a href="privacy.html">Privacy</a></li>
         <li><a href="terms.html">Terms</a></li>
       </ul>
@@ -1546,57 +1971,35 @@
     });
   });
 
-  // ── Changes carousel
+  // ── Changes slider
   (function() {
-    const track = document.getElementById('changesTrack');
+    const slider = document.getElementById('changesSlider');
+    const cards = slider.querySelectorAll('.change-card');
     const dotsWrap = document.getElementById('changesDots');
     const prevBtn = document.getElementById('changesPrev');
     const nextBtn = document.getElementById('changesNext');
-    const cards = track.querySelectorAll('.change-card');
     const total = cards.length;
     let current = 0;
 
-    // Create dots
     for (let i = 0; i < total; i++) {
       const dot = document.createElement('div');
       dot.className = 'changes-dot' + (i === 0 ? ' active' : '');
-      dot.addEventListener('click', () => scrollToCard(i));
+      dot.addEventListener('click', () => goTo(i));
       dotsWrap.appendChild(dot);
     }
 
-    function scrollToCard(index) {
+    function goTo(index) {
       if (index < 0 || index >= total) return;
+      cards[current].classList.remove('active');
       current = index;
-      cards[index].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'start' });
-      updateDots();
-    }
-
-    function updateDots() {
+      cards[current].classList.add('active');
       dotsWrap.querySelectorAll('.changes-dot').forEach((d, i) => {
         d.classList.toggle('active', i === current);
       });
     }
 
-    prevBtn.addEventListener('click', () => scrollToCard(current - 1));
-    nextBtn.addEventListener('click', () => scrollToCard(current + 1));
-
-    // Update dots on scroll
-    let scrollTimeout;
-    track.addEventListener('scroll', () => {
-      clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(() => {
-        const trackRect = track.getBoundingClientRect();
-        let closest = 0;
-        let closestDist = Infinity;
-        cards.forEach((card, i) => {
-          const cardRect = card.getBoundingClientRect();
-          const dist = Math.abs(cardRect.left - trackRect.left);
-          if (dist < closestDist) { closestDist = dist; closest = i; }
-        });
-        current = closest;
-        updateDots();
-      }, 60);
-    }, { passive: true });
+    prevBtn.addEventListener('click', () => goTo(current - 1));
+    nextBtn.addEventListener('click', () => goTo(current + 1));
   })();
 
   // ── Scroll-reveal

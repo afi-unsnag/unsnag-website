@@ -4,7 +4,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Unsnag Demo 06 — Notice</title>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #FAF7F2;
@@ -19,302 +21,284 @@
     --warm-gray: #B8B2A8;
     --warm-gray-light: #E8E3DB;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    min-height: 100vh;
+    margin: 0;
+    padding: 0;
     font-family: 'DM Sans', sans-serif;
-    background: var(--cream);
+    color: #2D2A26;
+    overflow: hidden;
   }
-
   .phone-frame {
-    width: 320px;
-    background: #1a1a1a;
-    border-radius: 44px;
-    padding: 12px;
+    width: 100%;
+    height: 100vh;
+    background: none;
+    border-radius: 0;
+    padding: 0;
     position: relative;
+    box-shadow: none;
   }
-
   .phone-notch {
-    width: 100px;
-    height: 28px;
+    width: 0; height: 0;
     background: #1a1a1a;
-    border-radius: 0 0 18px 18px;
-    margin: 0 auto 8px;
-    position: relative;
-    z-index: 10;
+    display: none;
+    margin: 0;
+    position: relative; z-index: 10;
   }
-
   .phone-screen {
     background: var(--cream);
-    border-radius: 36px;
+    border-radius: 0;
     overflow: hidden;
-    min-height: 580px;
+    
     position: relative;
-    padding: 24px 20px;
     display: flex;
     flex-direction: column;
-    align-items: center;
-  }
-
-  /* Progress dots */
-  .progress-dots {
+  height: 100vh; }
+  .top-bar {
     display: flex;
-    gap: 6px;
+    justify-content: space-between;
+    
+    padding: 16px 16px 0;
     margin-bottom: 24px;
   }
-  .progress-dots .dot {
-    width: 7px;
-    height: 7px;
+  .top-btn {
+    width: 36px; height: 36px;
+    background: var(--cream-dark);
+    border: 2px solid var(--warm-gray-light);
+    border-radius: 8px;
+    display: flex;
+    
+    
+  }
+  .top-btn svg { width: 18px; height: 18px; }
+  .progress-dots {
+    display: flex;
+    gap: 12px;
+    
+  }
+  .dot {
+    width: 12px; height: 12px;
     border-radius: 50%;
-    background: var(--warm-gray-light);
+    border: 2px solid var(--warm-gray-light);
+    background: transparent;
   }
-  .progress-dots .dot.filled {
+  .dot.filled {
     background: var(--warm-dark);
+    border-color: var(--warm-dark);
   }
-  .progress-dots .dot.active {
+  .dot.current {
+    width: 14px; height: 14px;
     background: var(--mauve);
-    box-shadow: 0 0 0 3px rgba(226, 198, 253, 0.35);
+    border: 2px solid var(--warm-dark);
+    position: relative;
   }
-
-  /* Step label */
+  .dot.current::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--mauve);
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0% { width: 14px; height: 14px; opacity: 1; }
+    100% { width: 24px; height: 24px; opacity: 0; }
+  }
+  .step-content {
+    padding: 32px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    
+    flex: 1;
+  }
   .step-label {
-    font-size: 11px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
     font-weight: 600;
-    letter-spacing: 1.5px;
     text-transform: uppercase;
-    color: var(--warm-gray);
-    margin-bottom: 12px;
+    letter-spacing: 0.15em;
+    color: var(--warm-dark-light);
+    text-align: center;
+    margin-bottom: 8px;
   }
-
-  /* Heading */
   .heading {
     font-family: 'Bricolage Grotesque', serif;
-    font-size: 18px;
+    font-size: 24px;
     font-weight: 800;
     color: var(--warm-dark);
     text-align: center;
-    line-height: 1.35;
-    margin-bottom: 8px;
+    line-height: 1.2;
+    margin-bottom: 6px;
   }
-
-  /* Subtext */
   .subtext {
-    font-size: 13px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
     color: var(--warm-dark-light);
     text-align: center;
-    line-height: 1.5;
-    margin-bottom: 40px;
-    max-width: 220px;
+    margin-bottom: 32px;
+    line-height: 1.4;
   }
-
-  /* Timer area */
   .timer-area {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    flex: 1;
-    margin-bottom: 20px;
-  }
-
-  .timer-container {
     position: relative;
-    width: 152px;
-    height: 152px;
+    width: 160px;
+    height: 160px;
     display: flex;
-    align-items: center;
-    justify-content: center;
-    animation: breathe 4s ease-in-out infinite;
+    
+    
+    margin: 0 auto 32px;
   }
-
-  @keyframes breathe {
-    0%, 100% { transform: scale(1.0); }
-    50% { transform: scale(1.03); }
-  }
-
-  .timer-circle {
-    width: 120px;
-    height: 120px;
+  .timer-glow {
+    position: absolute;
+    width: 160px; height: 160px;
     border-radius: 50%;
-    background: #FFDDD0;
-    border: 3px solid var(--tomato);
-    box-shadow: 0 0 0 16px rgba(255, 107, 76, 0.12);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
+    background: rgba(226,198,253,0.15);
   }
-
+  .timer-inner {
+    position: absolute;
+    width: 120px; height: 120px;
+    border-radius: 50%;
+    background: rgba(226,198,253,0.25);
+    border: 2px solid var(--mauve-dark);
+    display: flex;
+    
+    
+  }
   .timer-text {
     font-family: 'Bricolage Grotesque', serif;
-    font-size: 32px;
+    font-size: 28px;
     font-weight: 700;
-    color: var(--warm-dark);
-  }
-
-  /* SVG progress ring */
-  .progress-ring {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 152px;
-    height: 152px;
-    z-index: 1;
-    transform: rotate(-90deg);
-  }
-
-  .progress-ring-bg {
-    fill: none;
-    stroke: rgba(255, 107, 76, 0.1);
-    stroke-width: 3;
-  }
-
-  .progress-ring-fill {
-    fill: none;
-    stroke: var(--tomato);
-    stroke-width: 3;
-    stroke-linecap: round;
-    stroke-dasharray: 440;
-    stroke-dashoffset: 440;
-    transition: stroke-dashoffset 1s linear;
-  }
-
-  /* Instruction text below timer */
-  .instruction {
-    font-size: 12px;
     color: var(--warm-dark-light);
-    text-align: center;
-    line-height: 1.5;
-    margin-top: 32px;
-    max-width: 200px;
+    z-index: 2;
   }
-
-  /* Fade wrapper */
-  .screen-content {
+  .pulse-ring-1, .pulse-ring-2 {
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 50%;
+    border: 2px solid var(--mauve);
+    animation: breathe 5s ease-in-out infinite;
+    pointer-events: none;
+  }
+  .pulse-ring-1 {
+    width: 120px; height: 120px;
+  }
+  .pulse-ring-2 {
+    width: 120px; height: 120px;
+    animation-delay: 2.5s;
+  }
+  @keyframes breathe {
+    0% { width: 120px; height: 120px; opacity: 0.6; }
+    50% { width: 180px; height: 180px; opacity: 0; }
+    100% { width: 120px; height: 120px; opacity: 0; }
+  }
+  .mute-link {
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    width: 100%;
-    height: 100%;
-    opacity: 0;
-    animation: screenLife 13s ease-in-out infinite;
+    
+    gap: 6px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--warm-dark-light);
+    margin-bottom: 16px;
   }
-
-  @keyframes screenLife {
-    0%       { opacity: 0; }
-    5%       { opacity: 1; }
-    88%      { opacity: 1; }
-    97%      { opacity: 0; }
-    100%     { opacity: 0; }
+  .mute-link svg { width: 16px; height: 16px; }
+  .skip-link {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    color: var(--warm-dark-light);
+    text-decoration: underline;
+    cursor: pointer;
   }
 </style>
 </head>
 <body>
-
 <div class="phone-frame">
   <div class="phone-notch"></div>
   <div class="phone-screen">
-    <div class="screen-content">
-
+    <div class="top-bar">
+      <div class="top-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </div>
       <div class="progress-dots">
         <div class="dot filled"></div>
         <div class="dot filled"></div>
         <div class="dot filled"></div>
-        <div class="dot active"></div>
-        <div class="dot"></div>
+        <div class="dot current"></div>
         <div class="dot"></div>
         <div class="dot"></div>
       </div>
-
-      <div class="step-label">Notice</div>
-
+      <div class="top-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </div>
+    </div>
+    <div class="step-content">
+      <div class="step-label">NOTICE</div>
       <div class="heading">Just feel it. Don't fix it.</div>
-
-      <div class="subtext">A feeling fully felt lasts about 90 seconds.</div>
-
+      <div class="subtext">A feeling fully felt lasts about 90 seconds. That's all this is.</div>
       <div class="timer-area">
-        <div class="timer-container">
-          <svg class="progress-ring" viewBox="0 0 152 152">
-            <circle class="progress-ring-bg" cx="76" cy="76" r="70" />
-            <circle class="progress-ring-fill" cx="76" cy="76" r="70" />
-          </svg>
-          <div class="timer-circle">
-            <div class="timer-text" id="timer">1:30</div>
-          </div>
+        <div class="timer-glow"></div>
+        <div class="pulse-ring-1"></div>
+        <div class="pulse-ring-2"></div>
+        <div class="timer-inner">
+          <div class="timer-text" id="timerText">1:30</div>
         </div>
-
-        <div class="instruction">Focus on what you just named.<br>Let it be here.</div>
       </div>
-
+      <div class="mute-link">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"/>
+          <line x1="23" y1="9" x2="17" y2="15"/><line x1="17" y1="9" x2="23" y2="15"/>
+        </svg>
+        Mute
+      </div>
+      <div class="skip-link">Skip the rest — I'm ready</div>
     </div>
   </div>
 </div>
 
 <script>
-  const TOTAL_SECONDS = 90;
-  const COUNTDOWN_TICKS = 12;
-  const LOOP_DURATION = 13000;
-  const FADE_IN_DELAY = 650;
+const timerText = document.getElementById('timerText');
 
-  const timerEl = document.getElementById('timer');
-  const ringFill = document.querySelector('.progress-ring-fill');
-  const circumference = 2 * Math.PI * 70; // ~440
+function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-  ringFill.style.strokeDasharray = circumference;
-  ringFill.style.strokeDashoffset = circumference;
+function formatTime(totalSeconds) {
+  const m = Math.floor(totalSeconds / 60);
+  const s = totalSeconds % 60;
+  return m + ':' + String(s).padStart(2, '0');
+}
 
-  function formatTime(secs) {
-    const m = Math.floor(secs / 60);
-    const s = secs % 60;
-    return m + ':' + (s < 10 ? '0' : '') + s;
+async function animate() {
+  let seconds = 90; // 1:30
+  timerText.textContent = formatTime(seconds);
+  await wait(500);
+
+  // Count down: show ~8 seconds real time, 1:30 to 1:22
+  for (let i = 0; i < 8; i++) {
+    await wait(1000);
+    seconds--;
+    timerText.textContent = formatTime(seconds);
   }
 
-  function runCycle() {
-    let currentSecond = TOTAL_SECONDS;
-    let ticks = 0;
+  // Fade out
+  const screen = document.querySelector('.phone-screen');
+  screen.style.transition = 'opacity 300ms';
+  screen.style.opacity = '0';
+  await wait(800);
+  screen.style.transition = 'none';
+  screen.style.opacity = '1';
+}
 
-    timerEl.textContent = formatTime(currentSecond);
-    ringFill.style.transition = 'none';
-    ringFill.style.strokeDashoffset = circumference;
-
-    // Force reflow so transition reset takes effect
-    ringFill.getBoundingClientRect();
-
-    setTimeout(() => {
-      ringFill.style.transition = 'stroke-dashoffset 1s linear';
-    }, 50);
-
-    const interval = setInterval(() => {
-      ticks++;
-      if (ticks > COUNTDOWN_TICKS) {
-        clearInterval(interval);
-        return;
-      }
-      currentSecond--;
-      timerEl.textContent = formatTime(currentSecond);
-
-      // Progress ring: how far through 90s are we?
-      const elapsed = TOTAL_SECONDS - currentSecond;
-      const progress = elapsed / TOTAL_SECONDS;
-      const offset = circumference * (1 - progress);
-      ringFill.style.strokeDashoffset = offset;
-    }, 1000);
+async function loop() {
+  while (true) {
+    await animate();
+    await wait(800);
   }
-
-  // Initial run after fade-in
-  setTimeout(runCycle, FADE_IN_DELAY);
-
-  // Loop
-  setInterval(() => {
-    setTimeout(runCycle, FADE_IN_DELAY);
-  }, LOOP_DURATION);
+}
+loop();
 </script>
-
 </body>
 </html>

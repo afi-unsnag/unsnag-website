@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unsnag — Demo 04: Name</title>
+<title>Unsnag Demo 04 — Name</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
@@ -19,345 +21,354 @@
     --warm-gray: #B8B2A8;
     --warm-gray-light: #E8E3DB;
   }
-
-  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-
-  html { overflow-x: hidden; }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
   body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    background: var(--cream);
+    margin: 0;
+    padding: 0;
     font-family: 'DM Sans', sans-serif;
-    -webkit-font-smoothing: antialiased;
-    overflow-x: hidden;
-    padding: 16px;
+    color: #2D2A26;
+    overflow: hidden;
   }
-
   .phone-frame {
-    width: 320px;
-    max-width: calc(100vw - 32px);
-    background: #1a1a1a;
-    border-radius: 44px;
-    padding: 12px;
+    width: 100%;
+    height: 100vh;
+    background: none;
+    border-radius: 0;
+    padding: 0;
     position: relative;
-    transform-origin: top center;
+    box-shadow: none;
   }
   .phone-notch {
-    width: 100px;
-    height: 28px;
+    width: 0; height: 0;
     background: #1a1a1a;
-    border-radius: 0 0 18px 18px;
-    margin: 0 auto 8px;
+    display: none;
+    margin: 0;
+    position: relative; z-index: 10;
   }
   .phone-screen {
     background: var(--cream);
-    border-radius: 36px;
-    min-height: 580px;
-    padding: 24px 20px;
-    position: relative;
+    border-radius: 0;
     overflow: hidden;
-  }
-
-  /* ── Cursor ── */
-  .cursor {
-    width: 10px;
-    height: 10px;
-    background: var(--warm-dark);
-    border-radius: 50%;
-    position: absolute;
-    pointer-events: none;
-    z-index: 100;
-    opacity: 0;
-    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.3s ease;
-  }
-  .cursor.visible { opacity: 1; }
-  .cursor.tapping {
-    transform: scale(0.65);
-    transition: left 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                top 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-                opacity 0.3s ease,
-                transform 0.1s ease;
-  }
-
-  /* ── Progress dots ── */
-  .progress-dots {
+    
+    
+    position: relative;
     display: flex;
-    justify-content: center;
-    gap: 6px;
-    margin-bottom: 20px;
-  }
-  .dot {
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    background: var(--warm-gray-light);
-  }
-  .dot.filled { background: var(--warm-dark); }
-  .dot.active { background: var(--mauve); }
-
-  /* ── Step label ── */
-  .step-label {
-    text-align: center;
-    font-family: 'DM Sans', sans-serif;
-    font-size: 11px;
-    font-weight: 600;
-    letter-spacing: 1.5px;
-    text-transform: uppercase;
-    color: var(--warm-gray);
-    margin-bottom: 12px;
-  }
-
-  /* ── Heading ── */
-  .heading {
-    text-align: center;
-    font-family: 'Bricolage Grotesque', serif;
-    font-size: 16px;
-    font-weight: 800;
-    color: var(--warm-dark);
-    margin-bottom: 6px;
-  }
-
-  /* ── Subtext ── */
-  .subtext {
-    text-align: center;
-    font-size: 12px;
-    color: var(--warm-dark-light);
+    flex-direction: column;
+  height: 100vh; }
+  .top-bar {
+    display: flex;
+    justify-content: space-between;
+    
+    padding: 16px 16px 0;
     margin-bottom: 24px;
+    flex-shrink: 0;
   }
-
-  /* ── Emotion tags ── */
-  .tag-grid {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 8px;
-    margin-bottom: 32px;
-  }
-  .tag {
+  .top-btn {
+    width: 36px; height: 36px;
     background: var(--cream-dark);
     border: 2px solid var(--warm-gray-light);
-    border-radius: 20px;
-    box-shadow: 2px 2px 0px 0px var(--warm-dark);
+    border-radius: 8px;
+    display: flex;
+    
+    
+  }
+  .top-btn svg { width: 18px; height: 18px; }
+  .progress-dots {
+    display: flex;
+    gap: 12px;
+    
+  }
+  .dot {
+    width: 12px; height: 12px;
+    border-radius: 50%;
+    border: 2px solid var(--warm-gray-light);
+    background: transparent;
+  }
+  .dot.filled {
+    background: var(--warm-dark);
+    border-color: var(--warm-dark);
+  }
+  .dot.current {
+    width: 14px; height: 14px;
+    background: var(--mauve);
+    border: 2px solid var(--warm-dark);
+    position: relative;
+  }
+  .dot.current::after {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    border: 2px solid var(--mauve);
+    animation: pulse-ring 1.5s ease-out infinite;
+  }
+  @keyframes pulse-ring {
+    0% { width: 14px; height: 14px; opacity: 1; }
+    100% { width: 24px; height: 24px; opacity: 0; }
+  }
+  .scroll-area {
+    flex: 1;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scroll-area::-webkit-scrollbar { display: none; }
+  .step-content {
+    padding: 32px 20px 20px;
+    display: flex;
+    flex-direction: column;
+    
+  }
+  .step-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--warm-dark-light);
+    text-align: center;
+    margin-bottom: 8px;
+  }
+  .heading {
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--warm-dark);
+    text-align: center;
+    line-height: 1.2;
+    margin-bottom: 6px;
+  }
+  .subtext {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 14px;
+    color: var(--warm-dark-light);
+    text-align: center;
+    margin-bottom: 16px;
+    line-height: 1.4;
+  }
+  .helper {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 12px;
+    color: var(--warm-dark-light);
+    text-align: center;
+    margin-bottom: 16px;
+  }
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    
+    gap: 8px;
+    margin-bottom: 24px;
+  }
+  .chip {
+    background: var(--cream-dark);
+    border: 2px solid var(--warm-gray-light);
+    border-radius: 8px;
+    padding: 6px 14px;
     font-family: 'DM Sans', sans-serif;
     font-size: 14px;
     font-weight: 500;
-    color: var(--warm-dark);
-    padding: 8px 16px;
-    cursor: default;
-    transition: border-color 0.2s ease, color 0.2s ease, background 0.2s ease;
-    user-select: none;
+    color: var(--warm-dark-light);
+    transition: all 0.15s;
   }
-  .tag.selected {
-    border-color: var(--tomato);
-    color: var(--tomato);
-    background: var(--cream);
+  .chip.selected {
+    background: var(--tomato);
+    border-color: var(--warm-dark);
+    color: var(--cream);
+    box-shadow: 2px 2px 0 0 var(--warm-dark);
   }
-
-  /* ── CTA ── */
   .cta-btn {
-    display: block;
     width: 100%;
-    padding: 14px;
-    border: none;
-    border-radius: 14px;
+    max-width: 280px;
+    padding: 16px;
     background: var(--mauve);
-    font-family: 'DM Sans', sans-serif;
-    font-size: 15px;
+    border: 3px solid var(--warm-dark);
+    border-radius: 12px;
+    box-shadow: 3px 3px 0 0 var(--warm-dark);
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 18px;
     font-weight: 600;
-    color: var(--warm-dark);
+    color: var(--warm-dark-light);
     text-align: center;
-    cursor: default;
-    box-shadow: 3px 3px 0px 0px var(--warm-dark);
-    transition: box-shadow 0.1s ease, transform 0.1s ease;
+    transition: box-shadow 0.1s, transform 0.1s;
+    margin-bottom: 20px;
   }
   .cta-btn.pressed {
-    box-shadow: 1px 1px 0px 0px var(--warm-dark);
+    box-shadow: 1px 1px 0 0 var(--warm-dark);
     transform: translate(2px, 2px);
   }
-
-  /* ── Fade overlay ── */
-  .fade-overlay {
+  .cursor {
     position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--cream);
-    opacity: 0;
+    z-index: 100;
     pointer-events: none;
-    transition: opacity 0.4s ease;
-    z-index: 90;
-    border-radius: 36px;
+    opacity: 0;
   }
-  .fade-overlay.active { opacity: 1; }
-
-  @media (max-width: 360px) {
-    .phone-frame {
-      width: 100%;
-      border-radius: 36px;
-      padding: 8px;
-    }
-    .phone-notch {
-      width: 80px;
-      height: 22px;
-      border-radius: 0 0 14px 14px;
-      margin: 0 auto 6px;
-    }
-    .phone-screen {
-      border-radius: 30px;
-    }
-  }
+  .cursor svg { display: block; transition: transform 0.1s; }
+  .cursor.tap svg { transform: scale(0.85); }
 </style>
 </head>
 <body>
-
 <div class="phone-frame">
   <div class="phone-notch"></div>
-  <div class="phone-screen" id="screen">
-
-    <div class="progress-dots">
-      <div class="dot filled"></div>
-      <div class="dot active"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
-      <div class="dot"></div>
+  <div class="phone-screen">
+    <div class="top-bar">
+      <div class="top-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <polyline points="15 18 9 12 15 6"/>
+        </svg>
+      </div>
+      <div class="progress-dots">
+        <div class="dot filled"></div>
+        <div class="dot current"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+      </div>
+      <div class="top-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </div>
     </div>
-
-    <div class="step-label">Name</div>
-    <div class="heading">What are you feeling?</div>
-    <div class="subtext">Tap anything that fits.</div>
-
-    <div class="tag-grid" id="tagGrid">
-      <span class="tag" data-tag="anxious">anxious</span>
-      <span class="tag" data-tag="guilty">guilty</span>
-      <span class="tag" data-tag="overwhelmed">overwhelmed</span>
-      <span class="tag" data-tag="frustrated">frustrated</span>
-      <span class="tag" data-tag="sad">sad</span>
-      <span class="tag" data-tag="angry">angry</span>
-      <span class="tag" data-tag="resentful">resentful</span>
-      <span class="tag" data-tag="confused">confused</span>
-      <span class="tag" data-tag="disappointed">disappointed</span>
+    <div class="scroll-area" id="scrollArea">
+      <div class="step-content">
+        <div class="step-label">NAME</div>
+        <div class="heading">What are you feeling right now?</div>
+        <div class="subtext">Naming it actually turns the volume down.</div>
+        <div class="helper">Tap anything that fits.</div>
+        <div class="chips" id="chips">
+          <div class="chip" data-name="anxious">anxious</div>
+          <div class="chip" data-name="guilty">guilty</div>
+          <div class="chip" data-name="overwhelmed">overwhelmed</div>
+          <div class="chip" data-name="frustrated">frustrated</div>
+          <div class="chip" data-name="sad">sad</div>
+          <div class="chip" data-name="angry">angry</div>
+          <div class="chip" data-name="numb">numb</div>
+          <div class="chip" data-name="confused">confused</div>
+          <div class="chip" data-name="ashamed">ashamed</div>
+          <div class="chip" data-name="scared">scared</div>
+          <div class="chip" data-name="lonely">lonely</div>
+          <div class="chip" data-name="jealous">jealous</div>
+          <div class="chip" data-name="insecure">insecure</div>
+          <div class="chip" data-name="resentful">resentful</div>
+          <div class="chip" data-name="panicked">panicked</div>
+          <div class="chip" data-name="disappointed">disappointed</div>
+          <div class="chip" data-name="helpless">helpless</div>
+          <div class="chip" data-name="rejected">rejected</div>
+          <div class="chip" data-name="stuck">stuck</div>
+          <div class="chip" data-name="drained">drained</div>
+          <div class="chip" data-name="invisible">invisible</div>
+        </div>
+        <div class="cta-btn" id="ctaBtn">continue</div>
+      </div>
     </div>
-
-    <button class="cta-btn" id="ctaBtn">continue</button>
-
-    <div class="fade-overlay" id="fadeOverlay"></div>
-    <div class="cursor" id="cursor"></div>
+  </div>
+  <div class="cursor" id="cursor">
+    <svg width="17" height="23" viewBox="0 0 17 23" fill="none">
+      <path d="M1 1L1 19.5L5.5 15L10 22L13 20.5L8.5 13.5L14.5 13.5L1 1Z" fill="white" stroke="#2D2A26" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
   </div>
 </div>
 
 <script>
-(function() {
-  const cursor = document.getElementById('cursor');
-  const fadeOverlay = document.getElementById('fadeOverlay');
-  const ctaBtn = document.getElementById('ctaBtn');
-  const screen = document.getElementById('screen');
-  const tags = document.querySelectorAll('.tag');
+const cursor = document.getElementById('cursor');
+const ctaBtn = document.getElementById('ctaBtn');
+const scrollArea = document.getElementById('scrollArea');
+const chips = document.querySelectorAll('.chip');
 
-  function getCenter(el) {
-    const screenRect = screen.getBoundingClientRect();
-    const rect = el.getBoundingClientRect();
-    return {
-      x: rect.left - screenRect.left + rect.width / 2 - 5,
-      y: rect.top - screenRect.top + rect.height / 2 - 5
-    };
-  }
+function getChip(name) {
+  return document.querySelector(`.chip[data-name="${name}"]`);
+}
 
-  function moveCursor(el, duration) {
-    return new Promise(resolve => {
-      const pos = getCenter(el);
-      cursor.style.transitionDuration = duration + 'ms';
-      cursor.style.left = pos.x + 'px';
-      cursor.style.top = pos.y + 'px';
-      setTimeout(resolve, duration);
-    });
-  }
+function moveCursor(x, y, duration = 700) {
+  return new Promise(resolve => {
+    cursor.style.transition = `left ${duration}ms cubic-bezier(0.4,0,0.2,1), top ${duration}ms cubic-bezier(0.4,0,0.2,1), opacity 0.3s`;
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+    setTimeout(resolve, duration);
+  });
+}
+function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
 
-  function tap() {
-    return new Promise(resolve => {
-      cursor.classList.add('tapping');
-      setTimeout(() => {
-        cursor.classList.remove('tapping');
-        resolve();
-      }, 150);
-    });
-  }
+function getPos(el) {
+  const frameRect = document.querySelector('.phone-frame').getBoundingClientRect();
+  const r = el.getBoundingClientRect();
+  return { x: r.left - frameRect.left + r.width/2, y: r.top - frameRect.top + r.height/2 };
+}
 
-  function wait(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
-  }
+async function tapChip(name) {
+  const chip = getChip(name);
+  const pos = getPos(chip);
+  await moveCursor(pos.x, pos.y, 700);
+  await wait(400);
+  cursor.classList.add('tap');
+  chip.classList.add('selected');
+  await wait(150);
+  cursor.classList.remove('tap');
+}
 
-  function getTag(name) {
-    return document.querySelector('.tag[data-tag="' + name + '"]');
-  }
+async function animate() {
+  // Reset
+  chips.forEach(c => c.classList.remove('selected'));
+  ctaBtn.classList.remove('pressed');
+  scrollArea.scrollTop = 0;
+  cursor.style.transition = 'none';
+  cursor.style.left = '260px';
+  cursor.style.top = '500px';
+  cursor.style.opacity = '0';
+  await wait(500);
 
-  function resetAll() {
-    tags.forEach(t => t.classList.remove('selected'));
-    ctaBtn.classList.remove('pressed');
-    fadeOverlay.classList.remove('active');
-    cursor.classList.remove('visible');
-    cursor.style.transitionDuration = '0ms';
-  }
+  cursor.style.opacity = '1';
+  await wait(300);
 
-  async function runLoop() {
-    resetAll();
+  // Scroll slightly
+  scrollArea.scrollTo({ top: 30, behavior: 'smooth' });
+  await wait(600);
 
-    // Position cursor off-screen initially
-    cursor.style.left = '140px';
-    cursor.style.top = '500px';
+  // Select chips
+  await tapChip('anxious');
+  await wait(300);
+  await tapChip('overwhelmed');
+  await wait(300);
+  await tapChip('frustrated');
+  await wait(500);
 
-    await wait(400);
-    cursor.classList.add('visible');
+  // Scroll down to button
+  scrollArea.scrollTo({ top: scrollArea.scrollHeight, behavior: 'smooth' });
+  await wait(600);
 
-    // 1. Tap "anxious"
-    const anxious = getTag('anxious');
-    await moveCursor(anxious, 500);
-    await wait(200);
-    await tap();
-    anxious.classList.add('selected');
-    await wait(300);
+  // Tap continue
+  const btnPos = getPos(ctaBtn);
+  await moveCursor(btnPos.x, btnPos.y, 700);
+  await wait(400);
+  cursor.classList.add('tap');
+  ctaBtn.classList.add('pressed');
+  await wait(150);
+  cursor.classList.remove('tap');
+  ctaBtn.classList.remove('pressed');
+  await wait(400);
 
-    // 2. Tap "overwhelmed"
-    const overwhelmed = getTag('overwhelmed');
-    await moveCursor(overwhelmed, 450);
-    await wait(200);
-    await tap();
-    overwhelmed.classList.add('selected');
-    await wait(300);
+  // Fade out
+  cursor.style.opacity = '0';
+  const screen = document.querySelector('.phone-screen');
+  screen.style.transition = 'opacity 300ms';
+  screen.style.opacity = '0';
+  await wait(800);
+  screen.style.transition = 'none';
+  screen.style.opacity = '1';
+}
 
-    // 3. Tap "frustrated"
-    const frustrated = getTag('frustrated');
-    await moveCursor(frustrated, 400);
-    await wait(200);
-    await tap();
-    frustrated.classList.add('selected');
-    await wait(600);
-
-    // 4. Tap "continue"
-    await moveCursor(ctaBtn, 500);
-    await wait(200);
-    await tap();
-    ctaBtn.classList.add('pressed');
-    await wait(300);
-
-    // 5. Fade out
-    fadeOverlay.classList.add('active');
-    cursor.classList.remove('visible');
-    await wait(500);
-
-    // 6. Pause, then loop
+async function loop() {
+  while (true) {
+    await animate();
     await wait(800);
-
-    runLoop();
   }
-
-  // Start on load
-  runLoop();
-})();
+}
+loop();
 </script>
 </body>
 </html>

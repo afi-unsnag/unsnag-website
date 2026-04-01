@@ -3,10 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Unsnag Demo 1 — Home Screen</title>
+<title>Unsnag Demo 01 — Home</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root {
     --cream: #FAF7F2;
@@ -21,367 +21,258 @@
     --warm-gray: #B8B2A8;
     --warm-gray-light: #E8E3DB;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
   body {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    margin: 0;
+    padding: 0;
     font-family: 'DM Sans', sans-serif;
-    color: var(--warm-dark);
+    color: #2D2A26;
+    overflow: hidden;
   }
-
-  /* Phone Frame */
   .phone-frame {
-    width: 320px;
-    background: #1a1a1a;
-    border-radius: 44px;
-    padding: 12px;
+    width: 100%;
+    height: 100vh;
+    background: none;
+    border-radius: 0;
+    padding: 0;
     position: relative;
+    box-shadow: none;
   }
-
   .phone-notch {
-    width: 100px;
-    height: 28px;
+    width: 0; height: 0;
     background: #1a1a1a;
-    border-radius: 0 0 18px 18px;
-    margin: 0 auto 8px;
+    display: none;
+    margin: 0;
     position: relative;
     z-index: 10;
   }
-
   .phone-screen {
     background: var(--cream);
-    border-radius: 36px;
+    border-radius: 0;
     overflow: hidden;
-    min-height: 580px;
+    
     position: relative;
-    padding: 24px 20px;
     display: flex;
     flex-direction: column;
-  }
-
-  /* Screen content */
-  .screen-content {
-    opacity: 0;
-    display: flex;
-    flex-direction: column;
+    
+    
+    padding: 40px 20px 0;
+  height: 100vh; }
+  .content {
     flex: 1;
+    display: flex;
+    flex-direction: column;
+    
+    
+    width: 100%;
+    padding-bottom: 80px;
   }
-
-  /* Logo */
   .logo {
     font-family: 'Bricolage Grotesque', serif;
+    font-size: 48px;
     font-weight: 800;
-    font-size: 26px;
-    letter-spacing: -0.5px;
+    color: var(--warm-dark);
+    text-align: center;
   }
-
-  .divider {
-    width: 40px;
-    height: 4px;
+  .accent-line {
+    width: 48px; height: 4px;
     background: var(--mauve);
     border-radius: 2px;
-    margin: 10px 0 0;
+    margin: 8px auto 32px;
   }
-
-  /* Greeting */
-  .greeting {
-    margin-top: 40px;
-  }
-
-  .greeting-wave {
-    font-size: 28px;
-    font-weight: 700;
-    line-height: 1.3;
-  }
-
-  .greeting-sub {
-    font-size: 17px;
+  .greeting, .question {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 18px;
     color: var(--warm-dark-light);
-    margin-top: 4px;
+    text-align: center;
+    line-height: 1.4;
   }
-
-  /* CTA Button */
+  .greeting { margin-bottom: 4px; }
+  .question { margin-bottom: 32px; }
   .cta-btn {
-    display: block;
-    width: 100%;
-    margin-top: 32px;
+    width: calc(100% - 40px);
+    padding: 20px;
     background: var(--mauve);
-    border: 2px solid var(--warm-dark);
+    border: 3px solid var(--warm-dark);
     border-radius: 12px;
     box-shadow: 4px 4px 0px 0px var(--warm-dark);
-    padding: 16px 28px;
-    font-family: 'DM Sans', sans-serif;
+    font-family: 'Bricolage Grotesque', serif;
+    font-size: 20px;
     font-weight: 600;
-    font-size: 16px;
-    color: var(--warm-dark);
+    color: var(--warm-dark-light);
     cursor: pointer;
     text-align: center;
-    transition: box-shadow 0.1s ease, transform 0.1s ease;
-    position: relative;
+    transition: box-shadow 0.1s, transform 0.1s;
   }
-
   .cta-btn.pressed {
     box-shadow: 1px 1px 0px 0px var(--warm-dark);
     transform: translate(3px, 3px);
   }
-
-  /* Stat cards */
-  .stat-cards {
-    display: flex;
-    gap: 12px;
-    margin-top: 20px;
-  }
-
-  .stat-card {
-    flex: 1;
-    border: 2px solid var(--warm-dark);
-    border-radius: 12px;
-    padding: 16px 14px;
-    box-shadow: 2px 2px 0px 0px var(--warm-dark);
-  }
-
-  .stat-card--tomato { background: var(--tomato); }
-  .stat-card--orange { background: var(--orange); }
-
-  .stat-number {
-    font-family: 'Bricolage Grotesque', serif;
-    font-weight: 700;
-    font-size: 26px;
-    color: var(--warm-dark);
-    line-height: 1;
-  }
-
-  .stat-label {
+  .footnote {
+    font-family: 'DM Sans', sans-serif;
     font-size: 13px;
-    font-weight: 500;
-    color: var(--warm-dark);
-    margin-top: 4px;
-    opacity: 0.85;
+    color: var(--warm-dark-light);
+    opacity: 0.5;
+    text-align: center;
+    line-height: 1.5;
+    margin-top: 24px;
+    max-width: 280px;
   }
-
-  /* Bottom nav */
   .bottom-nav {
-    margin-top: auto;
-    padding-top: 20px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 64px;
+    border-top: 2px solid var(--warm-dark);
+    background: var(--cream);
     display: flex;
     justify-content: space-around;
-    align-items: center;
+    
+    border-radius: 0 0 36px 36px;
   }
-
   .nav-item {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 3px;
-    font-size: 11px;
-    font-weight: 500;
-    color: var(--warm-gray);
+    
+    gap: 2px;
   }
-
-  .nav-item.active { color: var(--warm-dark); }
-
-  .nav-icon {
-    width: 28px;
-    height: 28px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
+  .nav-item svg { width: 22px; height: 22px; }
+  .nav-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    color: var(--warm-dark-light);
   }
-
-  .nav-item.active .nav-icon {
-    background: var(--mauve);
-    border: 1.5px solid var(--warm-dark);
+  .nav-label.active {
+    font-weight: 600;
   }
-
-  .nav-icon svg {
-    width: 16px;
-    height: 16px;
+  .screen-fade {
+    opacity: 0;
+    animation: screenFadeIn 600ms ease forwards;
   }
-
-  /* Animated cursor */
+  @keyframes screenFadeIn {
+    to { opacity: 1; }
+  }
   .cursor {
-    width: 10px;
-    height: 10px;
-    background: var(--warm-dark);
-    border-radius: 50%;
     position: absolute;
     z-index: 100;
     pointer-events: none;
     opacity: 0;
-    transition: opacity 0.2s ease;
-    will-change: transform, left, top;
   }
-
-  .cursor.tapping {
-    transform: scale(0.7);
-  }
+  .cursor svg { display: block; transition: transform 0.1s; }
+  .cursor.tap svg { transform: scale(0.85); }
 </style>
 </head>
 <body>
-
 <div class="phone-frame">
   <div class="phone-notch"></div>
-  <div class="phone-screen" id="phoneScreen">
-    <div class="screen-content" id="screenContent">
-      <!-- Logo -->
+  <div class="phone-screen" id="screen">
+    <div class="content screen-fade" id="screenContent">
       <div class="logo">unsnag</div>
-      <div class="divider"></div>
-
-      <!-- Greeting -->
-      <div class="greeting">
-        <div class="greeting-wave">&#x1F44B; Hey, You!</div>
-        <div class="greeting-sub">Feeling stuck?</div>
+      <div class="accent-line"></div>
+      <div class="greeting">&#x1F44B; Hey, Afi!</div>
+      <div class="question">Feeling stuck?</div>
+      <div class="cta-btn" id="ctaBtn">Let's move through it</div>
+      <div class="footnote">Every time you use Unsnag, you're building a new default response.</div>
+    </div>
+    <div class="bottom-nav">
+      <div class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z" fill="#E2C6FD" stroke="#E2C6FD"/>
+        </svg>
+        <span class="nav-label active" style="color:#E2C6FD">Home</span>
       </div>
-
-      <!-- CTA -->
-      <button class="cta-btn" id="ctaBtn">Let's move through it</button>
-
-      <!-- Stat cards -->
-      <div class="stat-cards">
-        <div class="stat-card stat-card--tomato">
-          <div class="stat-number">3</div>
-          <div class="stat-label">unsnags</div>
-        </div>
-        <div class="stat-card stat-card--orange">
-          <div class="stat-number">0</div>
-          <div class="stat-label">for later</div>
-        </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/>
+        </svg>
+        <span class="nav-label">History</span>
       </div>
-
-      <!-- Bottom nav -->
-      <div class="bottom-nav">
-        <div class="nav-item active">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <span>Home</span>
-        </div>
-        <div class="nav-item">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-          <span>History</span>
-        </div>
-        <div class="nav-item">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M19 21l-7-5-7 5V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2z"/></svg>
-          </div>
-          <span>Saved</span>
-        </div>
-        <div class="nav-item">
-          <div class="nav-icon">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-          </div>
-          <span>Settings</span>
-        </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M19 21l-7-5-7 5V5a2 2 0 012-2h10a2 2 0 012 2z"/>
+        </svg>
+        <span class="nav-label">Saved</span>
+      </div>
+      <div class="nav-item">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#4A4640" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 00.33 1.82l.06.06a2 2 0 01-2.83 2.83l-.06-.06a1.65 1.65 0 00-1.82-.33 1.65 1.65 0 00-1 1.51V21a2 2 0 01-4 0v-.09A1.65 1.65 0 009 19.4a1.65 1.65 0 00-1.82.33l-.06.06a2 2 0 01-2.83-2.83l.06-.06A1.65 1.65 0 004.68 15a1.65 1.65 0 00-1.51-1H3a2 2 0 010-4h.09A1.65 1.65 0 004.6 9a1.65 1.65 0 00-.33-1.82l-.06-.06a2 2 0 012.83-2.83l.06.06A1.65 1.65 0 009 4.68a1.65 1.65 0 001-1.51V3a2 2 0 014 0v.09a1.65 1.65 0 001 1.51 1.65 1.65 0 001.82-.33l.06-.06a2 2 0 012.83 2.83l-.06.06A1.65 1.65 0 0019.4 9a1.65 1.65 0 001.51 1H21a2 2 0 010 4h-.09a1.65 1.65 0 00-1.51 1z"/>
+        </svg>
+        <span class="nav-label">Settings</span>
       </div>
     </div>
-
-    <!-- Cursor -->
-    <div class="cursor" id="cursor"></div>
+  </div>
+  <div class="cursor" id="cursor">
+    <svg width="17" height="23" viewBox="0 0 17 23" fill="none">
+      <path d="M1 1L1 19.5L5.5 15L10 22L13 20.5L8.5 13.5L14.5 13.5L1 1Z" fill="white" stroke="#2D2A26" stroke-width="1.5" stroke-linejoin="round"/>
+    </svg>
   </div>
 </div>
 
 <script>
-(function() {
-  const screen = document.getElementById('screenContent');
-  const cursor = document.getElementById('cursor');
-  const ctaBtn = document.getElementById('ctaBtn');
-  const phoneScreen = document.getElementById('phoneScreen');
-  const ease = 'cubic-bezier(0.4, 0, 0.2, 1)';
+const cursor = document.getElementById('cursor');
+const ctaBtn = document.getElementById('ctaBtn');
+const screenContent = document.getElementById('screenContent');
 
-  function sleep(ms) {
-    return new Promise(resolve => setTimeout(resolve, ms));
+function moveCursor(x, y, duration = 700) {
+  return new Promise(resolve => {
+    cursor.style.transition = `left ${duration}ms cubic-bezier(0.4,0,0.2,1), top ${duration}ms cubic-bezier(0.4,0,0.2,1), opacity 0.3s`;
+    cursor.style.left = x + 'px';
+    cursor.style.top = y + 'px';
+    setTimeout(resolve, duration);
+  });
+}
+function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+async function animate() {
+  // Reset
+  screenContent.style.opacity = '0';
+  cursor.style.transition = 'none';
+  cursor.style.left = '260px';
+  cursor.style.top = '500px';
+  cursor.style.opacity = '0';
+  ctaBtn.classList.remove('pressed');
+  await wait(100);
+
+  // Fade in screen
+  screenContent.style.transition = 'opacity 600ms ease';
+  screenContent.style.opacity = '1';
+  await wait(1000);
+
+  // Show cursor
+  cursor.style.opacity = '1';
+  await wait(300);
+
+  // Move to CTA
+  const frameRect = document.querySelector('.phone-frame').getBoundingClientRect();
+  const btnRect = ctaBtn.getBoundingClientRect();
+  const btnX = btnRect.left - frameRect.left + btnRect.width / 2;
+  const btnY = btnRect.top - frameRect.top + btnRect.height / 2;
+  await moveCursor(btnX, btnY, 700);
+  await wait(400);
+
+  // Tap
+  cursor.classList.add('tap');
+  ctaBtn.classList.add('pressed');
+  await wait(150);
+  cursor.classList.remove('tap');
+  ctaBtn.classList.remove('pressed');
+  await wait(600);
+
+  // Fade out everything
+  screenContent.style.transition = 'opacity 300ms ease';
+  screenContent.style.opacity = '0';
+  cursor.style.opacity = '0';
+  await wait(800);
+}
+
+async function loop() {
+  while (true) {
+    await animate();
+    await wait(800);
   }
-
-  function moveCursor(x, y, duration) {
-    return new Promise(resolve => {
-      cursor.style.transition = `left ${duration}ms ${ease}, top ${duration}ms ${ease}`;
-      cursor.style.left = x + 'px';
-      cursor.style.top = y + 'px';
-      setTimeout(resolve, duration);
-    });
-  }
-
-  function getButtonCenter() {
-    const btnRect = ctaBtn.getBoundingClientRect();
-    const screenRect = phoneScreen.getBoundingClientRect();
-    return {
-      x: btnRect.left - screenRect.left + btnRect.width / 2 - 5,
-      y: btnRect.top - screenRect.top + btnRect.height / 2 - 5
-    };
-  }
-
-  async function runLoop() {
-    // Reset state
-    screen.style.transition = 'none';
-    screen.style.opacity = '0';
-    cursor.style.opacity = '0';
-    cursor.style.transition = 'none';
-    ctaBtn.classList.remove('pressed');
-
-    // Start cursor off-screen bottom-right area
-    cursor.style.left = '200px';
-    cursor.style.top = '480px';
-
-    // 1. Fade in screen (300ms)
-    await sleep(50);
-    screen.style.transition = 'opacity 300ms ease';
-    screen.style.opacity = '1';
-    await sleep(300);
-
-    // 2. Brief pause (1s)
-    await sleep(1000);
-
-    // 3. Cursor appears
-    cursor.style.opacity = '1';
-    await sleep(150);
-
-    // 4. Move cursor to CTA button
-    const target = getButtonCenter();
-    await moveCursor(target.x, target.y, 600);
-
-    // 5. Pause before tap (400ms)
-    await sleep(400);
-
-    // 6. Tap — press down
-    cursor.classList.add('tapping');
-    ctaBtn.classList.add('pressed');
-    await sleep(200);
-
-    // 7. Release tap
-    cursor.classList.remove('tapping');
-    await sleep(300);
-
-    // 8. Screen fades out
-    screen.style.transition = 'opacity 350ms ease';
-    screen.style.opacity = '0';
-    cursor.style.transition = 'opacity 200ms ease';
-    cursor.style.opacity = '0';
-    await sleep(400);
-
-    // 9. Pause before loop restart
-    await sleep(800);
-
-    // Reset button
-    ctaBtn.classList.remove('pressed');
-
-    // Loop
-    runLoop();
-  }
-
-  // Kick off after fonts are ready
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(() => sleep(200)).then(runLoop);
-  } else {
-    setTimeout(runLoop, 500);
-  }
-})();
+}
+loop();
 </script>
 </body>
 </html>
