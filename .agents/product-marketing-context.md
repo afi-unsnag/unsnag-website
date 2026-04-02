@@ -10,7 +10,7 @@
 **Business model:** $5/month after 14-day free trial. Unlimited sessions. Cancel any time. Less than one therapy co-pay. Available every time something fires.
 
 ## Target Audience
-**Target users:** Millennial women who grew up having to be responsible for everyone else's feelings. They overthink everything — constantly assuming people are mad at them, taking on blame that isn't theirs, unable to speak up without panicking. They've done therapy, journaling, all the reflection. But they've been thinking about their feelings instead of actually feeling them, and that's why they're stuck. They don't know that the discomfort they can't sit with is a feeling in their body that needs to move — not a thought that needs to be figured out. Unsnag is the missing piece: a simple, repeatable tool that teaches them to feel it, see what's theirs, and make a different choice.
+**Target users:** People (especially millennials) who grew up having to be responsible for everyone else's feelings. They overthink everything — constantly assuming people are mad at them, taking on blame that isn't theirs, unable to speak up without panicking. They've done therapy, journaling, all the reflection. But they've been thinking about their feelings instead of actually feeling them, and that's why they're stuck. They don't know that the discomfort they can't sit with is a feeling in their body that needs to move — not a thought that needs to be figured out. Unsnag is the missing piece: a simple, repeatable tool that teaches them to feel it, see what's theirs, and make a different choice.
 **Primary use case:** When something activates them — someone's tone, an unanswered text, the feeling that everything is their fault — and they need to process it in the moment instead of spiraling.
 **Jobs to be done:**
 - Learn to actually feel the discomfort instead of running from it by fixing everyone else
@@ -36,10 +36,10 @@
 - Always feeling like you're in the way, like you're too much, like you're annoying
 
 ## Personas
-B2C only for now. The core user is a millennial woman who grew up having to be the good one — responsible, accommodating, managing everyone else's emotions. A B2B angle (corporate wellness) is possible later but would require repositioning the voice. Don't chase B2B until B2C is proven.
+B2C only for now. The core user is a millennial who grew up having to be the good one — responsible, accommodating, managing everyone else's emotions. A B2B angle (corporate wellness) is possible later but would require repositioning the voice. Don't chase B2B until B2C is proven.
 
 ## Problems & Pain Points
-**Core problem:** These women grew up in a time when they had to be responsible for everybody else's feelings. They never learned how to feel their own. Now when something activates them — someone's comment, a tone, a look — they can't feel the discomfort. They can't process it. So it lingers, and it drives them to try to make the other person okay so THEY can feel okay. That's the cycle: can't feel it → overthink it → try to fix it → take responsibility for someone else's feelings → lose themselves in the process.
+**Core problem:** These people grew up in a time when they had to be responsible for everybody else's feelings. They never learned how to feel their own. Now when something activates them — someone's comment, a tone, a look — they can't feel the discomfort. They can't process it. So it lingers, and it drives them to try to make the other person okay so THEY can feel okay. That's the cycle: can't feel it → overthink it → try to fix it → take responsibility for someone else's feelings → lose themselves in the process.
 
 They've done plenty of reflection — therapy, journaling, the books. But thinking about a feeling is not the same as feeling it. The feeling is stuck in their body, and all the thinking in the world won't move it. They're missing the piece they didn't know existed: actually feeling it somatically, so it can release and stop running their behavior.
 
@@ -119,8 +119,8 @@ Nobody's blaming anyone. Their parents did what they had to do. But they want to
 | Move through | Process an emotion somatically rather than intellectually |
 
 ## Brand Voice
-**Tone:** Direct, warm, a little edgy. Levity and depth coexist. Like a girl next door who's been through it and wants you to know what she learned. Not soft, not quiet, not timid. Bold but not aggressive. Funny when it fits. Never clinical, never hype.
-**Style:** Person-to-person. Speaks to someone who has been doing the work and is confused about why she's still stuck. Validates the effort, names the missing piece, doesn't make her feel stupid for not knowing. Doesn't make her feel like a patient or like something's wrong with her. Makes this stuff feel approachable and normal — not precious, not heavy. Just a thing you reach for. Let yourself just be normal; you don't have to be so impressive all the time.
+**Tone:** Direct, warm, a little edgy. Levity and depth coexist. Like a friend who's been through it and wants you to know what they learned. Not soft, not quiet, not timid. Bold but not aggressive. Funny when it fits. Never clinical, never hype.
+**Style:** Person-to-person. Speaks to someone who has been doing the work and is confused about why they're still stuck. Validates the effort, names the missing piece, doesn't make them feel stupid for not knowing. Doesn't make them feel like a patient or like something's wrong with them. Makes this stuff feel approachable and normal — not precious, not heavy. Just a thing you reach for. Let yourself just be normal; you don't have to be so impressive all the time.
 **Personality:** Emotionally intelligent, honest, bold, funny, zero-bullshit, approachable, alive
 **What it's NOT:** Soft wellness. Quiet and calm and timid. Therapy-speak. Patient-speak. Heavy, precious, or sacred. Generic self-care. The kind of thing that makes you feel like something's wrong with you.
 **Philosophy:** The whole point of the human experience is to be here and to feel things and to let things move through us and to grow and to evolve and to express ourselves and to contribute what we came here to do. If we can't feel our feelings and move this stuff out of our way, we're never going to express ourselves the way we're meant to. Levity and depth can coexist. Make it simple. Make it approachable. Don't make a big deal of it. Just use it and let it change you.
@@ -139,20 +139,20 @@ Nobody's blaming anyone. Their parents did what they had to do. But they want to
 | Yours vs. not yours | AI separates what's yours to own from what was never yours to carry |
 
 ## Goals
-**Business goal:** Grow a paying subscriber base of women who use Unsnag as their go-to tool every time something activates them — building a habit of somatic processing that changes how they show up in relationships and in their lives.
+**Business goal:** Grow a paying subscriber base of people who use Unsnag as their go-to tool every time something activates them — building a habit of somatic processing that changes how they show up in relationships and in their lives.
 **Conversion action:** Start free trial (14 days) → paid subscription ($5/mo)
 **Current metrics:** Currently in coming-soon / pre-launch phase. Full marketing site built but serving a coming-soon page at index.html.
 
 ## Key Messaging Principles
-1. **Lead with symptoms, not root cause.** She's searching for help with overthinking, people-pleasing, assuming everything's her fault — not "somatic processing." The copy should name what she's experiencing, then reveal the missing piece.
-2. **Don't assume she knows the body piece.** The insight that thinking about a feeling ≠ feeling it is NEW to her. That's the aha moment. Don't skip it — earn it.
-3. **Be stupidly specific.** Group chats, parking the car, trivia night, unanswered texts. The more specific the scenario, the more she feels like you're in her head.
-4. **The transformation is internal freedom.** She stops needing everyone else to be okay to feel okay herself. She lets people be disappointed. She asks for what she needs. She pursues things because she wants to, not because it'll make someone proud. She lets things fall apart sometimes.
-5. **Repetition = habit = real change.** The simplicity isn't a limitation — it's the feature. She can use it every time something fires, and every time she does, the old reactive pattern loses a little more grip. Actions stack. Things actually change.
-6. **Validate the effort, name the gap.** She's been working hard. Don't make her feel like she's been doing it wrong. She's been doing it in the wrong place — her head instead of her body. That's not her fault. Nobody showed her.
-7. **No blame.** Her parents did what they had to do. This isn't about blame. It's about being free of the grip.
+1. **Lead with symptoms, not root cause.** They're searching for help with overthinking, people-pleasing, assuming everything's their fault — not "somatic processing." The copy should name what they're experiencing, then reveal the missing piece.
+2. **Don't assume they know the body piece.** The insight that thinking about a feeling ≠ feeling it is NEW to them. That's the aha moment. Don't skip it — earn it.
+3. **Be stupidly specific.** Group chats, parking the car, trivia night, unanswered texts. The more specific the scenario, the more they feel like you're in their head.
+4. **The transformation is internal freedom.** They stop needing everyone else to be okay to feel okay themselves. They let people be disappointed. They ask for what they need. They pursue things because they want to, not because it'll make someone proud. They let things fall apart sometimes.
+5. **Repetition = habit = real change.** The simplicity isn't a limitation — it's the feature. They can use it every time something fires, and every time they do, the old reactive pattern loses a little more grip. Actions stack. Things actually change.
+6. **Validate the effort, name the gap.** They've been working hard. Don't make them feel like they've been doing it wrong. They've been doing it in the wrong place — their head instead of their body. That's not their fault. Nobody showed them.
+7. **No blame.** Their parents did what they had to do. This isn't about blame. It's about being free of the grip.
 8. **Don't sound like wellness.** This is not soft, quiet, calm, timid wellness content. It's bold, specific, funny when it fits, and it feels like a real person talking to you. A thing you reach for — not a practice you dedicate yourself to.
-9. **Never make her feel like a patient.** Nothing is wrong with her. She doesn't need to be fixed. She just needs to feel the feeling so it stops driving everything.
+9. **Never make them feel like a patient.** Nothing is wrong with them. They don't need to be fixed. They just need to feel the feeling so it stops driving everything.
 
 ## Founder
 **Who:** Afi Catena — mom, wife, has an extremely funny, smart, creative, active three-year-old. Background in psychology, certified life coach. Obsessed with the human experience, obsessed with systems and making things easy and applicable to real life.
