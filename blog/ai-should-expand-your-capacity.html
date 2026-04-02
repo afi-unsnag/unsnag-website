@@ -60,9 +60,9 @@
     h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; line-height: 1.15; }
     a { color: inherit; }
     #main-nav { position: sticky; top: 0; z-index: 100; padding: 16px 0; background: rgba(250,247,242,0.94); border-bottom: 1.5px solid var(--warm-gray-light); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
-    #main-nav .container { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    #main-nav .container { display: flex; justify-content: center; align-items: center; justify-content: space-between; gap: 24px; }
     .nav-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: var(--warm-dark); text-decoration: none; letter-spacing: -0.5px; }
-    .nav-links { display: flex; align-items: center; gap: 32px; list-style: none; }
+    .nav-links { display: flex; justify-content: center; align-items: center; gap: 32px; list-style: none; }
     .nav-links a { font-size: 15px; font-weight: 500; color: var(--warm-dark-light); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--warm-dark); }
     .btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 26px; border-radius: 14px; font-family: 'DM Sans', sans-serif; font-weight: 600; font-size: 15px; text-decoration: none; border: 2px solid var(--warm-dark); cursor: pointer; transition: box-shadow 0.12s ease, transform 0.12s ease; }
@@ -70,11 +70,54 @@
     .btn-mauve:hover { box-shadow: var(--shadow-pressed); transform: translate(2px, 2px); }
     .container { max-width: 1200px; margin: 0 auto; padding: 0 48px; }
     .article-header { max-width: 720px; margin: 0 auto; padding: 72px 0 48px; text-align: center; }
-    .article-meta { display: flex; align-items: center; justify-content: center; gap: 12px; margin-bottom: 24px; }
+    .article-meta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 24px;
+    }
     .article-tag { padding: 4px 14px; border-radius: 100px; background: var(--blush); border: 1.5px solid var(--warm-dark); box-shadow: var(--shadow-sm); font-size: 12px; font-weight: 600; color: var(--warm-dark); }
     .article-date { font-size: 13px; color: var(--warm-gray); font-weight: 500; }
     .article-header h1 { font-size: clamp(32px, 4vw, 48px); font-weight: 800; letter-spacing: -1px; margin-bottom: 16px; }
     .article-header .article-subtitle { font-size: 18px; color: var(--warm-dark-light); line-height: 1.6; }
+    .article-author-top {
+      text-align: center;
+      max-width: 680px;
+      margin: 0 auto 40px;
+      font-family: 'DM Sans', sans-serif;
+      font-size: 14px;
+      color: var(--warm-gray);
+    }
+    .article-author-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      max-width: 680px;
+      margin: 0 auto 48px;
+      padding-top: 40px;
+      border-top: 1.5px solid var(--warm-gray-light);
+    }
+    .article-author-bottom .author-photo {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      border: 2px solid var(--warm-dark);
+      object-fit: cover;
+      flex-shrink: 0;
+    }
+    .article-author-bottom .author-info .author-name {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--warm-dark);
+    }
+    .article-author-bottom .author-info .author-title {
+      font-family: 'DM Sans', sans-serif;
+      font-size: 13px;
+      color: var(--warm-gray);
+    }
     .article-body { max-width: 680px; margin: 0 auto; padding: 0 0 80px; }
     .article-body p { font-size: 17px; line-height: 1.85; color: var(--warm-dark-light); margin-bottom: 28px; }
     .article-body p strong { color: var(--warm-dark); font-weight: 600; }
@@ -87,9 +130,9 @@
     .article-cta p { font-size: 15px; color: var(--warm-dark-light); line-height: 1.6; margin-bottom: 24px; }
     .article-cta .btn { font-size: 16px; padding: 14px 32px; }
     footer { background: var(--cream-dark); padding: 36px 0; border-top: 1.5px solid var(--warm-gray-light); }
-    .footer-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-inner { display: flex; justify-content: center; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
     .footer-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: var(--warm-dark); text-decoration: none; }
-    .footer-links { display: flex; gap: 24px; list-style: none; flex-wrap: wrap; }
+    .footer-links { display: flex; justify-content: center; gap: 24px; list-style: none; flex-wrap: wrap; }
     .footer-links a { font-size: 14px; font-weight: 500; color: var(--warm-dark-light); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--warm-dark); }
     .footer-copy { font-size: 13px; color: var(--warm-gray); }
@@ -121,6 +164,8 @@
       <h1>AI should expand your capacity — not replace your humanity.</h1>
       <p class="article-subtitle">AI is already here. The question isn't whether to use it. It's whether it makes you more human or less.</p>
     </div>
+
+    <p class="article-author-top">Written by Afi Catena</p>
 
     <div class="article-body">
       <p>AI isn't knocking on our door anymore — it's already inside, making itself a cup of tea and reorganizing the spice rack. It's been around for years, but now it's fully settling in. So the real question isn't "Should we use it?" It's <strong>"How do we use it without losing the parts that make us us?"</strong></p>
@@ -158,6 +203,14 @@
       <p><strong>AI won't save us. It can't feel for us, care for us, or live our lives for us. But used well, it can clear some of the noise so we can get back to the business of being human.</strong></p>
 
       <p>And that's a future worth working toward.</p>
+    </div>
+
+    <div class="article-author-bottom">
+      <img src="../images/afi-catena-headshot.jpg" alt="Afi Catena" class="author-photo" />
+      <div class="author-info">
+        <p class="author-name">Afi Catena</p>
+        <p class="author-title">Founder of Unsnag · Certified Life Coach</p>
+      </div>
     </div>
 
     <div class="article-cta">
