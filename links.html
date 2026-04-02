@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unsnag — Links</title>
+  <meta name="description" content="All the Unsnag links in one place. Start your free trial, read the blog, and more." />
+  <link rel="canonical" href="https://unsnag.co/links" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23E2C6FD'/><text x='50' y='68' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-size='60' font-weight='800' fill='%232D2A26'>u</text></svg>" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-537LVP6WC5"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-537LVP6WC5');
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --cream: #FAF7F2;
+      --cream-dark: #F0EBE3;
+      --warm-dark: #2D2A26;
+      --warm-dark-light: #4A4640;
+      --mauve: #E2C6FD;
+      --mauve-dark: #C9A4E8;
+      --blush: #FFBCF2;
+      --orange: #FFA846;
+      --tomato: #FF6B4C;
+      --warm-gray: #B8B2A8;
+      --warm-gray-light: #E8E3DB;
+      --shadow: 3px 3px 0px 0px #2D2A26;
+      --shadow-sm: 2px 2px 0px 0px #2D2A26;
+      --shadow-pressed: 1px 1px 0px 0px #2D2A26;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--warm-dark);
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      padding: 48px 20px 64px;
+      -webkit-font-smoothing: antialiased;
+    }
+    .container {
+      width: 100%;
+      max-width: 420px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 24px;
+    }
+
+    /* Profile */
+    .profile {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 8px;
+    }
+    .avatar {
+      width: 88px;
+      height: 88px;
+      border-radius: 50%;
+      border: 3px solid var(--warm-dark);
+      object-fit: cover;
+    }
+    .logo {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 32px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+    }
+    .bio {
+      font-size: 15px;
+      color: var(--warm-dark-light);
+      text-align: center;
+      line-height: 1.6;
+      max-width: 320px;
+    }
+
+    /* Links */
+    .link {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      padding: 16px 20px;
+      border-radius: 14px;
+      border: 2px solid var(--warm-dark);
+      background: var(--cream);
+      text-decoration: none;
+      color: var(--warm-dark);
+      font-weight: 600;
+      font-size: 15px;
+      transition: box-shadow 0.12s ease, transform 0.12s ease;
+      box-shadow: var(--shadow);
+      gap: 12px;
+    }
+    .link:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
+    .link-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 10px;
+      border: 2px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 16px;
+      flex-shrink: 0;
+    }
+    .link-text {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 3px;
+    }
+    .link-sub {
+      font-size: 12px;
+      font-weight: 400;
+      color: var(--warm-dark-light);
+      margin-top: 4px;
+    }
+    .link-arrow {
+      font-size: 14px;
+      color: var(--warm-gray);
+    }
+
+    /* Primary CTA */
+    .link-primary {
+      background: var(--mauve);
+    }
+
+    /* Section label */
+    .section-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--warm-gray);
+      margin-top: 16px;
+      margin-bottom: -8px;
+    }
+
+    /* Latest post badge */
+    .badge-new {
+      padding: 2px 8px;
+      border-radius: 100px;
+      background: var(--tomato);
+      color: white;
+      font-size: 10px;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      margin-left: 8px;
+    }
+
+    /* Footer */
+    .footer {
+      margin-top: 24px;
+      font-size: 12px;
+      color: var(--warm-gray);
+      text-align: center;
+    }
+    .footer a {
+      color: var(--warm-gray);
+      text-decoration: none;
+    }
+    .footer a:hover { color: var(--warm-dark-light); }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <div class="profile">
+    <img src="images/afi-photo-green.jpg" alt="Afi Catena" class="avatar" />
+    <h1 class="logo">unsnag</h1>
+    <p class="bio">A guided app for women who overthink everything, care way too much about other people's opinions, and are exhausted from holding it all together.</p>
+  </div>
+
+  <!-- Primary CTA -->
+  <a href="/" class="link link-primary" onclick="gtag('event','links_clicked',{link:'learn_more'})">
+    <span class="link-icon" style="background: var(--mauve);">✨</span>
+    <span class="link-text">Learn more + start free trial<span class="link-sub">See how it works. 14 days free. No credit card.</span></span>
+    <span class="link-arrow">→</span>
+  </a>
+
+  <!-- Latest -->
+  <span class="section-label">Latest</span>
+
+  <a href="/blog/how-to-stop-people-pleasing.html" class="link" onclick="gtag('event','links_clicked',{link:'latest_post'})">
+    <span class="link-icon" style="background: var(--tomato);">📝</span>
+    <span class="link-text">How to Stop People-Pleasing<span class="link-sub">Without becoming a jerk.</span></span>
+    <span class="link-arrow">→</span>
+  </a>
+
+  <a href="/blog/" class="link" onclick="gtag('event','links_clicked',{link:'blog'})">
+    <span class="link-icon" style="background: var(--orange);">📖</span>
+    <span class="link-text">Read the Unsnag Blog<span class="link-sub">Feelings, patterns, and what actually works.</span></span>
+    <span class="link-arrow">→</span>
+  </a>
+
+  <!-- Existing users -->
+  <a href="https://app.unsnag.co" class="link" onclick="gtag('event','links_clicked',{link:'login'})" style="border-color: var(--warm-gray-light); box-shadow: none;">
+    <span class="link-text" style="text-align: center; font-size: 14px; color: var(--warm-dark-light);">Already have an account? Log in</span>
+  </a>
+
+  <p class="footer">© 2026 Unsnag · <a href="/privacy.html">Privacy</a> · <a href="/terms.html">Terms</a></p>
+
+</div>
+
+</body>
+</html>
