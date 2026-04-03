@@ -131,6 +131,17 @@
       box-shadow: var(--shadow-pressed);
       transform: translate(3px, 3px);
     }
+    .btn-dark {
+      background: var(--warm-dark);
+      color: var(--cream);
+      box-shadow: 4px 4px 0px 0px #C9A4E8;
+      border-color: var(--mauve-dark);
+    }
+    .btn-dark:hover {
+      background: var(--warm-dark-light);
+      box-shadow: 1px 1px 0px 0px #C9A4E8;
+      transform: translate(3px, 3px);
+    }
     .btn-mauve-dark {
       background: var(--mauve);
       color: var(--warm-dark);
@@ -285,7 +296,7 @@
     .hero-ctas {
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
+      align-items: center;
       gap: 12px;
     }
     .hero-mockup-wrap {
@@ -325,10 +336,10 @@
       animation: mockupFloat 6s ease-in-out infinite;
     }
     @keyframes mockupFloat {
-      0%, 100% { transform: translateY(0) translateX(0); }
-      25% { transform: translateY(-6px) translateX(3px); }
-      50% { transform: translateY(-10px) translateX(0); }
-      75% { transform: translateY(-6px) translateX(-3px); }
+      0%, 100% { transform: rotate(2deg) translateY(0) translateX(0); }
+      25% { transform: rotate(2deg) translateY(-6px) translateX(3px); }
+      50% { transform: rotate(2deg) translateY(-10px) translateX(0); }
+      75% { transform: rotate(2deg) translateY(-6px) translateX(-3px); }
     }
     .hero-mockup .mock-logo {
       font-family: 'Bricolage Grotesque', sans-serif;
@@ -356,13 +367,12 @@
     }
     .hero-mockup .mock-cta {
       width: 100%;
-      padding: 16px;
+      padding: 14px;
       border-radius: 12px;
-      background: var(--mauve);
-      border: 3px solid var(--warm-dark);
-      box-shadow: var(--shadow);
+      background: var(--mauve-light);
+      border: 2px solid var(--warm-gray-light);
       font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 16px;
+      font-size: 15px;
       font-weight: 600;
       color: var(--warm-dark-light);
       text-align: center;
@@ -639,7 +649,7 @@
       gap: 6px;
       padding: 8px 18px;
       border-radius: 100px;
-      background: var(--mauve);
+      background: var(--blush);
       border: 2px solid var(--warm-dark);
       box-shadow: var(--shadow-sm);
       font-family: 'DM Sans', sans-serif;
@@ -1575,6 +1585,7 @@
       <li><a href="#how-it-works">How It Works</a></li>
       <li><a href="#pricing">Pricing</a></li>
       <li><a href="/blog/">Blog</a></li>
+      <li><a href="/yours">Yours or Not</a></li>
     </ul>
     <div class="nav-cta-desktop" style="display: flex; align-items: center; gap: 20px;">
       <a href="https://app.unsnag.co" style="font-size: 15px; font-weight: 500; color: var(--warm-dark-light); text-decoration: none; transition: color 0.2s;">Log in</a>
@@ -1591,6 +1602,7 @@
   <a href="#how-it-works" class="mobile-nav-link">How It Works</a>
   <a href="#pricing" class="mobile-nav-link">Pricing</a>
   <a href="/blog/" class="mobile-nav-link">Blog</a>
+  <a href="/yours" class="mobile-nav-link">Free Tool</a>
   <a href="https://app.unsnag.co" class="mobile-nav-link">Log in</a>
   <a href="https://app.unsnag.co/signup" class="btn btn-mauve" style="margin-top: 12px;">Start free trial</a>
 </div>
@@ -1599,11 +1611,13 @@
 <section id="hero">
   <div class="container">
     <div class="hero-content">
+      <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 100px; background: var(--blush); border: 2px solid var(--warm-dark); box-shadow: var(--shadow-sm); font-size: 13px; font-weight: 600; color: var(--warm-dark); margin-bottom: 20px;">For the "I'm fine" people</div>
       <h1>Finally, a simple way<br>to stop overthinking.</h1>
-      <p class="hero-sub">Unsnag is a guided app for people who overthink everything, care too much about what everyone thinks, and are tired of being tired. Six steps. A few minutes. Something actually shifts.</p>
+      <p class="hero-sub">Unsnag is a guided app for people who overthink everything, care way too much about other people's opinions, and are exhausted from holding it all together. Six steps. A few minutes. Something actually shifts.</p>
       <div class="hero-ctas">
-        <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
-        <p style="font-size: 13px; color: var(--warm-gray); align-self: center;">No credit card required</p>
+        <a href="https://app.unsnag.co/signup" class="btn btn-dark btn-lg">Start free — 14 days on us</a>
+        <p style="font-size: 13px; color: var(--warm-gray);">No credit card required</p>
+        <a href="/yours" style="font-size: 14px; font-weight: 500; color: var(--warm-dark-light); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; margin-top: 4px;" onmouseover="this.style.color='#2D2A26'" onmouseout="this.style.color='#4A4640'">Or try Yours or Not — our free AI tool</a>
       </div>
     </div>
     <div class="hero-mockup-wrap">
@@ -1613,7 +1627,7 @@
         <div class="mock-divider"></div>
         <p class="mock-greeting">👋 <strong>Hey, You!</strong><br>Feeling stuck?</p>
         <div class="mock-cta">Let's move through it</div>
-        <p class="mock-footnote">Every time you use Unsnag, you're building a new default response.</p>
+        <p class="mock-footnote">Every time you use Unsnag, you trust yourself a little more — and need everyone else's approval a little less.</p>
         <div class="mock-nav">
           <div class="mock-nav-item active">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2V9z"/></svg>
@@ -1671,6 +1685,32 @@
         <span class="card-tag tag-mauve">the disappointment</span>
         <h3>You want to let people be disappointed in you without falling apart over it.</h3>
         <p>You want to just ask for what you need without it turning into a thing. You want to pursue things because you want to — not because it'll make someone proud. But you can't, because the feeling that comes up when someone's upset stops you every time.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── TESTIMONIALS ─────────────────── -->
+<section id="testimonials">
+  <div class="container">
+    <span class="section-label">People Who Get It</span>
+    <h2 class="section-heading">They were stuck too.</h2>
+
+    <div class="testimonials-grid stagger fade-up">
+      <div class="testimonial-card" style="border-color: var(--tomato);">
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--tomato); border: 2px solid var(--warm-dark); box-shadow: 2px 2px 0px 0px #2D2A26; display: flex; align-items: center; justify-content: center; margin-top: -40px; margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M11 7.5C11 4.5 8.5 2 5.5 2H4v3h1.5C7 5 8 6 8 7.5V8H4v8h7V7.5zM22 7.5C22 4.5 19.5 2 16.5 2H15v3h1.5C18 5 19 6 19 7.5V8h-4v8h7V7.5z"/></svg></div>
+        <p class="testimonial-body">"I grew up bottling my feelings — the only safe emotions were happy and angry. With Unsnag, I can process in the moment instead of dwelling. Instead of waiting days to finally feel relief, I can find it now. It's like my pocket therapist between sessions."</p>
+        <p class="testimonial-name">— CF</p>
+      </div>
+      <div class="testimonial-card" style="border-color: var(--orange);">
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--orange); border: 2px solid var(--warm-dark); box-shadow: 2px 2px 0px 0px #2D2A26; display: flex; align-items: center; justify-content: center; margin-top: -40px; margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2D2A26"><path d="M11 7.5C11 4.5 8.5 2 5.5 2H4v3h1.5C7 5 8 6 8 7.5V8H4v8h7V7.5zM22 7.5C22 4.5 19.5 2 16.5 2H15v3h1.5C18 5 19 6 19 7.5V8h-4v8h7V7.5z"/></svg></div>
+        <p class="testimonial-body">"What I loved was that it's structured — repeatable and predictable. When I'm in the middle of strong feelings of overwhelm, I don't need something open-ended. I need a process. Unsnag gave me that."</p>
+        <p class="testimonial-name">— LW</p>
+      </div>
+      <div class="testimonial-card" style="border-color: var(--blush);">
+        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--blush); border: 2px solid var(--warm-dark); box-shadow: 2px 2px 0px 0px #2D2A26; display: flex; align-items: center; justify-content: center; margin-top: -40px; margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2D2A26"><path d="M11 7.5C11 4.5 8.5 2 5.5 2H4v3h1.5C7 5 8 6 8 7.5V8H4v8h7V7.5zM22 7.5C22 4.5 19.5 2 16.5 2H15v3h1.5C18 5 19 6 19 7.5V8h-4v8h7V7.5z"/></svg></div>
+        <p class="testimonial-body">"It's so validating. It makes me feel like there's nothing wrong with me. Everything feels more manageable, and it's shown me what I actually have the capacity to take on — instead of just doing everything for everyone all at once."</p>
+        <p class="testimonial-name">— JB</p>
       </div>
     </div>
   </div>
@@ -1748,16 +1788,17 @@
     <div class="ai-demo-layout fade-up">
       <div class="ai-demo-text">
         <span class="ai-demo-badge">✦ Yes, there's a little AI in here</span>
-        <h2>It shows you what's yours — and what was never yours to carry.</h2>
-        <p>Separating your stuff from someone else's stuff is one of the hardest things to do on your own — especially in the moment. So we built AI to do it with you.</p>
+        <h2>It shows you what's yours to feel — and what's not.</h2>
+        <p>Separating your feelings from someone else's feelings is one of the hardest things to do on your own — especially in the moment. So we built AI to do it with you.</p>
+        <a href="/yours" class="btn btn-mauve" style="align-self: flex-start; margin-top: 8px;">Try Yours or Not — free</a>
       </div>
       <div class="insight-card fade-up">
         <span class="ai-chip">✦ AI</span>
-        <h3>Let's separate what's yours from what isn't.</h3>
-        <p class="insight-sub">Your feelings are yours. Other people's reactions aren't.</p>
+        <h3>Let's separate what's yours to feel from what's not.</h3>
+        <p class="insight-sub">Your feelings are yours. Someone else's reactions aren't.</p>
 
         <div class="yours-card yours">
-          <h4>What's yours</h4>
+          <h4>Yours to feel</h4>
           <ul>
             <li>The anxiety you feel when they go quiet</li>
             <li>Whether you've said what you actually need</li>
@@ -1766,7 +1807,7 @@
         </div>
 
         <div class="yours-card not-yours">
-          <h4>What's not yours</h4>
+          <h4>Not yours to feel</h4>
           <ul>
             <li>Why they haven't texted back</li>
             <li>Whether they're annoyed</li>
@@ -1868,32 +1909,6 @@
   </div>
 </section>
 
-<!-- ─────────────────── TESTIMONIALS ─────────────────── -->
-<section id="testimonials">
-  <div class="container">
-    <span class="section-label">Testimonials</span>
-    <h2 class="section-heading">Kind words from kind people.</h2>
-
-    <div class="testimonials-grid stagger fade-up">
-      <div class="testimonial-card" style="border-color: var(--tomato);">
-        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--tomato); border: 2px solid var(--warm-dark); box-shadow: 2px 2px 0px 0px #2D2A26; display: flex; align-items: center; justify-content: center; margin-top: -40px; margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="white"><path d="M11 7.5C11 4.5 8.5 2 5.5 2H4v3h1.5C7 5 8 6 8 7.5V8H4v8h7V7.5zM22 7.5C22 4.5 19.5 2 16.5 2H15v3h1.5C18 5 19 6 19 7.5V8h-4v8h7V7.5z"/></svg></div>
-        <p class="testimonial-body">"I grew up bottling my feelings — the only safe emotions were happy and angry. With Unsnag, I can process in the moment instead of dwelling. Instead of waiting days to finally feel relief, I can find it now. It's like my pocket therapist between sessions."</p>
-        <p class="testimonial-name">— CF</p>
-      </div>
-      <div class="testimonial-card" style="border-color: var(--orange);">
-        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--orange); border: 2px solid var(--warm-dark); box-shadow: 2px 2px 0px 0px #2D2A26; display: flex; align-items: center; justify-content: center; margin-top: -40px; margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2D2A26"><path d="M11 7.5C11 4.5 8.5 2 5.5 2H4v3h1.5C7 5 8 6 8 7.5V8H4v8h7V7.5zM22 7.5C22 4.5 19.5 2 16.5 2H15v3h1.5C18 5 19 6 19 7.5V8h-4v8h7V7.5z"/></svg></div>
-        <p class="testimonial-body">"What I loved was that it's structured — repeatable and predictable. When I'm in the middle of strong feelings of overwhelm, I don't need something open-ended. I need a process. Unsnag gave me that."</p>
-        <p class="testimonial-name">— LW</p>
-      </div>
-      <div class="testimonial-card" style="border-color: var(--blush);">
-        <div style="width: 48px; height: 48px; border-radius: 12px; background: var(--blush); border: 2px solid var(--warm-dark); box-shadow: 2px 2px 0px 0px #2D2A26; display: flex; align-items: center; justify-content: center; margin-top: -40px; margin-bottom: 8px;"><svg width="24" height="24" viewBox="0 0 24 24" fill="#2D2A26"><path d="M11 7.5C11 4.5 8.5 2 5.5 2H4v3h1.5C7 5 8 6 8 7.5V8H4v8h7V7.5zM22 7.5C22 4.5 19.5 2 16.5 2H15v3h1.5C18 5 19 6 19 7.5V8h-4v8h7V7.5z"/></svg></div>
-        <p class="testimonial-body">"It's so validating. It makes me feel like there's nothing wrong with me. Everything feels more manageable, and it's shown me what I actually have the capacity to take on — instead of just doing everything for everyone all at once."</p>
-        <p class="testimonial-name">— JB</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ─────────────────── FOUNDER + PHILOSOPHY ─────────────────── -->
 <section id="founder">
   <div class="container">
@@ -1978,6 +1993,7 @@
           Start my free trial
         </a>
         <p class="pricing-note">14 days free. No credit card required. Then $5/month.</p>
+        <a href="/yours" style="display: block; margin-top: 16px; font-size: 14px; font-weight: 500; color: var(--warm-dark-light); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s;" onmouseover="this.style.color='#2D2A26'" onmouseout="this.style.color='#4A4640'">Not ready? Try Yours or Not — it's free</a>
       </div>
     </div>
   </div>
@@ -2070,6 +2086,7 @@
     <p>You don't have to hold it together for everyone. You don't have to keep the peace. You don't have to need nothing. You just need to feel what you're actually feeling — for about 90 seconds — so it stops running everything.</p>
     <a href="https://app.unsnag.co/signup" class="btn btn-mauve-dark btn-lg">Start free trial</a>
     <p style="font-size: 13px; color: var(--warm-gray); margin-top: 14px;">No credit card required. 14 days free. Then $5/month.</p>
+    <a href="/yours" style="display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 500; color: var(--warm-gray); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s;" onmouseover="this.style.color='#FAF7F2'" onmouseout="this.style.color='#B8B2A8'">Or try Yours or Not — our free AI tool</a>
   </div>
 </div>
 

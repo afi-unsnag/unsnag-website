@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>What's Yours vs. What's Not — Free Tool | Unsnag</title>
-  <meta name="description" content="Describe what's bothering you. We'll separate what's yours to own from what's not. Free. No account needed." />
+  <title>Yours or Not — Free AI Tool | Unsnag</title>
+  <meta name="description" content="Not every feeling you're carrying is yours. Describe what's bothering you and AI will separate your feelings from the ones you've absorbed from someone else. Free." />
   <link rel="canonical" href="https://unsnag.co/yours" />
-  <meta property="og:title" content="What's Yours vs. What's Not — Free Tool | Unsnag" />
-  <meta property="og:description" content="Describe what's bothering you. We'll separate what's yours to own from what's not. Free. No account needed." />
+  <meta property="og:title" content="Yours or Not — Free AI Tool | Unsnag" />
+  <meta property="og:description" content="Not every feeling you're carrying is yours. Describe what's bothering you and AI will separate your feelings from the ones you've absorbed from someone else." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://unsnag.co/yours" />
   <meta property="og:image" content="https://unsnag.co/images/og-home.jpg" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
-  <meta name="twitter:title" content="What's Yours vs. What's Not — Free Tool | Unsnag" />
-  <meta name="twitter:description" content="Describe what's bothering you. We'll separate what's yours to own from what's not. Free. No account needed." />
+  <meta name="twitter:title" content="Yours or Not — Free AI Tool | Unsnag" />
+  <meta name="twitter:description" content="Not every feeling you're carrying is yours. Describe what's bothering you and AI will separate your feelings from the ones you've absorbed from someone else." />
   <meta name="twitter:image" content="https://unsnag.co/images/og-home.jpg" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23E2C6FD'/><text x='50' y='68' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-size='60' font-weight='800' fill='%232D2A26'>u</text></svg>" />
   <!-- Google Analytics -->
@@ -258,14 +258,10 @@
 
     /* ─── Tool Section ───────────────────────────────── */
     .tool-section {
-      padding: 72px 0 40px;
-      min-height: calc(100vh - 160px);
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      padding: 64px 0 80px;
     }
     .tool-inner {
-      max-width: 560px;
+      max-width: 720px;
       width: 100%;
       margin: 0 auto;
       display: flex;
@@ -284,9 +280,16 @@
       font-size: 17px;
       color: var(--warm-dark-light);
       text-align: center;
-      max-width: 460px;
+      width: 100%;
       line-height: 1.7;
       margin-bottom: 36px;
+    }
+
+    #inputState {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     /* ─── Textarea ────────────────────────────────────── */
@@ -296,13 +299,13 @@
     }
     .tool-textarea {
       width: 100%;
-      min-height: 160px;
-      padding: 20px;
-      padding-right: 60px;
-      padding-bottom: 60px;
+      min-height: 200px;
+      padding: 24px;
+      padding-right: 64px;
+      padding-bottom: 64px;
       border-radius: 16px;
       border: 2px solid var(--warm-dark);
-      background: var(--cream-dark);
+      background: var(--cream);
       font-family: 'DM Sans', sans-serif;
       font-size: 16px;
       color: var(--warm-dark);
@@ -356,7 +359,7 @@
     /* ─── Submit Button ──────────────────────────────── */
     .tool-submit {
       margin-top: 20px;
-      align-self: center;
+      width: 100%;
       padding: 16px 40px;
       border-radius: 16px;
       border: 2px solid var(--warm-dark);
@@ -572,38 +575,6 @@
       transform: translate(2px, 2px);
     }
 
-    /* ─── Gate (3rd use) ─────────────────────────────── */
-    .gate-section {
-      max-width: 480px;
-      margin: 0 auto;
-      text-align: center;
-      padding: 48px 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 20px;
-      animation: fadeIn 0.4s ease;
-    }
-    .gate-headline {
-      font-family: 'Bricolage Grotesque', sans-serif;
-      font-size: 24px;
-      font-weight: 800;
-      color: var(--warm-dark);
-      letter-spacing: -0.5px;
-      line-height: 1.2;
-    }
-    .gate-link {
-      font-size: 14px;
-      color: var(--warm-gray);
-      text-decoration: underline;
-      text-underline-offset: 3px;
-      cursor: pointer;
-      background: none;
-      border: none;
-      font-family: 'DM Sans', sans-serif;
-      transition: color 0.2s;
-    }
-    .gate-link:hover { color: var(--warm-dark-light); }
 
     /* ─── Error ───────────────────────────────────────── */
     .error-msg {
@@ -628,11 +599,13 @@
       .nav-cta-desktop { display: none !important; }
       .mobile-menu-btn { display: flex; }
 
-      .tool-section { padding: 48px 0 32px; }
+      .tool-section { padding: 56px 0 48px; }
       .tool-headline { font-size: 28px; letter-spacing: -0.6px; }
       .tool-subtext { font-size: 15px; margin-bottom: 28px; }
-      .tool-textarea { min-height: 140px; padding: 16px; font-size: 15px; }
+      .tool-textarea { min-height: 160px; padding: 18px; font-size: 15px; }
       .tool-inner { padding: 0 4px; }
+      [style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+      [style*="grid-template-columns: repeat(2"] { grid-template-columns: 1fr !important; }
 
       .yours-card { padding: 20px; }
       .yours-card h4 { font-size: 16px; }
@@ -643,6 +616,11 @@
 
       footer { padding: 28px 0; }
       .footer-inner { flex-direction: column; align-items: center; text-align: center; gap: 12px; }
+    }
+    @media (max-width: 640px) {
+      .nav-links { display: none; }
+      .nav-cta-desktop { display: none !important; }
+      .mobile-menu-btn { display: flex; }
     }
   </style>
 </head>
@@ -676,15 +654,44 @@
   <a href="https://app.unsnag.co/signup" class="btn btn-mauve" style="margin-top: 12px;">Start free trial</a>
 </div>
 
+<!-- ─────────────────── HERO ─────────────────── -->
+<section style="padding: 72px 0 80px; text-align: center;">
+  <div class="container" style="max-width: 680px;">
+    <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 100px; background: var(--mauve); border: 2px solid var(--warm-dark); box-shadow: var(--shadow-sm); font-size: 13px; font-weight: 600; color: var(--warm-dark); margin-bottom: 24px;">✦ Yours or Not — Free AI Tool</div>
+    <h1 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(32px, 4.5vw, 52px); font-weight: 800; color: var(--warm-dark); letter-spacing: -1.5px; margin-bottom: 16px;">What's yours to feel —<br>and what's not.</h1>
+    <p style="font-size: 17px; color: var(--warm-dark-light); line-height: 1.7; max-width: 560px; margin: 0 auto 16px;">When something's bothering you, some of what you're feeling is genuinely yours — your worry, your guilt, your fear. But some of it isn't yours at all. It's someone else's disappointment, frustration, or reaction that you've absorbed as your own.</p>
+    <p style="font-size: 16px; color: var(--warm-dark-light); line-height: 1.7; max-width: 520px; margin: 0 auto 16px;">This tool separates the two. Describe the situation, and AI will show you <strong style="color: var(--warm-dark);">what's yours to feel and process</strong> vs. <strong style="color: var(--warm-dark);">what you've been carrying for someone else</strong>.</p>
+    <p style="font-size: 15px; color: var(--warm-gray);">Free. No account needed.</p>
+  </div>
+</section>
+
 <!-- ─────────────────── TOOL ─────────────────── -->
-<section class="tool-section">
+<section class="tool-section" style="padding: 80px 0; background: var(--cream-dark); border-top: 1.5px solid var(--warm-gray-light); border-bottom: 1.5px solid var(--warm-gray-light);">
   <div class="container">
     <div class="tool-inner">
 
-      <!-- ── Input State ── -->
-      <div id="inputState">
-        <h1 class="tool-headline">What's yours — and what isn't.</h1>
-        <p class="tool-subtext">Describe what's bothering you. We'll separate what's yours to own from what's not.</p>
+      <!-- ── Email Gate State ── -->
+      <div id="emailGateState">
+        <div style="text-align: center; margin-bottom: 32px;">
+          <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 14px;">Try it free</span>
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; color: var(--warm-dark); letter-spacing: -0.5px;">Enter your email to get started.</h2>
+          <p style="font-size: 15px; color: var(--warm-dark-light); margin-top: 10px; line-height: 1.6;">We'll send you occasional emails about Unsnag. Unsubscribe anytime.</p>
+        </div>
+        <div class="email-capture" style="padding: 0;">
+          <div class="email-row">
+            <input type="email" id="emailInput" class="email-input" placeholder="you@email.com" />
+            <button class="email-submit" onclick="handleEmailGate()">Let's go</button>
+          </div>
+          <p id="emailError" class="error-msg hidden"></p>
+        </div>
+      </div>
+
+      <!-- ── Input State (shown after email) ── -->
+      <div id="inputState" class="hidden">
+        <div style="text-align: center; margin-bottom: 32px;">
+          <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 14px;">Try it now</span>
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; color: var(--warm-dark); letter-spacing: -0.5px;">Describe what's bothering you.</h2>
+        </div>
         <div class="textarea-wrap">
           <textarea
             id="situationInput"
@@ -698,29 +705,16 @@
           </button>
         </div>
         <button id="submitBtn" class="tool-submit" onclick="handleSubmit()">Show me</button>
-        <p class="tool-muted">Free. No account needed.</p>
         <p id="inputError" class="error-msg hidden"></p>
       </div>
 
       <!-- ── Loading State ── -->
       <div id="loadingState" class="hidden">
         <div class="loading-state">
-          <p class="loading-text">Separating what's yours...</p>
+          <p class="loading-text">Separating yours from theirs...</p>
           <div class="loading-dots">
             <span></span><span></span><span></span>
           </div>
-        </div>
-      </div>
-
-      <!-- ── Email Capture State (2nd use) ── -->
-      <div id="emailState" class="hidden">
-        <div class="email-capture">
-          <p class="email-capture-text">Enter your email to see your results.</p>
-          <div class="email-row">
-            <input type="email" id="emailInput" class="email-input" placeholder="you@email.com" />
-            <button class="email-submit" onclick="handleEmailSubmit()">Show me</button>
-          </div>
-          <p id="emailError" class="error-msg hidden"></p>
         </div>
       </div>
 
@@ -728,37 +722,111 @@
       <div id="resultsState" class="hidden">
         <div class="results-section">
           <div class="yours-card yours" id="yoursCard">
-            <h4>What's yours</h4>
+            <h4>Yours to feel</h4>
+            <p style="font-size: 13px; color: var(--warm-dark-light); margin-bottom: 14px; margin-top: -6px; line-height: 1.5;">These feelings are genuinely yours. Sit with them.</p>
             <ul id="yoursList"></ul>
           </div>
           <div class="yours-card not-yours" id="notYoursCard">
-            <h4>What's not yours</h4>
+            <h4>Not yours to feel</h4>
+            <p style="font-size: 13px; color: var(--warm-dark-light); margin-bottom: 14px; margin-top: -6px; line-height: 1.5;">You've been carrying these for someone else. You can put them down.</p>
             <ul id="notYoursList"></ul>
           </div>
           <div class="results-cta-block">
-            <p class="results-cta-text">This is one step of six. The full UNSNAG process helps you actually feel it and move through it.</p>
-            <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg" onclick="gtag('event','free_tool_cta',{action:'try_full_process'})">Try the full process free</a>
-            <button class="try-again-btn" onclick="resetTool()">Try again</button>
+            <p class="results-cta-text" style="font-size: 15px; color: var(--warm-dark-light); text-align: center; line-height: 1.6; max-width: 440px;">Now you know what's yours. But can you actually <strong style="color: var(--warm-dark);">sit with it</strong>? The full Unsnag process walks you through feeling it in your body, staying with it for 90 seconds, and letting it move. That's how it stops coming back.</p>
+            <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg" style="width: 100%; max-width: 420px;" onclick="gtag('event','free_tool_cta',{action:'try_full_process'})">Try the full process — 14 days free</a>
+            <p style="font-size: 13px; color: var(--warm-gray); margin-top: 8px;">No credit card required</p>
+            <button class="try-again-btn" onclick="resetTool()">Try again with something else</button>
           </div>
         </div>
       </div>
 
-      <!-- ── Gate State (3rd+ use) ── -->
-      <div id="gateState" class="hidden">
-        <div class="gate-section">
-          <h2 class="gate-headline">You've seen what's yours. Ready to actually move through it?</h2>
-          <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg" onclick="gtag('event','free_tool_cta',{action:'gate_signup'})">Start free trial — 14 days</a>
-          <button class="gate-link" onclick="showGateEmailOption()">Or enter a different email to try once more</button>
-          <div id="gateEmailRow" class="hidden" style="width: 100%; max-width: 420px;">
-            <div class="email-row" style="margin-top: 12px;">
-              <input type="email" id="gateEmailInput" class="email-input" placeholder="you@email.com" />
-              <button class="email-submit" onclick="handleGateEmailSubmit()">Show me</button>
-            </div>
-            <p id="gateEmailError" class="error-msg hidden"></p>
-          </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── HOW IT WORKS ─────────────────── -->
+<section style="padding: 80px 0; background: var(--cream);">
+  <div class="container">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 14px;">How it works</span>
+      <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--warm-dark); letter-spacing: -0.5px;">One question. Two lists. Instant clarity.</h2>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; max-width: 900px; margin: 0 auto;">
+      <div style="background: var(--cream-dark); border: 2px solid var(--warm-dark); border-radius: 16px; padding: 24px; box-shadow: var(--shadow);">
+        <div style="width: 36px; height: 36px; border-radius: 10px; background: var(--tomato); border: 2px solid var(--warm-dark); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: white; margin-bottom: 14px;">1</div>
+        <h3 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px;">Describe it</h3>
+        <p style="font-size: 14px; color: var(--warm-dark-light); line-height: 1.6;">Type or speak what's bothering you. No filter needed.</p>
+      </div>
+      <div style="background: var(--cream-dark); border: 2px solid var(--warm-dark); border-radius: 16px; padding: 24px; box-shadow: var(--shadow);">
+        <div style="width: 36px; height: 36px; border-radius: 10px; background: var(--orange); border: 2px solid var(--warm-dark); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--warm-dark); margin-bottom: 14px;">2</div>
+        <h3 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px;">AI separates it</h3>
+        <p style="font-size: 14px; color: var(--warm-dark-light); line-height: 1.6;">We show you which feelings are genuinely yours — and which ones you've absorbed from someone else.</p>
+      </div>
+      <div style="background: var(--cream-dark); border: 2px solid var(--warm-dark); border-radius: 16px; padding: 24px; box-shadow: var(--shadow);">
+        <div style="width: 36px; height: 36px; border-radius: 10px; background: var(--mauve); border: 2px solid var(--warm-dark); box-shadow: var(--shadow-sm); display: flex; align-items: center; justify-content: center; font-size: 16px; font-weight: 700; color: var(--warm-dark); margin-bottom: 14px;">3</div>
+        <h3 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 17px; font-weight: 700; margin-bottom: 8px;">Feel what's yours, drop what's not</h3>
+        <p style="font-size: 14px; color: var(--warm-dark-light); line-height: 1.6;">Your feelings are yours to process. Their feelings were never yours to carry.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─────────────────── WHAT THE FULL PROCESS LOOKS LIKE ─────────────────── -->
+<section style="padding: 80px 0; background: var(--cream);">
+  <div class="container" style="max-width: 780px;">
+    <div style="text-align: center; margin-bottom: 40px;">
+      <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 14px;">The full process</span>
+      <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(24px, 3vw, 36px); font-weight: 800; color: var(--warm-dark); letter-spacing: -0.5px;">What you just did is step 5 of 6.</h2>
+      <p style="font-size: 16px; color: var(--warm-dark-light); line-height: 1.7; margin-top: 14px; max-width: 560px; margin-left: auto; margin-right: auto;">Seeing what's yours is powerful. But seeing it doesn't move it. Here's what the full Unsnag process does:</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; margin-bottom: 40px;">
+      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: 14px; background: var(--cream-dark); border: 1.5px solid var(--warm-gray-light);">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; color: var(--tomato); flex-shrink: 0; width: 24px;">1</span>
+        <div>
+          <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700;">Unload</strong>
+          <p style="font-size: 13px; color: var(--warm-dark-light); line-height: 1.5; margin-top: 2px;">Get it out of your head. No filter.</p>
         </div>
       </div>
-
+      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: 14px; background: var(--cream-dark); border: 1.5px solid var(--warm-gray-light);">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; color: var(--orange); flex-shrink: 0; width: 24px;">2</span>
+        <div>
+          <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700;">Name</strong>
+          <p style="font-size: 13px; color: var(--warm-dark-light); line-height: 1.5; margin-top: 2px;">Tap the emotions that fit. Give the feeling a name.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: 14px; background: var(--cream-dark); border: 1.5px solid var(--warm-gray-light);">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; color: var(--blush); flex-shrink: 0; width: 24px;">3</span>
+        <div>
+          <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700;">Sense</strong>
+          <p style="font-size: 13px; color: var(--warm-dark-light); line-height: 1.5; margin-top: 2px;">Find where you feel it in your body.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: 14px; background: var(--cream-dark); border: 1.5px solid var(--warm-gray-light);">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; color: var(--mauve-dark); flex-shrink: 0; width: 24px;">4</span>
+        <div>
+          <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700;">Notice</strong>
+          <p style="font-size: 13px; color: var(--warm-dark-light); line-height: 1.5; margin-top: 2px;">Stay with the sensation for 90 seconds. Let it move.</p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: 14px; background: var(--mauve-light); border: 2px solid var(--mauve-dark);">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; color: var(--mauve-dark); flex-shrink: 0; width: 24px;">5</span>
+        <div>
+          <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700;">Ask</strong>
+          <p style="font-size: 13px; color: var(--warm-dark-light); line-height: 1.5; margin-top: 2px;">What's yours to feel? What's not? <span style="font-weight: 600; color: var(--mauve-dark);">← You just did this</span></p>
+        </div>
+      </div>
+      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: 14px; background: var(--cream-dark); border: 1.5px solid var(--warm-gray-light);">
+        <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 18px; color: var(--tomato); flex-shrink: 0; width: 24px;">6</span>
+        <div>
+          <strong style="font-family: 'Bricolage Grotesque', sans-serif; font-size: 15px; font-weight: 700;">Go</strong>
+          <p style="font-size: 13px; color: var(--warm-dark-light); line-height: 1.5; margin-top: 2px;">Choose a different next action. Break the pattern.</p>
+        </div>
+      </div>
+    </div>
+    <div style="text-align: center;">
+      <p style="font-size: 16px; color: var(--warm-dark-light); line-height: 1.7; max-width: 500px; margin: 0 auto 24px;">The whole thing takes about 5 minutes. Do it every time something fires, and the old patterns start losing their grip.</p>
+      <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg" onclick="gtag('event','free_tool_cta',{action:'bottom_signup'})">Try the full process — 14 days free</a>
+      <p style="font-size: 13px; color: var(--warm-gray); margin-top: 12px;">No credit card required · $5/month after trial · Cancel anytime</p>
     </div>
   </div>
 </section>
@@ -782,12 +850,21 @@
 <script>
   // ── Config
   const SUPABASE_URL = 'https://ipefugguprpjjfmeoexj.supabase.co';
+  const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlwZWZ1Z2d1cHJwampmbWVvZXhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyODQxMTIsImV4cCI6MjA4OTg2MDExMn0.yLzTE0VVqd7wmYYVP3l62JcZ6eaCMu0WHizvoUf5Uzo';
   const FUNCTION_URL = SUPABASE_URL + '/functions/v1/free-tool-insight';
-  const STORAGE_KEY = 'unsnag_free_tool_uses';
+  const EMAIL_KEY = 'unsnag_free_tool_email';
 
   // ── State
-  let pendingSituation = '';
-  let pendingEmail = '';
+  let userEmail = '';
+
+  // Check if user already gave their email (same browser)
+  try {
+    var savedEmail = localStorage.getItem(EMAIL_KEY);
+    if (savedEmail) {
+      userEmail = savedEmail;
+      showOnly('inputState');
+    }
+  } catch {}
 
   // ── Speech Recognition
   const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition || null;
@@ -799,11 +876,7 @@
   }
 
   function toggleMic() {
-    if (isRecording) {
-      stopMic();
-    } else {
-      startMic();
-    }
+    if (isRecording) { stopMic(); } else { startMic(); }
   }
 
   function startMic() {
@@ -830,10 +903,7 @@
     };
 
     recognition.onend = () => {
-      if (isRecording) {
-        try { recognition.start(); } catch {}
-        return;
-      }
+      if (isRecording) { try { recognition.start(); } catch {} return; }
       textarea.value = (baseText + finalTranscript).trim();
     };
 
@@ -850,27 +920,14 @@
 
   function stopMic() {
     isRecording = false;
-    if (recognition) {
-      recognition.stop();
-      recognition = null;
-    }
+    if (recognition) { recognition.stop(); recognition = null; }
     document.getElementById('micBtn').classList.remove('recording');
     document.getElementById('listeningLabel').style.display = 'none';
   }
 
-  function getUseCount() {
-    try { return parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10); }
-    catch { return 0; }
-  }
-
-  function incrementUseCount() {
-    try { localStorage.setItem(STORAGE_KEY, String(getUseCount() + 1)); }
-    catch { /* localStorage unavailable */ }
-  }
-
   // ── UI helpers
   function showOnly(stateId) {
-    ['inputState', 'loadingState', 'emailState', 'resultsState', 'gateState'].forEach(function(id) {
+    ['emailGateState', 'inputState', 'loadingState', 'resultsState'].forEach(function(id) {
       document.getElementById(id).classList.toggle('hidden', id !== stateId);
     });
   }
@@ -885,6 +942,21 @@
     document.getElementById(elementId).classList.add('hidden');
   }
 
+  // ── Email gate handler
+  function handleEmailGate() {
+    hideError('emailError');
+    var email = document.getElementById('emailInput').value.trim();
+    if (!email || !email.includes('@') || !email.includes('.')) {
+      showError('emailError', 'Please enter a valid email address.');
+      return;
+    }
+    userEmail = email;
+    try { localStorage.setItem(EMAIL_KEY, email); } catch {}
+    showOnly('inputState');
+    document.getElementById('situationInput').focus();
+    gtag('event', 'free_tool_email_captured');
+  }
+
   // ── Submit handler
   function handleSubmit() {
     hideError('inputError');
@@ -895,69 +967,25 @@
       return;
     }
 
-    pendingSituation = situation;
-    var uses = getUseCount();
-
-    if (uses >= 2) {
-      // 3rd+ use: show gate
-      showOnly('gateState');
-      gtag('event', 'free_tool_gate', { uses: uses + 1 });
-      return;
-    }
-
-    if (uses === 1) {
-      // 2nd use: email capture first
-      showOnly('emailState');
-      gtag('event', 'free_tool_email_gate', { uses: uses + 1 });
-      return;
-    }
-
-    // 1st use: go straight to AI
-    callAI(situation, null);
-  }
-
-  // ── Email submit (2nd use)
-  function handleEmailSubmit() {
-    hideError('emailError');
-    var email = document.getElementById('emailInput').value.trim();
-    if (!email || !email.includes('@') || !email.includes('.')) {
-      showError('emailError', 'Please enter a valid email address.');
-      return;
-    }
-    pendingEmail = email;
-    callAI(pendingSituation, email);
-    gtag('event', 'free_tool_email_captured', { source: 'second_use' });
-  }
-
-  // ── Gate email submit (3rd+ use)
-  function showGateEmailOption() {
-    document.getElementById('gateEmailRow').classList.remove('hidden');
-  }
-
-  function handleGateEmailSubmit() {
-    hideError('gateEmailError');
-    var email = document.getElementById('gateEmailInput').value.trim();
-    if (!email || !email.includes('@') || !email.includes('.')) {
-      showError('gateEmailError', 'Please enter a valid email address.');
-      return;
-    }
-    pendingEmail = email;
-    callAI(pendingSituation, email);
-    gtag('event', 'free_tool_email_captured', { source: 'gate_bypass' });
+    callAI(situation);
   }
 
   // ── Call AI
-  async function callAI(situation, email) {
+  async function callAI(situation) {
     showOnly('loadingState');
     gtag('event', 'free_tool_submit');
 
     try {
       var body = { situation: situation };
-      if (email) body.email = email;
+      if (userEmail) body.email = userEmail;
 
       var res = await fetch(FUNCTION_URL, {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+          'apikey': SUPABASE_ANON_KEY,
+        },
         body: JSON.stringify(body),
       });
 
@@ -968,7 +996,6 @@
       }
 
       displayResults(data);
-      incrementUseCount();
       gtag('event', 'free_tool_result_shown');
 
     } catch (err) {
@@ -999,11 +1026,9 @@
     showOnly('resultsState');
   }
 
-  // ── Reset
+  // ── Reset (back to textarea, not email gate)
   function resetTool() {
     document.getElementById('situationInput').value = '';
-    pendingSituation = '';
-    pendingEmail = '';
     showOnly('inputState');
     document.getElementById('situationInput').focus();
     gtag('event', 'free_tool_try_again');
@@ -1035,6 +1060,11 @@
       mobileNav.classList.remove('open');
       document.body.style.overflow = '';
     });
+  });
+
+  // ── Enter key on email input
+  document.getElementById('emailInput').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter') { e.preventDefault(); handleEmailGate(); }
   });
 </script>
 
