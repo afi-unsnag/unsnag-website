@@ -283,7 +283,7 @@
   <div class="container">
     <span class="section-label">Legal</span>
     <h1>Privacy Policy</h1>
-    <p class="page-meta">Last updated: March 31, 2025</p>
+    <p class="page-meta">Last updated: April 3, 2026</p>
   </div>
 </section>
 
@@ -295,16 +295,17 @@
       <div class="legal-section">
         <h2>Who We Are</h2>
         <p>Unsnag is an emotional processing app created and operated by Afi Catena. We're a small, independent product — not a giant company. When you share something with us, we take that seriously. This policy explains what we collect, why, and what we do (and don't do) with it.</p>
-        <p>If you have questions, you can reach us directly at <a href="mailto:hello@unsnag.co">hello@unsnag.co</a>.</p>
+        <p>If you have questions, you can reach us directly at <a href="mailto:afi@unsnag.co">afi@unsnag.co</a>.</p>
       </div>
 
       <div class="legal-section">
         <h2>What We Collect</h2>
         <p>We collect only what we need to run the service and make it better:</p>
         <ul>
-          <li><strong>Account information</strong> — your email address when you sign up or join the waitlist.</li>
-          <li><strong>Usage data</strong> — which features you use, how often you open the app, and how you move through sessions. This is anonymous aggregate data, not tied to your specific responses.</li>
-          <li><strong>Session content</strong> — the text or voice input you enter during a guided session, stored securely and used only to complete that session. We do not analyze your personal responses to train AI models or for advertising.</li>
+          <li><strong>Account information</strong> — your name and email address when you sign up for a free trial or paid subscription.</li>
+          <li><strong>Lead information</strong> — your email address when you use the free Yours or Not tool. This is stored in our database to send you follow-up emails about Unsnag. You can unsubscribe anytime.</li>
+          <li><strong>Usage data</strong> — which features you use, how often you open the app, and how you move through sessions. We use Google Analytics (GA4) on the marketing website and Vercel Analytics on the app for aggregate usage data.</li>
+          <li><strong>Session content</strong> — the text or voice input you enter during a guided session or the Yours or Not tool, stored securely and used only to deliver the service to you. We do not use your personal responses to train AI models or for advertising.</li>
           <li><strong>Device and technical data</strong> — browser type, device type, and general location (country/region) to help us debug issues and improve performance.</li>
           <li><strong>Payment information</strong> — processed through Stripe. We never see or store your full card number. Stripe's privacy policy applies to payment processing.</li>
         </ul>
@@ -315,7 +316,7 @@
         <p>We use the information we collect to:</p>
         <ul>
           <li>Provide and improve the Unsnag app experience</li>
-          <li>Send you product updates, early access notifications, and occasional emails you signed up for (you can unsubscribe anytime)</li>
+          <li>Send you product updates, nurture emails, and occasional emails related to your use of Unsnag (you can unsubscribe anytime)</li>
           <li>Diagnose technical problems and understand how features are being used</li>
           <li>Process your subscription payments through Stripe</li>
           <li>Comply with legal obligations if required</li>
@@ -327,17 +328,22 @@
         <h2>Third Parties We Work With</h2>
         <p>We use a small set of trusted services to operate Unsnag:</p>
         <ul>
-          <li><strong>Stripe</strong> — payment processing. Subject to Stripe's own privacy policy.</li>
-          <li><strong>Email provider</strong> (e.g., Resend or similar) — for transactional emails and product updates. We share only your email address.</li>
-          <li><strong>Hosting and infrastructure</strong> — cloud providers used to host the app. Data is stored in encrypted form.</li>
-          <li><strong>Analytics</strong> — privacy-respecting, aggregate-only analytics to understand usage patterns. We do not use Google Analytics or any platform that builds advertising profiles from your data.</li>
+          <li><strong>Supabase</strong> — database, authentication, and server functions. Your account data and session content are stored in Supabase's cloud infrastructure (hosted on AWS). Data is encrypted at rest and in transit.</li>
+          <li><strong>Anthropic (Claude)</strong> — AI processing for session validation and the Yours or Not tool. Your session text is sent to Anthropic's API to generate responses. Anthropic does not use API inputs to train their models. See <a href="https://www.anthropic.com/privacy" style="color: var(--mauve-dark);">Anthropic's privacy policy</a>.</li>
+          <li><strong>Stripe</strong> — payment processing. We never see or store your full card number. Subject to <a href="https://stripe.com/privacy" style="color: var(--mauve-dark);">Stripe's privacy policy</a>.</li>
+          <li><strong>Resend</strong> — transactional and nurture emails. We share only your email address and first name.</li>
+          <li><strong>Vercel</strong> — hosting for the Unsnag app. Subject to <a href="https://vercel.com/legal/privacy-policy" style="color: var(--mauve-dark);">Vercel's privacy policy</a>.</li>
+          <li><strong>Netlify</strong> — hosting for the marketing website (unsnag.co).</li>
+          <li><strong>Google Analytics (GA4)</strong> — aggregate usage analytics on the marketing website. GA4 collects anonymized browsing data. We do not enable advertising features or share data with Google for ad targeting.</li>
+          <li><strong>Vercel Analytics</strong> — privacy-friendly, aggregate analytics on the app. No cookies, no personal data collection.</li>
         </ul>
         <p>We do not share your personal information with data brokers, advertisers, or any third party for marketing purposes.</p>
       </div>
 
       <div class="legal-section">
         <h2>Your Session Data</h2>
-        <p>What you write or say during a session is yours. We store it only long enough to complete the session and, if you choose, to provide continuity between sessions (so you don't lose your place). We do not read your session content for any purpose other than delivering the service to you.</p>
+        <p>What you write or say during a session is yours. Session content is stored in your account so you can access your history. We do not read, review, or analyze your session content for any purpose other than delivering the service to you.</p>
+        <p>When you use the free Yours or Not tool, the situation you describe is sent to Anthropic's Claude API to generate your results. This text is not stored by Anthropic and is not used to train AI models.</p>
         <p>You can delete your session history at any time from your account settings. When you delete it, it's gone — we don't retain it in backups beyond a standard 30-day window.</p>
       </div>
 
@@ -348,20 +354,22 @@
 
       <div class="legal-section">
         <h2>Your Rights</h2>
-        <p>Depending on where you live, you may have the right to:</p>
+        <p>Depending on where you live, you may have rights under applicable privacy laws (including GDPR for EU residents and state privacy laws like the CCPA for California residents). These may include the right to:</p>
         <ul>
           <li>Access the personal data we hold about you</li>
           <li>Correct inaccurate data</li>
           <li>Request deletion of your data</li>
           <li>Object to certain types of processing</li>
           <li>Export your data in a portable format</li>
+          <li>Opt out of the sale of personal information (we don't sell your data, but you have the right to ask)</li>
         </ul>
-        <p>To exercise any of these rights, email us at <a href="mailto:hello@unsnag.co">hello@unsnag.co</a>. We'll respond within 30 days.</p>
+        <p>To exercise any of these rights, email us at <a href="mailto:afi@unsnag.co">afi@unsnag.co</a>. We'll respond within 30 days.</p>
+        <p>Unsnag is operated from New Jersey, United States. By using the service, your data may be processed in the United States.</p>
       </div>
 
       <div class="legal-section">
         <h2>Cookies</h2>
-        <p>We use a small number of essential cookies to keep you logged in and maintain session state. We don't use tracking cookies or advertising cookies. If you block all cookies, some features may not work correctly.</p>
+        <p>The Unsnag app uses essential cookies (via Supabase auth) to keep you logged in and maintain session state. The marketing website uses Google Analytics cookies for aggregate traffic analysis. We don't use advertising cookies or retargeting pixels. If you block all cookies, some features may not work correctly.</p>
       </div>
 
       <div class="legal-section">
@@ -376,7 +384,7 @@
 
       <div class="legal-section">
         <h2>Contact</h2>
-        <p>Questions, concerns, or just want to know more? Email us at <a href="mailto:hello@unsnag.co">hello@unsnag.co</a>. We're a small team and we read everything.</p>
+        <p>Questions, concerns, or just want to know more? Email us at <a href="mailto:afi@unsnag.co">afi@unsnag.co</a>. It's just me and I read everything.</p>
       </div>
 
     </div>
