@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Unsubscribed — Unsnag</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23E2C6FD'/><text x='50' y='68' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-size='60' font-weight='800' fill='%232D2A26'>u</text></svg>" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,400;12..96,600;12..96,700;12..96,800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #FAF7F2;
+      color: #2D2A26;
+      font-family: 'DM Sans', system-ui, -apple-system, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1.5rem;
+    }
+
+    .container {
+      max-width: 480px;
+      width: 100%;
+      text-align: center;
+    }
+
+    .logo {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: 1.5rem;
+      color: #2D2A26;
+      text-decoration: none;
+      display: inline-block;
+      margin-bottom: 3rem;
+    }
+
+    h1 {
+      font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+      font-weight: 700;
+      font-size: 2rem;
+      line-height: 1.2;
+      color: #2D2A26;
+      margin-bottom: 1rem;
+    }
+
+    p {
+      font-size: 1.125rem;
+      line-height: 1.6;
+      color: #4A4640;
+      margin-bottom: 2rem;
+    }
+
+    .home-link {
+      display: inline-block;
+      font-family: 'DM Sans', system-ui, sans-serif;
+      font-weight: 600;
+      font-size: 1rem;
+      color: #2D2A26;
+      text-decoration: none;
+      border-bottom: 2px solid #E2C6FD;
+      padding-bottom: 2px;
+      transition: border-color 0.2s ease;
+    }
+
+    .home-link:hover {
+      border-color: #2D2A26;
+    }
+
+    /* Loading state */
+    .loading .confirmation { display: none; }
+    .loading .spinner { display: block; }
+    .confirmation { display: block; }
+    .spinner {
+      display: none;
+      margin: 2rem auto;
+      width: 32px;
+      height: 32px;
+      border: 3px solid #E2C6FD;
+      border-top-color: #2D2A26;
+      border-radius: 50%;
+      animation: spin 0.7s linear infinite;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+  </style>
+</head>
+<body>
+  <div class="container loading" id="container">
+    <a href="https://unsnag.co" class="logo">unsnag</a>
+
+    <div class="spinner"></div>
+
+    <div class="confirmation">
+      <h1>You've been unsubscribed.</h1>
+      <p>You won't receive any more emails from us. If you change your mind, you can always come back.</p>
+      <a href="https://unsnag.co" class="home-link">Back to Unsnag</a>
+    </div>
+  </div>
+
+  <script>
+    (async function () {
+      const params = new URLSearchParams(window.location.search);
+      const email = params.get('email');
+
+      if (email) {
+        try {
+          await fetch(
+            'https://ipefugguprpjjfmeoexj.supabase.co/rest/v1/leads?email=eq.' + encodeURIComponent(email),
+            {
+              method: 'PATCH',
+              headers: {
+                'apikey': 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlwZWZ1Z2d1cHJwampmbWVvZXhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyODQxMTIsImV4cCI6MjA4OTg2MDExMn0.yLzTE0VVqd7wmYYVP3l62JcZ6eaCMu0WHizvoUf5Uzo',
+                'Authorization': 'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlwZWZ1Z2d1cHJwampmbWVvZXhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyODQxMTIsImV4cCI6MjA4OTg2MDExMn0.yLzTE0VVqd7wmYYVP3l62JcZ6eaCMu0WHizvoUf5Uzo',
+                'Content-Type': 'application/json',
+                'Prefer': 'return=minimal'
+              },
+              body: JSON.stringify({ unsubscribed: true })
+            }
+          );
+        } catch (e) {
+          // Silently continue — show confirmation regardless
+        }
+      }
+
+      // Brief pause so loading state is visible, then show confirmation
+      setTimeout(function () {
+        document.getElementById('container').classList.remove('loading');
+      }, 600);
+    })();
+  </script>
+</body>
+</html>
