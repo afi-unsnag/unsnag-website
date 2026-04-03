@@ -142,6 +142,28 @@
       box-shadow: 1px 1px 0px 0px #C9A4E8;
       transform: translate(3px, 3px);
     }
+    .secondary-link {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--warm-dark-light);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 10px 4px;
+      transition: color 0.2s;
+    }
+    .secondary-link:hover { color: var(--warm-dark); }
+    .secondary-link-light {
+      display: inline-block;
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--warm-gray);
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      padding: 10px 4px;
+      transition: color 0.2s;
+    }
+    .secondary-link-light:hover { color: var(--cream); }
     .btn-mauve-dark {
       background: var(--mauve);
       color: var(--warm-dark);
@@ -1617,7 +1639,7 @@
       <div class="hero-ctas">
         <a href="https://app.unsnag.co/signup" class="btn btn-dark btn-lg">Start free — 14 days on us</a>
         <p style="font-size: 13px; color: var(--warm-gray);">No credit card required</p>
-        <a href="/yours" style="font-size: 14px; font-weight: 500; color: var(--warm-dark-light); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s; margin-top: 4px;" onmouseover="this.style.color='#2D2A26'" onmouseout="this.style.color='#4A4640'">Or try Yours or Not — our free AI tool</a>
+        <a href="/yours" class="secondary-link">Or try Yours or Not — our free AI tool</a>
       </div>
     </div>
     <div class="hero-mockup-wrap">
@@ -1993,7 +2015,7 @@
           Start my free trial
         </a>
         <p class="pricing-note">14 days free. No credit card required. Then $5/month.</p>
-        <a href="/yours" style="display: block; margin-top: 16px; font-size: 14px; font-weight: 500; color: var(--warm-dark-light); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s;" onmouseover="this.style.color='#2D2A26'" onmouseout="this.style.color='#4A4640'">Not ready? Try Yours or Not — it's free</a>
+        <a href="/yours" class="secondary-link" style="display: block; margin-top: 8px;">Not ready? Try Yours or Not — it's free</a>
       </div>
     </div>
   </div>
@@ -2086,7 +2108,7 @@
     <p>You don't have to hold it together for everyone. You don't have to keep the peace. You don't have to need nothing. You just need to feel what you're actually feeling — for about 90 seconds — so it stops running everything.</p>
     <a href="https://app.unsnag.co/signup" class="btn btn-mauve-dark btn-lg">Start free trial</a>
     <p style="font-size: 13px; color: var(--warm-gray); margin-top: 14px;">No credit card required. 14 days free. Then $5/month.</p>
-    <a href="/yours" style="display: inline-block; margin-top: 12px; font-size: 14px; font-weight: 500; color: var(--warm-gray); text-decoration: underline; text-underline-offset: 3px; transition: color 0.2s;" onmouseover="this.style.color='#FAF7F2'" onmouseout="this.style.color='#B8B2A8'">Or try Yours or Not — our free AI tool</a>
+    <a href="/yours" class="secondary-link-light" style="margin-top: 4px;">Or try Yours or Not — our free AI tool</a>
   </div>
 </div>
 
