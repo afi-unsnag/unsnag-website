@@ -290,10 +290,16 @@
     }
 
     /* ─── Textarea ────────────────────────────────────── */
+    .textarea-wrap {
+      position: relative;
+      width: 100%;
+    }
     .tool-textarea {
       width: 100%;
       min-height: 160px;
       padding: 20px;
+      padding-right: 60px;
+      padding-bottom: 60px;
       border-radius: 16px;
       border: 2px solid var(--warm-dark);
       background: var(--cream-dark);
@@ -304,6 +310,40 @@
       resize: vertical;
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .mic-btn {
+      position: absolute;
+      bottom: 12px;
+      right: 12px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--mauve);
+      border: 3px solid var(--warm-dark);
+      box-shadow: var(--shadow-sm);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 0.15s;
+    }
+    .mic-btn:hover { background: var(--mauve-dark); }
+    .mic-btn.recording {
+      background: var(--mauve-dark);
+      animation: micPulse 0.85s ease-in-out infinite;
+    }
+    @keyframes micPulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+    .mic-btn svg { width: 20px; height: 20px; stroke: var(--warm-dark-light); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .listening-label {
+      position: absolute;
+      bottom: 16px;
+      right: 64px;
+      font-size: 11px;
+      font-weight: 500;
+      color: var(--mauve-dark);
     }
     .tool-textarea:focus {
       border-color: var(--mauve-dark);
@@ -316,6 +356,7 @@
     /* ─── Submit Button ──────────────────────────────── */
     .tool-submit {
       margin-top: 20px;
+      align-self: center;
       padding: 16px 40px;
       border-radius: 16px;
       border: 2px solid var(--warm-dark);
@@ -644,12 +685,18 @@
       <div id="inputState">
         <h1 class="tool-headline">What's yours — and what isn't.</h1>
         <p class="tool-subtext">Describe what's bothering you. We'll separate what's yours to own from what's not.</p>
-        <textarea
-          id="situationInput"
-          class="tool-textarea"
-          placeholder="What's going on? Describe the situation..."
-          maxlength="2000"
-        ></textarea>
+        <div class="textarea-wrap">
+          <textarea
+            id="situationInput"
+            class="tool-textarea"
+            placeholder="What's going on? Describe the situation — type or tap the mic to speak..."
+            maxlength="2000"
+          ></textarea>
+          <span id="listeningLabel" class="listening-label" style="display:none;">listening...</span>
+          <button type="button" id="micBtn" class="mic-btn" onclick="toggleMic()" style="display:none;">
+            <svg viewBox="0 0 24 24"><rect x="9" y="1" width="6" height="11" rx="3"/><path d="M19 10v1a7 7 0 01-14 0v-1"/><line x1="12" y1="19" x2="12" y2="23"/><line x1="8" y1="23" x2="16" y2="23"/></svg>
+          </button>
+        </div>
         <button id="submitBtn" class="tool-submit" onclick="handleSubmit()">Show me</button>
         <p class="tool-muted">Free. No account needed.</p>
         <p id="inputError" class="error-msg hidden"></p>
@@ -741,6 +788,75 @@
   // ── State
   let pendingSituation = '';
   let pendingEmail = '';
+
+  // ── Speech Recognition
+  const SpeechAPI = window.SpeechRecognition || window.webkitSpeechRecognition || null;
+  let recognition = null;
+  let isRecording = false;
+
+  if (SpeechAPI) {
+    document.getElementById('micBtn').style.display = 'flex';
+  }
+
+  function toggleMic() {
+    if (isRecording) {
+      stopMic();
+    } else {
+      startMic();
+    }
+  }
+
+  function startMic() {
+    if (!SpeechAPI) return;
+    recognition = new SpeechAPI();
+    recognition.continuous = true;
+    recognition.interimResults = true;
+    recognition.lang = 'en-US';
+
+    const textarea = document.getElementById('situationInput');
+    const baseText = textarea.value.trim() ? textarea.value.trim() + ' ' : '';
+    let finalTranscript = '';
+
+    recognition.onresult = (event) => {
+      let interim = '';
+      for (let i = event.resultIndex; i < event.results.length; i++) {
+        if (event.results[i].isFinal) {
+          finalTranscript += event.results[i][0].transcript + ' ';
+        } else {
+          interim += event.results[i][0].transcript;
+        }
+      }
+      textarea.value = baseText + finalTranscript.trimStart() + interim;
+    };
+
+    recognition.onend = () => {
+      if (isRecording) {
+        try { recognition.start(); } catch {}
+        return;
+      }
+      textarea.value = (baseText + finalTranscript).trim();
+    };
+
+    recognition.onerror = (event) => {
+      if (event.error === 'no-speech') return;
+      stopMic();
+    };
+
+    recognition.start();
+    isRecording = true;
+    document.getElementById('micBtn').classList.add('recording');
+    document.getElementById('listeningLabel').style.display = '';
+  }
+
+  function stopMic() {
+    isRecording = false;
+    if (recognition) {
+      recognition.stop();
+      recognition = null;
+    }
+    document.getElementById('micBtn').classList.remove('recording');
+    document.getElementById('listeningLabel').style.display = 'none';
+  }
 
   function getUseCount() {
     try { return parseInt(localStorage.getItem(STORAGE_KEY) || '0', 10); }
