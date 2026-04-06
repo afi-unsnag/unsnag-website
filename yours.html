@@ -674,11 +674,11 @@
       <div id="emailGateState">
         <div style="text-align: center; margin-bottom: 32px;">
           <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 14px;">Try it free</span>
-          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; color: var(--warm-dark); letter-spacing: -0.5px;">Enter your email to get your results.</h2>
-          <p style="font-size: 14px; color: var(--warm-gray); margin-top: 10px; line-height: 1.6;">You'll also get a few short emails about why seeing it isn't enough to change it — and what actually is. Unsubscribe anytime. <a href="/privacy" style="color: var(--warm-gray); text-decoration: underline; text-underline-offset: 3px;">Privacy Policy</a></p>
+          <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; color: var(--warm-dark); letter-spacing: -0.5px;">Enter your email to try the tool.</h2>
+          <p style="font-size: 14px; color: var(--warm-gray); margin-top: 10px; line-height: 1.6;">You'll get your results instantly, plus a few short emails with practical ways to start shifting the patterns you see. Unsubscribe anytime. <a href="/privacy" style="color: var(--warm-gray); text-decoration: underline; text-underline-offset: 3px;">Privacy Policy</a></p>
         </div>
-        <div class="email-capture" style="padding: 0;">
-          <div class="email-row">
+        <div class="email-capture" style="padding: 0; display: flex; flex-direction: column; align-items: center;">
+          <div class="email-row" style="justify-content: center;">
             <input type="email" id="emailInput" class="email-input" placeholder="you@email.com" />
             <button class="email-submit" onclick="handleEmailGate()">Let's go</button>
           </div>
