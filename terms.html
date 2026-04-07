@@ -255,11 +255,24 @@
       .footer-inner { flex-direction: column; align-items: flex-start; }
     }
   </style>
-  <script src="/components/load-components.js" defer></script>
 </head>
 <body>
 
-<div id="nav-placeholder"></div>
+<!-- ─────────────────── NAV ─────────────────── -->
+<nav id="main-nav">
+  <div class="container">
+    <a href="/" class="nav-logo">unsnag</a>
+    <ul class="nav-links">
+      <li><a href="/yours">Yours or Not</a></li>
+      <li><a href="/blog/">Blog</a></li>
+      <li><a href="/#pricing">Pricing</a></li>
+    </ul>
+    <div class="nav-cta-desktop" style="display: flex; align-items: center; gap: 20px;">
+      <a href="https://app.unsnag.co" style="font-size: 15px; font-weight: 500; color: var(--warm-dark-light); text-decoration: none; transition: color 0.2s;">Log in</a>
+      <a href="https://app.unsnag.co/signup" class="btn btn-mauve">Start free trial</a>
+    </div>
+  </div>
+</nav>
 
 <!-- ─────────────────── PAGE HEADER ─────────────────── -->
 <section id="page-header">
@@ -380,7 +393,28 @@
   </div>
 </section>
 
-<div id="footer-placeholder"></div>
+<!-- ─────────────────── FOOTER ─────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <a href="/" class="footer-logo">unsnag</a>
+      <ul class="footer-links">
+        <li><a href="/yours">Yours or Not</a></li>
+        <li><a href="/blog/">Blog</a></li>
+        <li><a href="/privacy.html">Privacy</a></li>
+        <li><a href="/terms.html">Terms</a></li>
+      </ul>
+      <span class="footer-copy">&copy; 2026 Unsnag</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const nav = document.getElementById('main-nav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+</script>
 
 </body>
 </html>
