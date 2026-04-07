@@ -128,6 +128,26 @@ if (newCards.length > 0 && !dryRun) {
   console.log(`\n📝 Updated index.html with ${newCards.length} new card(s)`);
 }
 
+// Update sitemap with newly published posts
+if (newCards.length > 0 && !dryRun) {
+  const sitemapPath = join(ROOT, 'sitemap.xml');
+  if (existsSync(sitemapPath)) {
+    let sitemap = readFileSync(sitemapPath, 'utf-8');
+    for (const dir of dirs) {
+      const slug = dir;
+      const destPath = join(BLOG_DIR, `${slug}.html`);
+      const url = `https://unsnag.co/blog/${slug}.html`;
+      if (existsSync(destPath) && !sitemap.includes(url)) {
+        const today = new Date().toISOString().slice(0, 10);
+        const entry = `  <url>\n    <loc>${url}</loc>\n    <lastmod>${today}</lastmod>\n    <changefreq>monthly</changefreq>\n    <priority>0.8</priority>\n  </url>`;
+        sitemap = sitemap.replace('</urlset>', `${entry}\n</urlset>`);
+      }
+    }
+    writeFileSync(sitemapPath, sitemap, 'utf-8');
+    console.log('📍 Updated sitemap.xml');
+  }
+}
+
 if (published === 0) {
   console.log('\nNothing to publish today.');
 } else {
