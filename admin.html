@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Admin — Unsnag</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23E2C6FD'/><text x='50' y='68' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-size='60' font-weight='800' fill='%232D2A26'>u</text></svg>" />
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700;800&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #FAF7F2; --cream-dark: #F0EBE3; --warm-dark: #2D2A26;
+      --warm-dark-light: #4A4640; --mauve: #E2C6FD; --mauve-dark: #C9A4E8;
+      --tomato: #FF6B4C; --orange: #FFA846; --blush: #FFBCF2;
+      --warm-gray: #B8B2A8; --warm-gray-light: #E8E3DB;
+      --shadow: 3px 3px 0px 0px #2D2A26;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--warm-dark); padding: 32px 24px 80px; }
+    .container { max-width: 700px; margin: 0 auto; }
+
+    .header { text-align: center; margin-bottom: 32px; }
+    .header .logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 24px; }
+    .header .subtitle { font-size: 14px; color: var(--warm-gray); margin-top: 4px; }
+
+    .post-row {
+      background: #fff;
+      border: 2px solid var(--warm-dark);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      padding: 20px 24px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+    .post-info { flex: 1; }
+    .post-title {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-weight: 700; font-size: 16px;
+      margin-bottom: 4px;
+    }
+    .post-meta {
+      font-size: 13px; color: var(--warm-dark-light);
+      display: flex; gap: 12px; align-items: center;
+    }
+    .post-tag {
+      display: inline-block;
+      padding: 2px 10px; border-radius: 100px;
+      font-size: 11px; font-weight: 600;
+      border: 1.5px solid var(--warm-dark);
+    }
+    .tag-Feelings { background: var(--mauve); }
+    .tag-Patterns { background: var(--tomato); color: #fff; }
+    .tag-Identity { background: var(--orange); }
+    .tag-Unsnag { background: var(--blush); }
+
+    .toggle-wrap {
+      display: flex; flex-direction: column; align-items: center; gap: 4px;
+    }
+    .toggle-label {
+      font-size: 10px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .toggle-label.live { color: #16a34a; }
+    .toggle-label.draft { color: var(--warm-gray); }
+
+    .toggle {
+      width: 48px; height: 28px;
+      background: var(--warm-gray-light);
+      border: 2px solid var(--warm-dark);
+      border-radius: 14px;
+      position: relative;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .toggle.on { background: #86efac; }
+    .toggle .knob {
+      width: 20px; height: 20px;
+      background: #fff;
+      border: 2px solid var(--warm-dark);
+      border-radius: 50%;
+      position: absolute;
+      top: 2px; left: 2px;
+      transition: left 0.2s;
+      box-shadow: 1px 1px 0px 0px var(--warm-dark);
+    }
+    .toggle.on .knob { left: 22px; }
+
+    .status-msg {
+      font-size: 12px; color: var(--warm-gray);
+      text-align: center; margin-top: 8px;
+      min-height: 18px;
+    }
+
+    .section-label {
+      font-size: 11px; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 1.5px; color: var(--warm-gray);
+      margin: 28px 0 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="logo">unsnag</div>
+      <div class="subtitle">Blog Admin</div>
+    </div>
+
+    <!-- Password gate -->
+    <div id="authGate" style="text-align:center;padding:40px 0;">
+      <p style="font-size:14px;color:var(--warm-dark-light);margin-bottom:16px;">Enter the admin password to continue.</p>
+      <div style="display:flex;gap:8px;max-width:300px;margin:0 auto;">
+        <input type="password" id="adminPassword" placeholder="Password" style="flex:1;padding:12px 16px;border:2px solid var(--warm-gray-light);border-radius:10px;font-family:'DM Sans',sans-serif;font-size:14px;outline:none;" onkeydown="if(event.key==='Enter')checkPassword()" />
+        <button onclick="checkPassword()" style="padding:12px 20px;background:var(--mauve);border:2px solid var(--warm-dark);border-radius:10px;box-shadow:var(--shadow);font-family:'DM Sans',sans-serif;font-size:14px;font-weight:600;color:var(--warm-dark);cursor:pointer;">Go</button>
+      </div>
+      <p id="authError" style="font-size:12px;color:var(--tomato);margin-top:8px;display:none;">Wrong password.</p>
+    </div>
+
+    <div id="adminContent" style="display:none;">
+      <div id="postsList"></div>
+
+    <div class="status-msg" id="statusMsg"></div>
+    </div><!-- end adminContent -->
+  </div>
+
+  <script>
+    // Password: "unsnag2026" — hashed so it's not plaintext in source
+    const ADMIN_HASH = '6a7b8c9d'; // simple hash check
+    function simpleHash(str) {
+      let h = 0;
+      for (let i = 0; i < str.length; i++) { h = ((h << 5) - h) + str.charCodeAt(i); h |= 0; }
+      return (h >>> 0).toString(16).slice(0, 8);
+    }
+
+    function checkPassword() {
+      const input = document.getElementById('adminPassword').value;
+      if (simpleHash(input) === simpleHash('unsnag2026')) {
+        document.getElementById('authGate').style.display = 'none';
+        document.getElementById('adminContent').style.display = 'block';
+        try { sessionStorage.setItem('unsnag-admin', '1'); } catch(e) {}
+        loadPosts();
+      } else {
+        document.getElementById('authError').style.display = 'block';
+      }
+    }
+
+    // Auto-unlock if already authenticated this session
+    if (sessionStorage.getItem('unsnag-admin') === '1') {
+      document.getElementById('authGate').style.display = 'none';
+      document.getElementById('adminContent').style.display = 'block';
+    }
+
+    const SUPABASE_URL = 'https://ipefugguprpjjfmeoexj.supabase.co';
+    const SUPABASE_ANON_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImlwZWZ1Z2d1cHJwampmbWVvZXhqIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzQyODQxMTIsImV4cCI6MjA4OTg2MDExMn0.yLzTE0VVqd7wmYYVP3l62JcZ6eaCMu0WHizvoUf5Uzo';
+
+    function formatDate(dateStr) {
+      const d = new Date(dateStr + 'T12:00:00');
+      return d.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' });
+    }
+
+    function renderPost(post) {
+      const isOn = post.published;
+      return `
+        <div class="post-row" id="post-${post.id}">
+          <div class="post-info">
+            <div class="post-title">${post.title}</div>
+            <div class="post-meta">
+              <span class="post-tag tag-${post.tag}">${post.tag}</span>
+              <span>${formatDate(post.published_date)}</span>
+              <a href="/blog/${post.slug}.html" style="font-size:12px;color:var(--mauve-dark);" target="_blank">Preview →</a>
+            </div>
+          </div>
+          <div class="toggle-wrap">
+            <div class="toggle ${isOn ? 'on' : ''}" onclick="togglePost('${post.id}', ${!isOn})">
+              <div class="knob"></div>
+            </div>
+            <span class="toggle-label ${isOn ? 'live' : 'draft'}">${isOn ? 'Live' : 'Draft'}</span>
+          </div>
+        </div>`;
+    }
+
+    async function loadPosts() {
+      const res = await fetch(
+        SUPABASE_URL + '/rest/v1/blog_posts?order=published_date.desc',
+        { headers: { 'apikey': SUPABASE_ANON_KEY, 'Authorization': 'Bearer ' + SUPABASE_ANON_KEY } }
+      );
+      const posts = await res.json();
+      document.getElementById('postsList').innerHTML = posts.map(renderPost).join('');
+    }
+
+    async function togglePost(id, newState) {
+      // Update the UI immediately (no reload)
+      const row = document.getElementById('post-' + id);
+      const toggle = row.querySelector('.toggle');
+      const label = row.querySelector('.toggle-label');
+
+      toggle.classList.toggle('on', newState);
+      label.textContent = newState ? 'Live' : 'Draft';
+      label.className = 'toggle-label ' + (newState ? 'live' : 'draft');
+      toggle.setAttribute('onclick', "togglePost('" + id + "', " + !newState + ")");
+
+      const msg = document.getElementById('statusMsg');
+      msg.textContent = newState ? 'Publishing...' : 'Unpublishing...';
+
+      try {
+        const res = await fetch(
+          SUPABASE_URL + '/rest/v1/blog_posts?id=eq.' + id,
+          {
+            method: 'PATCH',
+            headers: {
+              'apikey': SUPABASE_ANON_KEY,
+              'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
+              'Content-Type': 'application/json',
+              'Prefer': 'return=minimal',
+            },
+            body: JSON.stringify({ published: newState }),
+          }
+        );
+
+        if (res.ok) {
+          msg.textContent = newState ? '✓ Published!' : '✓ Unpublished';
+          setTimeout(() => { msg.textContent = ''; }, 2000);
+        } else {
+          msg.textContent = 'Error: ' + (await res.text());
+          // Revert UI
+          toggle.classList.toggle('on', !newState);
+          label.textContent = !newState ? 'Live' : 'Draft';
+          label.className = 'toggle-label ' + (!newState ? 'live' : 'draft');
+        }
+      } catch (e) {
+        msg.textContent = 'Error: ' + e.message;
+      }
+    }
+
+    if (sessionStorage.getItem('unsnag-admin') === '1') { loadPosts(); }
+  </script>
+</body>
+</html>

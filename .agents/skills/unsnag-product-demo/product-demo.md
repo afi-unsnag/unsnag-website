@@ -114,31 +114,103 @@ background: #FAF7F2;
 ## Animation Rules
 
 ### The cursor
-Always animate a visible cursor (a small filled circle, ~10px, color #2D2A26) that:
-- Moves across the screen to simulate a real user tapping
-- Pauses briefly before tapping (like a real hesitation)
-- Scales down slightly on tap to simulate press
-- Uses `cubic-bezier(0.4, 0, 0.2, 1)` for smooth movement
+Always use an **SVG arrow cursor** — not a circle dot. This matches the production demos on the site.
+
+```html
+<div class="cursor" id="cursor">
+  <svg width="17" height="23" viewBox="0 0 17 23" fill="none">
+    <path d="M1 1L1 19.5L5.5 15L10 22L13 20.5L8.5 13.5L14.5 13.5L1 1Z" fill="white" stroke="#2D2A26" stroke-width="1.5" stroke-linejoin="round"/>
+  </svg>
+</div>
+```
 
 ```css
 .cursor {
-  width: 10px; height: 10px;
-  background: #2D2A26;
-  border-radius: 50%;
   position: absolute;
-  pointer-events: none;
-  transition: transform 0.1s ease;
   z-index: 100;
+  pointer-events: none;
+  opacity: 0;
 }
-.cursor.tapping { transform: scale(0.7); }
+.cursor svg { display: block; transition: transform 0.1s; }
+.cursor.tap svg { transform: scale(0.85); }
 ```
+
+- Show/hide with `opacity` (start hidden, show when needed)
+- Use `moveCursor(x, y, duration)` pattern with `cubic-bezier(0.4, 0, 0.2, 1)`
+- Add `.tap` class briefly (150ms) for press effect
+- Hide cursor during typing (set `opacity: 0`), show again for button taps
+- Use `getPos(el)` helper to find button positions relative to the phone frame
+
+### Screen transitions
+Use **slide transitions** between screens — not fade. Screen 1 slides left, Screen 2 slides in from right.
+
+```css
+.screen-view {
+  position: absolute;
+  top: 0; left: 0; right: 0; bottom: 0;
+  display: flex; flex-direction: column;
+  transition: transform 300ms ease, opacity 300ms ease;
+  overflow-y: auto;
+}
+.screen-view.hidden-left { transform: translateX(-100%); opacity: 0; }
+.screen-view.hidden-right { transform: translateX(100%); opacity: 0; }
+```
+
+### Results reveal pattern
+For AI insight/results screens, reveal elements **sequentially** with staggered fade-ins:
+1. AI badge fades in → 300ms wait
+2. Heading fades in → 300ms wait
+3. Subtext fades in → 400ms wait
+4. First card fades in → 300ms wait
+5. Bullet items fade in one by one → 200ms between each
+6. Second card fades in → same bullet pattern
+7. Hold on results for 5 seconds before looping
+
+Each element uses `opacity: 0; transition: opacity 0.4s;` and gets a `.visible` class.
 
 ### Timing feel
 - Cursor travel: 600–900ms per movement
 - Pause before tap: 300–500ms
-- Element appear/fade: 300ms ease
+- Typing speed: 22-30ms per character with slight random variance
+- Text cursor: blinking `<span class="text-cursor"></span>` appended after typed text
+- Element appear/fade: 300-400ms ease
 - Between scenes: 800ms pause before looping
-- Total loop: aim for 6–10 seconds — long enough to read, short enough to stay engaging
+- Scroll to reveal: use `scrollTo({ top: N, behavior: 'smooth' })` when content extends below fold
+- Total loop: 15-25 seconds for demos with typing + results
+
+### Insight card pattern
+Used in both the app's AI Insight step and the Yours or Not free tool.
+
+```css
+.insight-card { width: 100%; border-radius: 12px; padding: 18px; margin-bottom: 14px; opacity: 0; transition: opacity 0.4s; }
+.insight-card.visible { opacity: 1; }
+.card-yours { border: 2px solid var(--tomato); }
+.card-not-yours { border: 2px solid var(--orange); }
+.card-header { font-family: 'Bricolage Grotesque', serif; font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+.card-yours .card-header { color: var(--tomato); }
+.card-not-yours .card-header { color: #C87A00; }
+.card-bullet { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 8px; opacity: 0; transition: opacity 0.3s; }
+.card-bullet.visible { opacity: 1; }
+.bullet-dot { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; margin-top: 5px; }
+.card-yours .bullet-dot { background: var(--tomato); }
+.card-not-yours .bullet-dot { background: var(--orange); }
+```
+
+Cards use **colored borders only** (not filled backgrounds). "What's yours" = tomato border/dots. "What's not yours" = orange border/dots.
+
+### AI badge
+Shows above insight results to indicate AI-generated content.
+
+```css
+.ai-badge {
+  display: inline-flex; gap: 4px;
+  background: var(--mauve-light); border: 1px solid var(--mauve-dark);
+  border-radius: 20px; padding: 4px 12px;
+  font-family: 'DM Sans'; font-size: 10px; font-weight: 600;
+  text-transform: uppercase; color: var(--warm-dark-light);
+}
+```
+Content: `&#x2726; AI` or `&#x2726; AI Insight`
 
 ### What to animate
 Show exactly one of these moments per demo:
@@ -179,39 +251,42 @@ Show exactly one of these moments per demo:
 
 ## Phone Frame
 
-Wrap the demo in a realistic phone frame:
+Two modes depending on where the demo will be used:
 
-```html
-<div class="phone-frame">
-  <div class="phone-notch"></div>
-  <div class="phone-screen">
-    <!-- app content here -->
-  </div>
-</div>
-```
+### Mode A — Embedded on website (no phone frame)
+For demos embedded in iframes on the landing page. Full viewport, no chrome.
 
 ```css
+.phone-frame { width: 100%; height: 100vh; background: none; border-radius: 0; padding: 0; position: relative; }
+.phone-notch { display: none; }
+.phone-screen { background: var(--cream); border-radius: 0; overflow: hidden; height: 100vh; position: relative; display: flex; flex-direction: column; }
+```
+
+### Mode B — Social media / Instagram (with phone frame)
+For 1080x1350 Instagram posts/reels or standalone downloads. Centered phone on cream background.
+
+```css
+html, body { width: 1080px; height: 1350px; overflow: hidden; display: flex; align-items: center; justify-content: center; background: var(--cream); }
 .phone-frame {
-  width: 320px;
+  width: 390px;
   background: #1a1a1a;
-  border-radius: 44px;
-  padding: 12px;
-  box-shadow: 0 24px 60px rgba(0,0,0,0.3);
+  border-radius: 52px;
+  padding: 14px;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.2);
   position: relative;
 }
 .phone-notch {
-  width: 100px; height: 28px;
+  width: 120px; height: 32px;
   background: #1a1a1a;
-  border-radius: 0 0 18px 18px;
-  margin: 0 auto 8px;
+  border-radius: 0 0 20px 20px;
+  margin: 0 auto 4px;
 }
 .phone-screen {
-  background: #FAF7F2;
-  border-radius: 36px;
+  background: var(--cream);
+  border-radius: 42px;
   overflow: hidden;
-  min-height: 580px;
+  height: 740px;
   position: relative;
-  padding: 24px 20px;
 }
 ```
 
@@ -225,6 +300,19 @@ Wrap the demo in a realistic phone frame:
 - Loop automatically and indefinitely
 - Works in all modern browsers
 - Embed-ready: the whole thing should work dropped into a `<div>` on the landing page
+
+**Option E — Yours or Not (free tool demo)**
+1. Screen 1: "Describe what's bothering you" with empty textarea
+2. Cursor taps textarea, types a relatable situation
+3. "Show me" CTA appears, cursor taps it
+4. Slide transition to results screen
+5. AI badge, heading, subtext fade in sequentially
+6. "Yours to feel" card appears with 3 bullets fading in
+7. "Not yours to feel" card appears with 3 bullets fading in
+8. Hold on results, fade out, loop
+9. Top bar shows "unsnag" wordmark (no progress dots — this isn't the full app flow)
+
+Reference implementation: `content/drafts/product-demo/instagram/yours-or-not-demo.html`
 
 ---
 

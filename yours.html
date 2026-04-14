@@ -1035,6 +1035,45 @@
     gtag('event', 'free_tool_try_again');
   }
 
+  // ── Scroll depth tracking
+  var scrollMarkers = { 25: false, 50: false, 75: false, 100: false };
+  window.addEventListener('scroll', function() {
+    var scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    [25, 50, 75, 100].forEach(function(marker) {
+      if (scrollPercent >= marker && !scrollMarkers[marker]) {
+        scrollMarkers[marker] = true;
+        gtag('event', 'scroll_depth', { page: 'yours', percent: marker });
+      }
+    });
+  }, { passive: true });
+
+  // ── Section visibility tracking
+  var sectionsSeen = {};
+  var sectionsToTrack = document.querySelectorAll('section[id], [id="emailGateState"], [id="inputState"], [id="resultsState"]');
+  if ('IntersectionObserver' in window) {
+    var sectionObserver = new IntersectionObserver(function(entries) {
+      entries.forEach(function(entry) {
+        if (entry.isIntersecting && !sectionsSeen[entry.target.id]) {
+          sectionsSeen[entry.target.id] = true;
+          gtag('event', 'section_visible', { page: 'yours', section: entry.target.id });
+        }
+      });
+    }, { threshold: 0.3 });
+    sectionsToTrack.forEach(function(el) { sectionObserver.observe(el); });
+  }
+
+  // ── Tool funnel: typing started
+  var typingTracked = false;
+  var situationInput = document.getElementById('situationInput');
+  if (situationInput) {
+    situationInput.addEventListener('input', function() {
+      if (!typingTracked && situationInput.value.length > 20) {
+        typingTracked = true;
+        gtag('event', 'free_tool_typing_started');
+      }
+    });
+  }
+
   // ── Sticky nav
   var nav = document.getElementById('main-nav');
   window.addEventListener('scroll', function() {

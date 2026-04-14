@@ -11,13 +11,13 @@
   <meta property="og:description" content="Unsnag is a guided app that moves the feeling through your body in minutes — so it stops driving the overthinking, people-pleasing, and taking-it-all-on. 14 days free." />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://unsnag.co/" />
-  <meta property="og:image" content="https://unsnag.co/images/og-home.jpg" />
+  <meta property="og:image" content="https://unsnag.co/images/og-home.png" />
   <meta property="og:image:width" content="1200" />
   <meta property="og:image:height" content="630" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content="Unsnag — Stop Overthinking. Start Feeling." />
   <meta name="twitter:description" content="Unsnag is a guided app that moves the feeling through your body in minutes — so it stops driving the overthinking, people-pleasing, and taking-it-all-on. 14 days free." />
-  <meta name="twitter:image" content="https://unsnag.co/images/og-home.jpg" />
+  <meta name="twitter:image" content="https://unsnag.co/images/og-home.png" />
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><circle cx='50' cy='50' r='50' fill='%23E2C6FD'/><text x='50' y='68' text-anchor='middle' font-family='system-ui,-apple-system,sans-serif' font-size='60' font-weight='800' fill='%232D2A26'>u</text></svg>" />
   <!-- Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-537LVP6WC5"></script>
@@ -1519,7 +1519,7 @@
         "@type": "Organization",
         "name": "Unsnag",
         "url": "https://unsnag.co",
-        "logo": "https://unsnag.co/images/og-home.jpg"
+        "logo": "https://unsnag.co/images/og-home.png"
       },
       {
         "@type": "SoftwareApplication",
@@ -2127,6 +2127,33 @@
 </footer>
 
 <script>
+  // ── Scroll depth tracking
+  const scrollMarkers = { 25: false, 50: false, 75: false, 100: false };
+  window.addEventListener('scroll', () => {
+    const scrollPercent = Math.round((window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100);
+    [25, 50, 75, 100].forEach(marker => {
+      if (scrollPercent >= marker && !scrollMarkers[marker]) {
+        scrollMarkers[marker] = true;
+        gtag('event', 'scroll_depth', { page: 'home', percent: marker });
+      }
+    });
+  }, { passive: true });
+
+  // ── Section visibility tracking
+  const sectionsSeen = {};
+  const sectionsToTrack = document.querySelectorAll('section[id]');
+  if ('IntersectionObserver' in window) {
+    const sectionObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting && !sectionsSeen[entry.target.id]) {
+          sectionsSeen[entry.target.id] = true;
+          gtag('event', 'section_visible', { page: 'home', section: entry.target.id });
+        }
+      });
+    }, { threshold: 0.3 });
+    sectionsToTrack.forEach(el => sectionObserver.observe(el));
+  }
+
   // ── Sticky nav
   const nav = document.getElementById('main-nav');
   window.addEventListener('scroll', () => {
