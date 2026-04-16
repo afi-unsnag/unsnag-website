@@ -174,6 +174,15 @@
       box-shadow: 1px 1px 0px 0px #C9A4E8;
       transform: translate(2px, 2px);
     }
+    .btn-cream {
+      background: var(--cream);
+      color: var(--warm-dark);
+      box-shadow: var(--shadow);
+    }
+    .btn-cream:hover {
+      box-shadow: var(--shadow-pressed);
+      transform: translate(2px, 2px);
+    }
 
     /* ─── Nav ────────────────────────────────────────── */
     #main-nav {
@@ -1604,7 +1613,7 @@
   <div class="container">
     <a href="/" class="nav-logo">unsnag</a>
     <ul class="nav-links">
-      <li><a href="/yours">Yours or Not</a></li>
+      <li><a href="/yours">Free Tool</a></li>
       <li><a href="/blog/">Blog</a></li>
       <li><a href="#pricing">Pricing</a></li>
     </ul>
@@ -1620,7 +1629,7 @@
 
 <div class="mobile-nav" id="mobileNav">
   <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">✕</button>
-  <a href="/yours" class="mobile-nav-link">Yours or Not</a>
+  <a href="/yours" class="mobile-nav-link">Free Tool</a>
   <a href="/blog/" class="mobile-nav-link">Blog</a>
   <a href="#pricing" class="mobile-nav-link">Pricing</a>
   <a href="https://app.unsnag.co" class="mobile-nav-link">Log in</a>
@@ -1635,9 +1644,11 @@
       <h1>Finally, a simple way<br>to stop overthinking.</h1>
       <p class="hero-sub">Unsnag is a guided app for people who overthink everything, care way too much about other people's opinions, and are exhausted from holding it all together. Six steps. A few minutes. The grip loosens.</p>
       <div class="hero-ctas">
-        <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
+        <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+          <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
+          <a href="/yours" class="btn btn-cream btn-lg">Try the free tool first</a>
+        </div>
         <p style="font-size: 13px; color: var(--warm-gray);">No credit card required</p>
-        <a href="/yours" class="secondary-link">Or try Yours or Not — our free AI tool</a>
       </div>
     </div>
     <div class="hero-mockup-wrap">
@@ -1810,7 +1821,7 @@
         <span class="ai-demo-badge">✦ Yes, there's a little AI in here</span>
         <h2>It shows you what's yours to feel — and what's not.</h2>
         <p>You're empathetic — when someone around you is going through something, you don't just notice it, you feel it. Their sadness, their frustration, their disappointment. But those feelings aren't actually yours. You can't feel them for someone else — that's their experience to have. What IS yours is your reaction to their discomfort: the guilt, the freezing, the stuffing down what you need. AI separates the two.</p>
-        <a href="/yours" class="btn btn-mauve" style="align-self: flex-start; margin-top: 8px;">Try Yours or Not — free</a>
+        <a href="/yours" class="btn btn-mauve" style="align-self: flex-start; margin-top: 8px;">Try it yourself — free</a>
       </div>
       <div class="insight-card fade-up">
         <span class="ai-chip">✦ AI</span>
@@ -2013,7 +2024,7 @@
           Start my free trial
         </a>
         <p class="pricing-note">14 days free. No credit card required. Then $5/month.</p>
-        <a href="/yours" class="secondary-link" style="display: block; margin-top: 8px;">Not ready? Try Yours or Not — it's free</a>
+        <a href="/yours" class="secondary-link" style="display: block; margin-top: 8px;">Not ready? Try the free tool first</a>
       </div>
     </div>
   </div>
@@ -2106,7 +2117,7 @@
     <p>You don't have to hold it together for everyone. You don't have to keep the peace. You don't have to need nothing. You just need to feel what you're actually feeling — for about 90 seconds — so it stops running everything.</p>
     <a href="https://app.unsnag.co/signup" class="btn btn-mauve-dark btn-lg">Start free trial</a>
     <p style="font-size: 13px; color: var(--warm-gray); margin-top: 14px;">No credit card required. 14 days free. Then $5/month.</p>
-    <a href="/yours" class="secondary-link-light" style="margin-top: 4px;">Or try Yours or Not — our free AI tool</a>
+    <a href="/yours" class="secondary-link-light" style="margin-top: 4px;">Or try the free tool first</a>
   </div>
 </div>
 
@@ -2116,7 +2127,7 @@
     <div class="footer-inner">
       <a href="/" class="footer-logo">unsnag</a>
       <ul class="footer-links">
-        <li><a href="/yours">Yours or Not</a></li>
+        <li><a href="/yours">Free Tool</a></li>
         <li><a href="/blog/">Blog</a></li>
         <li><a href="/privacy.html">Privacy</a></li>
         <li><a href="/terms.html">Terms</a></li>
