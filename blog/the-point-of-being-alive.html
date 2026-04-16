@@ -58,12 +58,12 @@
     }
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     html { scroll-behavior: smooth; }
-    body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--warm-dark); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
+    body { font-family: 'DM Sans', sans-serif; background: #FAF7F2; color: var(--warm-dark); font-size: 16px; line-height: 1.6; -webkit-font-smoothing: antialiased; }
     h1, h2, h3 { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; line-height: 1.15; }
     a { color: inherit; }
     #main-nav { position: sticky; top: 0; z-index: 100; padding: 16px 0; background: rgba(250,247,242,0.94); border-bottom: 1.5px solid var(--warm-gray-light); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px); }
     #main-nav .container { display: flex; justify-content: center; align-items: center; justify-content: space-between; gap: 24px; }
-    .nav-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: var(--warm-dark); text-decoration: none; letter-spacing: -0.5px; }
+    .nav-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 22px; color: #2D2A26; text-decoration: none; letter-spacing: -0.5px; }
     .nav-links { display: flex; justify-content: center; align-items: center; gap: 32px; list-style: none; }
     .nav-links a { font-size: 15px; font-weight: 500; color: var(--warm-dark-light); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--warm-dark); }
@@ -127,19 +127,68 @@
     .article-body blockquote { border-left: 4px solid var(--orange); padding: 4px 0 4px 24px; margin: 36px 0; }
     .article-body blockquote p { font-size: 19px; font-weight: 500; color: var(--warm-dark); font-style: italic; line-height: 1.6; margin-bottom: 0; }
     .article-divider { width: 48px; height: 4px; background: var(--mauve); border-radius: 2px; margin: 48px auto; }
-    .article-cta { max-width: 680px; margin: 0 auto 80px; background: var(--cream-dark); border: 2px solid var(--warm-dark); border-radius: 20px; box-shadow: var(--shadow); padding: 40px; text-align: center; }
+    .article-cta { max-width: 680px; margin: 0 auto 80px; background: #F0EBE3; border: 2px solid var(--warm-dark); border-radius: 20px; box-shadow: var(--shadow); padding: 40px; text-align: center; }
     .article-cta h3 { font-size: 24px; font-weight: 800; margin-bottom: 12px; letter-spacing: -0.3px; }
     .article-cta p { font-size: 15px; color: var(--warm-dark-light); line-height: 1.6; margin-bottom: 24px; }
     .article-cta .btn { font-size: 16px; padding: 14px 32px; }
-    footer { background: var(--cream-dark); padding: 36px 0; border-top: 1.5px solid var(--warm-gray-light); }
+    footer { background: #F0EBE3; padding: 36px 0; border-top: 1.5px solid var(--warm-gray-light); }
     .footer-inner { display: flex; justify-content: center; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-    .footer-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: var(--warm-dark); text-decoration: none; }
+    .footer-logo { font-family: 'Bricolage Grotesque', sans-serif; font-weight: 800; font-size: 20px; color: #2D2A26; text-decoration: none; }
     .footer-links { display: flex; justify-content: center; gap: 24px; list-style: none; flex-wrap: wrap; }
     .footer-links a { font-size: 14px; font-weight: 500; color: var(--warm-dark-light); text-decoration: none; transition: color 0.2s; }
     .footer-links a:hover { color: var(--warm-dark); }
     .footer-copy { font-size: 13px; color: var(--warm-gray); }
     @media (max-width: 860px) { .container { padding: 0 24px; } }
-    @media (max-width: 640px) { .nav-links { display: none; } .article-header { padding: 48px 0 32px; } .article-cta { padding: 28px 20px; } }
+    @media (max-width: 640px) { .nav-links { display: none; }
+      .nav-cta-desktop { display: none !important; }
+      #main-nav .container > a.btn { display: none !important; }
+      .mobile-menu-btn { display: flex !important; } .article-header { padding: 48px 0 32px; } .article-cta { padding: 28px 20px; } }
+  
+    .mobile-menu-btn {
+      display: none;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 2px solid #E8E3DB;
+      background: #F0EBE3;
+      cursor: pointer;
+      align-items: center; justify-content: center;
+      flex-direction: column; gap: 4px; padding: 8px;
+    }
+    .mobile-menu-btn span {
+      display: block; width: 100%; height: 2px;
+      background: #2D2A26; border-radius: 1px;
+      transition: transform 0.2s, opacity 0.2s;
+    }
+    .mobile-menu-btn.open span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
+    .mobile-menu-btn.open span:nth-child(2) { opacity: 0; }
+    .mobile-menu-btn.open span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
+    .mobile-nav {
+      display: none;
+      position: fixed;
+      top: 0; left: 0; right: 0; bottom: 0;
+      z-index: 200;
+      background: #FAF7F2;
+      flex-direction: column;
+      align-items: center; justify-content: center;
+      gap: 28px;
+    }
+    .mobile-nav.open { display: flex; }
+    .mobile-nav a {
+      font-family: 'Bricolage Grotesque', sans-serif;
+      font-size: 24px; font-weight: 700;
+      color: #2D2A26; text-decoration: none;
+    }
+    .mobile-nav-close {
+      position: absolute;
+      top: 20px; right: 24px;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      border: 2px solid #E8E3DB;
+      background: #F0EBE3;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 18px; color: #2D2A26;
+    }
   </style>
 </head>
 <body>
@@ -156,8 +205,20 @@
       <a href="https://app.unsnag.co" style="font-size: 15px; font-weight: 500; color: var(--warm-dark-light); text-decoration: none; transition: color 0.2s;">Log in</a>
       <a href="https://app.unsnag.co/signup" class="btn btn-mauve">Start free trial</a>
     </div>
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
   </div>
 </nav>
+
+<div class="mobile-nav" id="mobileNav">
+  <button class="mobile-nav-close" id="mobileNavClose" aria-label="Close menu">✕</button>
+  <a href="/yours" class="mobile-nav-link">Free Tool</a>
+  <a href="/blog/" class="mobile-nav-link">Blog</a>
+  <a href="/#pricing" class="mobile-nav-link">Pricing</a>
+  <a href="https://app.unsnag.co" class="mobile-nav-link">Log in</a>
+  <a href="https://app.unsnag.co/signup" class="btn btn-mauve" style="margin-top: 12px;">Start free trial</a>
+</div>
 
 <article>
   <div class="container">
@@ -216,7 +277,7 @@
     </div>
 
     <div class="article-author-bottom">
-      <img src="../images/afi-catena-headshot.jpg" alt="Afi Catena" class="author-photo" />
+      <img src="/images/afi-catena-headshot.jpg" alt="Afi Catena" class="author-photo" />
       <div class="author-info">
         <p class="author-name">Afi Catena</p>
         <p class="author-title">Founder of Unsnag · Certified Life Coach</p>
@@ -263,5 +324,20 @@
     });
   }, { passive: true });
 </script>
+
+<script>
+  (function() {
+    var btn = document.getElementById('mobileMenuBtn');
+    var nav = document.getElementById('mobileNav');
+    var closeBtn = document.getElementById('mobileNavClose');
+    if (!btn || !nav) return;
+    function open() { nav.classList.add('open'); btn.classList.add('open'); document.body.style.overflow = 'hidden'; }
+    function close() { nav.classList.remove('open'); btn.classList.remove('open'); document.body.style.overflow = ''; }
+    btn.addEventListener('click', open);
+    if (closeBtn) closeBtn.addEventListener('click', close);
+    nav.querySelectorAll('a').forEach(function(a) { a.addEventListener('click', close); });
+  })();
+</script>
+
 </body>
 </html>

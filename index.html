@@ -330,6 +330,13 @@
       align-items: center;
       gap: 12px;
     }
+    .hero-cta-row {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+    }
     .hero-mockup-wrap {
       position: relative;
       flex-shrink: 0;
@@ -701,6 +708,10 @@
       color: var(--warm-gray);
       line-height: 1.75;
     }
+    .ai-demo-cta {
+      align-self: flex-start;
+      margin-top: 8px;
+    }
     .insight-card {
       width: 340px;
       background: var(--cream);
@@ -811,6 +822,7 @@
         text-align: center;
       }
       .ai-demo-badge { align-self: center; }
+      .ai-demo-cta { align-self: center; }
       .insight-card {
         margin: 0 auto;
         margin-top: -60px;
@@ -1644,7 +1656,7 @@
       <h1>Finally, a simple way<br>to stop overthinking.</h1>
       <p class="hero-sub">Unsnag is a guided app for people who overthink everything, care way too much about other people's opinions, and are exhausted from holding it all together. Six steps. A few minutes. The grip loosens.</p>
       <div class="hero-ctas">
-        <div style="display: flex; gap: 12px; flex-wrap: wrap; align-items: center;">
+        <div class="hero-cta-row">
           <a href="https://app.unsnag.co/signup" class="btn btn-mauve btn-lg">Start free — 14 days on us</a>
           <a href="/yours" class="btn btn-cream btn-lg">Try the free tool first</a>
         </div>
@@ -1821,28 +1833,28 @@
         <span class="ai-demo-badge">✦ Yes, there's a little AI in here</span>
         <h2>It shows you what's yours to feel — and what's not.</h2>
         <p>You're empathetic — when someone around you is going through something, you don't just notice it, you feel it. Their sadness, their frustration, their disappointment. But those feelings aren't actually yours. You can't feel them for someone else — that's their experience to have. What IS yours is your reaction to their discomfort: the guilt, the freezing, the stuffing down what you need. AI separates the two.</p>
-        <a href="/yours" class="btn btn-mauve" style="align-self: flex-start; margin-top: 8px;">Try it yourself — free</a>
+        <a href="/yours" class="btn btn-mauve ai-demo-cta">Try it yourself — free</a>
       </div>
       <div class="insight-card fade-up">
         <span class="ai-chip">✦ AI</span>
-        <h3>Someone hasn't texted you back.</h3>
+        <h3>You cancelled plans. Now you're worried they're mad.</h3>
         <p class="insight-sub">Here's what's actually yours — and what belongs to them.</p>
 
         <div class="yours-card yours">
           <h4>Yours to feel</h4>
           <ul>
-            <li>Your guilt about prioritizing yourself</li>
-            <li>The fear of being the reason someone's upset</li>
-            <li>The urge to shrink so no one's uncomfortable</li>
+            <li>Your guilt about choosing rest over showing up</li>
+            <li>The fear of being seen as flaky or unreliable</li>
+            <li>The urge to over-explain so they won't be upset</li>
           </ul>
         </div>
 
         <div class="yours-card not-yours">
           <h4>Not yours to feel</h4>
           <ul>
-            <li>Why they haven't responded — that's their experience</li>
-            <li>Whether they feel hurt — that's theirs to process</li>
-            <li>How they react to what you need — not yours to manage</li>
+            <li>Whether they're actually mad — that's theirs to process</li>
+            <li>How disappointed they felt — that's their experience</li>
+            <li>How they interpret the cancellation — not yours to manage</li>
           </ul>
         </div>
       </div>

@@ -674,7 +674,7 @@
       <!-- ── Input State (shown by default — no email gate) ── -->
       <div id="inputState">
         <div style="text-align: center; margin-bottom: 32px;">
-          <span style="display: block; font-size: 11px; font-weight: 600; letter-spacing: 0.14em; text-transform: uppercase; color: var(--warm-gray); margin-bottom: 14px;">Try it now</span>
+          <div style="display: inline-flex; align-items: center; gap: 6px; padding: 8px 18px; border-radius: 100px; background: var(--blush); border: 2px solid var(--warm-dark); box-shadow: var(--shadow-sm); font-size: 13px; font-weight: 600; color: var(--warm-dark); margin-bottom: 18px;">✦ Try it now</div>
           <h2 style="font-family: 'Bricolage Grotesque', sans-serif; font-size: clamp(22px, 2.5vw, 30px); font-weight: 800; color: var(--warm-dark); letter-spacing: -0.5px;">Describe what's bothering you.</h2>
         </div>
         <div class="textarea-wrap">
@@ -854,11 +854,22 @@
 
   // ── State
   let userEmail = '';
+  const SESSION_KEY = 'unsnag_free_tool_session';
 
   // Load any previously captured email (optional — used for attribution)
   try {
     var savedEmail = localStorage.getItem(EMAIL_KEY);
     if (savedEmail) userEmail = savedEmail;
+  } catch {}
+
+  // Session ID: stable per-browser UUID so anonymous submissions can be grouped
+  let sessionId = '';
+  try {
+    sessionId = localStorage.getItem(SESSION_KEY) || '';
+    if (!sessionId) {
+      sessionId = (crypto.randomUUID ? crypto.randomUUID() : String(Date.now()) + '-' + Math.random().toString(36).slice(2));
+      localStorage.setItem(SESSION_KEY, sessionId);
+    }
   } catch {}
 
   // ── Speech Recognition
@@ -957,7 +968,7 @@
           'Authorization': 'Bearer ' + SUPABASE_ANON_KEY,
           'apikey': SUPABASE_ANON_KEY,
         },
-        body: JSON.stringify({ email: email, subscribe_only: true }),
+        body: JSON.stringify({ email: email, session_id: sessionId, subscribe_only: true }),
       });
     } catch {}
 
@@ -987,7 +998,7 @@
     gtag('event', 'free_tool_submit');
 
     try {
-      var body = { situation: situation };
+      var body = { situation: situation, session_id: sessionId };
       if (userEmail) body.email = userEmail;
 
       var res = await fetch(FUNCTION_URL, {
