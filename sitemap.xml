@@ -84,4 +84,40 @@
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
+  <url>
+    <loc>https://unsnag.co/blog/why-you-assume-everyone-is-mad.html</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unsnag.co/blog/the-90-second-rule.html</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unsnag.co/blog/your-body-knew-how-to-feel.html</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unsnag.co/blog/not-every-feeling-needs-a-story.html</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unsnag.co/blog/nothing-is-as-figured-out-as-you-think.html</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://unsnag.co/blog/youre-not-going-to-leave-feeling-like-a-new-person.html</loc>
+    <lastmod>2026-04-16</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
 </urlset>
